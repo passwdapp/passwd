@@ -8,6 +8,8 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/get_it_helper.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import 'authentication/authentication_impl.dart';
+import 'authentication/authentication_service.dart';
 import 'biometrics/biometrics_localauth.dart';
 import 'biometrics/biometrics_service.dart';
 import 'crypto/crypto_crypt.dart';
@@ -22,6 +24,7 @@ import 'third_party.dart';
 void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartySevices = _$ThirdPartySevices();
+  gh.lazySingleton<AuthenticationService>(() => AuthenticationImpl());
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<NavigationService>(
