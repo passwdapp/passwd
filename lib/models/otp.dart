@@ -1,13 +1,14 @@
 class Otp {
-  String type = "totp";
-  String issuer = "Generic Issuer";
-  String algorithm = "SHA1";
+  String type;
+  String issuer;
+  String algorithm;
   String secret;
   String account;
-  int digits = 6;
-  int timeout = 30;
+  int digits;
+  int timeout;
 
   Otp({
+    this.type,
     this.issuer,
     this.algorithm,
     this.secret,
@@ -16,12 +17,25 @@ class Otp {
     this.timeout,
   });
 
-  static Map toMap(Otp otp) {
-    return {
-      "type": otp.type,
-      "issuer": otp.issuer,
-      "algorithm": otp.algorithm,
-      "account": otp.account,
-    };
+  Otp.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    issuer = json['issuer'];
+    algorithm = json['algorithm'];
+    secret = json['secret'];
+    account = json['account'];
+    digits = json['digits'];
+    timeout = json['timeout'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    data['issuer'] = this.issuer;
+    data['algorithm'] = this.algorithm;
+    data['secret'] = this.secret;
+    data['account'] = this.account;
+    data['digits'] = this.digits;
+    data['timeout'] = this.timeout;
+    return data;
   }
 }
