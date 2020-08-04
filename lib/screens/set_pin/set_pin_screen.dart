@@ -80,7 +80,7 @@ class SetPinScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: model.nextEnabled
               ? () {
-                  print("Enabled");
+                  model.next();
                 }
               : null,
           label: Text("Next"),

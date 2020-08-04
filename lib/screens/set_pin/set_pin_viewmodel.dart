@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:passwd/models/biometrics_result.dart';
+import 'package:passwd/router/router.gr.dart';
+import 'package:passwd/services/authentication/authentication_service.dart';
 import 'package:passwd/services/biometrics/biometrics_service.dart';
 import 'package:passwd/services/locator.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class SetPinViewModel extends ChangeNotifier {
   bool _biometrics = false;
@@ -43,5 +46,10 @@ class SetPinViewModel extends ChangeNotifier {
 
   Future<bool> biometricsAvailable() async {
     return await locator<BiometricsService>().biometricsAvailable();
+  }
+
+  Future next() async {
+    await locator<AuthenticationService>().writePin(_pin);
+    locator<NavigationService>().clearStackAndShow(Routes.homeScreen);
   }
 }
