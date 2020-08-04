@@ -1,0 +1,43 @@
+name: passwd
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^1.1.0
+  get_it: ^4.0.4
+  injectable: ^1.0.2
+  dart_otp: ^1.3.0
+  flutter_secure_storage: ^3.3.3
+  local_auth: ^0.6.2+3
+  auto_route: ^0.6.7
+  animations: ^1.1.2
+  stacked: ^1.7.5
+  base_x: ^1.0.1
+  supercharged: ^1.7.0
+  path_provider: ^1.6.11
+  msgpack2: ^2.0.0+1
+  dio: ^3.0.9
+  flutter_hooks: ^0.13.0
+  stacked_services: ^0.5.1
+  flutter_otp_text_field: ^0.0.1+1
+  aes_crypt: ^0.1.1
+  animated_text_kit: ^2.2.0
+  crypto: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  injectable_generator: ^1.0.3
+  auto_route_generator: ^0.6.7
+  hive_generator: ^0.7.1
+  build_runner: ^1.10.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/
