@@ -10,6 +10,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'biometrics/biometrics_localauth.dart';
 import 'biometrics/biometrics_service.dart';
+import 'crypto/crypto_crypt.dart';
+import 'crypto/crypto_service.dart';
 import 'third_party.dart';
 
 /// adds generated dependencies
@@ -19,6 +21,7 @@ void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartySevices = _$ThirdPartySevices();
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
+  gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<NavigationService>(
       () => thirdPartySevices.navigationService);
 }
