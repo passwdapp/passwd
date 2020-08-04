@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Router(),
-      initialRoute: Routes.getStartedScreen,
+      initialRoute: Routes.initScreen,
       navigatorKey: locator<NavigationService>().navigatorKey,
     );
   }
