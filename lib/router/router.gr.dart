@@ -10,14 +10,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/get_started/get_started_screen.dart';
+import '../screens/home/home_screen.dart';
 import '../screens/set_pin/set_pin_screen.dart';
 
 class Routes {
   static const String getStartedScreen = '/';
   static const String setPinScreen = '/set-pin-screen';
+  static const String homeScreen = '/home-screen';
   static const all = <String>{
     getStartedScreen,
     setPinScreen,
+    homeScreen,
   };
 }
 
@@ -27,6 +30,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.getStartedScreen, page: GetStartedScreen),
     RouteDef(Routes.setPinScreen, page: SetPinScreen),
+    RouteDef(Routes.homeScreen, page: HomeScreen),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -40,6 +44,12 @@ class Router extends RouterBase {
     SetPinScreen: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SetPinScreen(),
+        settings: data,
+      );
+    },
+    HomeScreen: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => HomeScreen(),
         settings: data,
       );
     },
