@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:passwd/constants/colors.dart';
-import 'package:passwd/screens/onboarding/set_pin/set_pin_viewmodel.dart';
+import 'package:passwd/screens/set_pin/set_pin_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
 

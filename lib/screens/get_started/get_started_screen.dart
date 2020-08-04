@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/screens/onboarding/get_started/get_started_viewmodel.dart';
+import 'package:passwd/screens/get_started/get_started_viewmodel.dart';
 import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';

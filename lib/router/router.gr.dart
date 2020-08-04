@@ -9,8 +9,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/onboarding/get_started/get_started_screen.dart';
-import '../screens/onboarding/set_pin/set_pin_screen.dart';
+import '../screens/get_started/get_started_screen.dart';
+import '../screens/set_pin/set_pin_screen.dart';
 
 class Routes {
   static const String getStartedScreen = '/';
