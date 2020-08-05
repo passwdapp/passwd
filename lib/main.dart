@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
           hoverColor: primaryColorHovered,
           highlightColor: primaryColorHovered,
         ),
-        inputDecorationTheme: inputTheme,
       ),
       builder: (context, child) {
         SystemChrome.setSystemUIOverlayStyle(

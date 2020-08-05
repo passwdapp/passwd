@@ -82,14 +82,3 @@ AppBarTheme appBarTheme = AppBarTheme(
   color: Colors.transparent,
   elevation: 0,
 );
-
-InputDecorationTheme inputTheme = InputDecorationTheme(
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(4),
-    borderSide: BorderSide(color: primaryColor.withOpacity(0.75), width: 1.4),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(4),
-    borderSide: BorderSide(color: primaryColor, width: 1.4),
-  ),
-);
