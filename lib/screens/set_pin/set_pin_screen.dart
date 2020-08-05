@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:passwd/constants/colors.dart';
 import 'package:passwd/screens/set_pin/set_pin_viewmodel.dart';
+import 'package:passwd/widgets/pin_input.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -24,24 +23,10 @@ class SetPinScreen extends StatelessWidget {
             SizedBox(
               height: 32,
             ),
-            OtpTextField(
-              filled: true,
-              obscureText: false,
-              fillColor: Colors.white.withOpacity(0.18),
-              borderColor: Colors.transparent,
-              cursorColor: primaryColor,
-              showFieldAsBox: true,
-              autoFocus: true,
-              numberOfFields: 4,
-              onCodeChanged: (String value) {},
+            PinInputWidget(
               onSubmit: (String value) {
                 model.pin = value.toInt();
               },
-              hasCustomInputDecoration: false,
-              textStyle: Theme.of(context).textTheme.headline6,
-              enabledBorderColor: Colors.transparent,
-              focusedBorderColor: Colors.transparent,
-              fieldWidth: 64,
             ),
             FutureBuilder<bool>(
               future: model.biometricsAvailable(),
