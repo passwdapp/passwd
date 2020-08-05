@@ -5,7 +5,6 @@ class Entry {
   String username;
   String password;
   String note;
-  String uri;
   String favicon;
   Otp otp;
 
@@ -14,7 +13,6 @@ class Entry {
     this.username,
     this.password,
     this.note,
-    this.uri,
     this.favicon,
     this.otp,
   });
@@ -24,7 +22,6 @@ class Entry {
     username = json['username'];
     password = json['password'];
     note = json['note'];
-    uri = json['uri'];
     favicon = json['favicon'];
     otp = json['otp'] != null ? new Otp.fromJson(json['otp']) : null;
   }
@@ -35,7 +32,6 @@ class Entry {
     data['username'] = this.username;
     data['password'] = this.password;
     data['note'] = this.note;
-    data['uri'] = this.uri;
     data['favicon'] = this.favicon;
     if (this.otp != null) {
       data['otp'] = this.otp.toJson();

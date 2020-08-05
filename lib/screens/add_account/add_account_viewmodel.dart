@@ -25,14 +25,6 @@ class AddAccountViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _url;
-  String get url => _url;
-
-  set url(String url) {
-    _url = url;
-    notifyListeners();
-  }
-
   String _notes;
   String get notes => _notes;
 

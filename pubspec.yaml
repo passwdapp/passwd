@@ -20,7 +20,6 @@ dependencies:
   base_x: ^1.0.1
   supercharged: ^1.7.0
   path_provider: ^1.6.11
-  msgpack2: ^2.0.0+1
   dio: ^3.0.9
   flutter_hooks: ^0.13.0
   stacked_services: ^0.5.1
@@ -28,6 +27,7 @@ dependencies:
   aes_crypt: ^0.1.1
   animated_text_kit: ^2.2.0
   crypto: ^2.1.5
+  flutter_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:

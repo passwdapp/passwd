@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:passwd/constants/colors.dart';
 
 TextTheme textTheme = TextTheme(
   headline1: GoogleFonts.montserrat(

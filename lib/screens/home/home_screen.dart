@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/home/home_viewmodel.dart';
 import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
@@ -11,17 +12,17 @@ class HomeScreen extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.settings_outlined),
+            icon: Icon(Feather.settings),
             onPressed: () {},
             tooltip: "Settings",
           ),
           centerTitle: true,
           title: TitleWidget(
-            textSize: 20,
+            textSize: 24,
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.add),
+              icon: Icon(Feather.plus_circle),
               onPressed: () {
                 model.toAdd();
               },

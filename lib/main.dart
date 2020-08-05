@@ -45,10 +45,16 @@ class MyApp extends StatelessWidget {
         buttonTheme: ButtonThemeData(
           buttonColor: primaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(8),
           ),
           hoverColor: primaryColorHovered,
           highlightColor: primaryColorHovered,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(
+            fontSize: 14,
+            letterSpacing: 1.5,
+          ),
         ),
       ),
       builder: (context, child) {

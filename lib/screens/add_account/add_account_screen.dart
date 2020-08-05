@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -9,12 +10,10 @@ class AddAccountScreen extends HookWidget {
     TextEditingController nameController = useTextEditingController();
     TextEditingController usernameController = useTextEditingController();
     TextEditingController passwordController = useTextEditingController();
-    TextEditingController urlController = useTextEditingController();
     TextEditingController notesController = useTextEditingController();
 
     FocusNode usernameFocus = useFocusNode();
     FocusNode passwordFocus = useFocusNode();
-    FocusNode urlFocus = useFocusNode();
     FocusNode notesFocus = useFocusNode();
 
     return ViewModelBuilder<AddAccountViewModel>.reactive(
@@ -32,18 +31,32 @@ class AddAccountScreen extends HookWidget {
           model.password = passwordController.text;
         });
 
-        urlController.addListener(() {
-          model.url = urlController.text;
-        });
-
         notesController.addListener(() {
           model.notes = notesController.text;
         });
       },
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          centerTitle: false,
-          title: Text("Add an account"),
+          centerTitle: true,
+          title: Text(
+            "Add an Account",
+            style: TextStyle(
+              letterSpacing: 1.25,
+              fontSize: 18,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {},
+            tooltip: "Back",
+            icon: Icon(Feather.x_circle),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              tooltip: "Done",
+              icon: Icon(Feather.check_circle),
+            ),
+          ],
         ),
         body: SafeArea(
           child: ListView(
@@ -52,29 +65,23 @@ class AddAccountScreen extends HookWidget {
               horizontal: 16,
             ),
             children: [
-              SizedBox(
-                height: 12,
-              ),
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
-                  hintText: "Account Name",
-                  border: OutlineInputBorder(),
+                  labelText: "URL".toUpperCase(),
                 ),
-                autofocus: true,
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {
                   usernameFocus.requestFocus();
                 },
               ),
               SizedBox(
-                height: 16,
+                height: 12,
               ),
               TextFormField(
                 controller: usernameController,
                 decoration: InputDecoration(
-                  hintText: "Username",
-                  border: OutlineInputBorder(),
+                  labelText: "Email/Username".toUpperCase(),
                 ),
                 focusNode: usernameFocus,
                 keyboardType: TextInputType.emailAddress,
@@ -84,73 +91,57 @@ class AddAccountScreen extends HookWidget {
                 },
               ),
               SizedBox(
-                height: 16,
+                height: 12,
               ),
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  hintText: "Password",
-                  border: OutlineInputBorder(),
+                  labelText: "Password".toUpperCase(),
                 ),
                 focusNode: passwordFocus,
                 obscureText: true,
-                textInputAction: TextInputAction.next,
-                onFieldSubmitted: (val) {
-                  urlFocus.requestFocus();
-                },
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: urlController,
-                keyboardType: TextInputType.url,
-                decoration: InputDecoration(
-                  hintText: "URL",
-                  border: OutlineInputBorder(),
-                ),
-                focusNode: urlFocus,
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {
                   notesFocus.requestFocus();
                 },
               ),
               SizedBox(
-                height: 16,
+                height: 12,
               ),
               RaisedButton(
                 onPressed: () {},
-                child: Text(
-                  "Two Factor Authentication",
-                  style: TextStyle(
-                    color: Theme.of(context).canvasColor,
-                  ),
+                child: Text("Generate a Password"),
+                color: Colors.white.withOpacity(0.14),
+                visualDensity: VisualDensity(
+                  horizontal: 4,
+                  vertical: 2,
                 ),
-              ),
-              SizedBox(
-                height: 16,
               ),
               TextFormField(
                 controller: notesController,
-                maxLines: 4,
-                keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
-                  hintText: "Additional Notes",
-                  border: OutlineInputBorder(),
+                  labelText: "Notes".toUpperCase(),
                 ),
                 textInputAction: TextInputAction.done,
                 focusNode: notesFocus,
               ),
               SizedBox(
-                height: 48,
+                height: 12,
+              ),
+              RaisedButton(
+                onPressed: () {},
+                child: Text("Two factor authentication"),
+                color: Colors.white.withOpacity(0.14),
+                visualDensity: VisualDensity(
+                  horizontal: 4,
+                  vertical: 2,
+                ),
+              ),
+              SizedBox(
+                height: 16,
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          label: Text("Done"),
-          icon: Icon(Icons.check),
         ),
       ),
     );
