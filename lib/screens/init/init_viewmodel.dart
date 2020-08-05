@@ -19,7 +19,7 @@ class InitViewModel extends ChangeNotifier {
   Future navigate() async {
     if (await isAuthenticated()) {
       await Future.delayed(Duration(milliseconds: 1000));
-      locator<NavigationService>().clearStackAndShow(Routes.homeScreen);
+      locator<NavigationService>().clearStackAndShow(Routes.verifyPinScreen);
     } else {
       await Future.delayed(Duration(milliseconds: 1500));
       locator<NavigationService>().clearStackAndShow(Routes.getStartedScreen);

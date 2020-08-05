@@ -13,16 +13,19 @@ import '../screens/get_started/get_started_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/init/init_screen.dart';
 import '../screens/set_pin/set_pin_screen.dart';
+import '../screens/verify_pin/verify_pin_screen.dart';
 
 class Routes {
   static const String initScreen = '/';
   static const String getStartedScreen = '/get-started-screen';
   static const String setPinScreen = '/set-pin-screen';
+  static const String verifyPinScreen = '/verify-pin-screen';
   static const String homeScreen = '/home-screen';
   static const all = <String>{
     initScreen,
     getStartedScreen,
     setPinScreen,
+    verifyPinScreen,
     homeScreen,
   };
 }
@@ -34,6 +37,7 @@ class Router extends RouterBase {
     RouteDef(Routes.initScreen, page: InitScreen),
     RouteDef(Routes.getStartedScreen, page: GetStartedScreen),
     RouteDef(Routes.setPinScreen, page: SetPinScreen),
+    RouteDef(Routes.verifyPinScreen, page: VerifyPinScreen),
     RouteDef(Routes.homeScreen, page: HomeScreen),
   ];
   @override
@@ -54,6 +58,12 @@ class Router extends RouterBase {
     SetPinScreen: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SetPinScreen(),
+        settings: data,
+      );
+    },
+    VerifyPinScreen: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => VerifyPinScreen(),
         settings: data,
       );
     },

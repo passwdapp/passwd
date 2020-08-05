@@ -3,6 +3,7 @@ import 'package:passwd/screens/get_started/get_started_screen.dart';
 import 'package:passwd/screens/home/home_screen.dart';
 import 'package:passwd/screens/init/init_screen.dart';
 import 'package:passwd/screens/set_pin/set_pin_screen.dart';
+import 'package:passwd/screens/verify_pin/verify_pin_screen.dart';
 
 @MaterialAutoRouter(
   routes: [
@@ -15,6 +16,9 @@ import 'package:passwd/screens/set_pin/set_pin_screen.dart';
     ),
     MaterialRoute(
       page: SetPinScreen,
+    ),
+    MaterialRoute(
+      page: VerifyPinScreen,
     ),
     MaterialRoute(
       page: HomeScreen,
