@@ -7,6 +7,10 @@ import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class VerifyPinViewModel extends ChangeNotifier {
+  VerifyPinViewModel() {
+    tryBiometrics();
+  }
+
   int _pin;
   int get pin => _pin;
 
