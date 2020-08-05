@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/add_account/add_account_screen.dart';
+import '../screens/generate_password/generate_password_screen.dart';
 import '../screens/get_started/get_started_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/init/init_screen.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String verifyPinScreen = '/verify-pin-screen';
   static const String homeScreen = '/home-screen';
   static const String addAccountScreen = '/add-account-screen';
+  static const String generatePasswordScreen = '/generate-password-screen';
   static const all = <String>{
     initScreen,
     getStartedScreen,
@@ -30,6 +32,7 @@ class Routes {
     verifyPinScreen,
     homeScreen,
     addAccountScreen,
+    generatePasswordScreen,
   };
 }
 
@@ -43,6 +46,7 @@ class Router extends RouterBase {
     RouteDef(Routes.verifyPinScreen, page: VerifyPinScreen),
     RouteDef(Routes.homeScreen, page: HomeScreen),
     RouteDef(Routes.addAccountScreen, page: AddAccountScreen),
+    RouteDef(Routes.generatePasswordScreen, page: GeneratePasswordScreen),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -80,6 +84,12 @@ class Router extends RouterBase {
     AddAccountScreen: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => AddAccountScreen(),
+        settings: data,
+      );
+    },
+    GeneratePasswordScreen: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => GeneratePasswordScreen(),
         settings: data,
       );
     },

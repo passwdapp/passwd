@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -37,5 +38,17 @@ class AddAccountViewModel extends ChangeNotifier {
 
   void pop() {
     locator<NavigationService>().back();
+  }
+
+  Future generatePassword(void Function(String) setText) async {
+    String password = (await locator<NavigationService>()
+        .navigateTo(Routes.generatePasswordScreen)) as String;
+
+    if (password.isNotEmpty) {
+      _password = password;
+      notifyListeners();
+
+      setText(password);
+    }
   }
 }

@@ -111,7 +111,11 @@ class AddAccountScreen extends HookWidget {
                 height: 12,
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  model.generatePassword((pass) {
+                    passwordController.text = pass;
+                  });
+                },
                 child: Text("Generate a Password"),
                 color: Colors.white.withOpacity(0.14),
                 visualDensity: VisualDensity(
