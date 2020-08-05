@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/screens/get_started/get_started_screen.dart';
-import 'package:passwd/screens/home/home_screen.dart';
-import 'package:passwd/services/authentication/authentication_service.dart';
-import 'package:passwd/services/locator.dart';
+import 'package:passwd/screens/init/init_viewmodel.dart';
+import 'package:passwd/widgets/title.dart';
+import 'package:stacked/stacked.dart';
 
 class InitScreen extends StatelessWidget {
-  Future<bool> isAuthenticated() async {
-    await locator.allReady();
-    String key = await locator<AuthenticationService>().readEncryptionKey();
-
-    return key != null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: isAuthenticated(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data) {
-            return HomeScreen();
-          } else {
-            return GetStartedScreen();
-          }
-        }
-
-        return Container();
-      },
+    return ViewModelBuilder<InitViewModel>.nonReactive(
+      viewModelBuilder: () => InitViewModel(),
+      builder: (context, model, child) => Scaffold(
+        body: Center(
+          child: TitleWidget(
+            textSize: 44,
+          ),
+        ),
+      ),
     );
   }
 }
