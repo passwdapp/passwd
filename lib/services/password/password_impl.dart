@@ -18,7 +18,7 @@ class PasswordImpl implements PasswordService {
     List<String> password = [];
     int max = dicewareList.length;
 
-    for (int i = 0; i <= words; i++) {
+    for (int i = 0; i < words; i++) {
       String entry = dicewareList[getPsuedoRandomNumber(max)].toString();
 
       if (capitalize) {

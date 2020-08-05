@@ -12,6 +12,22 @@ class GeneratePasswordViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _words = 5;
+  int get words => _words;
+
+  set words(int words) {
+    _words = words;
+    notifyListeners();
+  }
+
+  bool _capitalize = true;
+  bool get capitalize => _capitalize;
+
+  set capitalize(bool capitalize) {
+    _capitalize = capitalize;
+    notifyListeners();
+  }
+
   void pop() {
     locator<NavigationService>().back(result: "");
   }
@@ -24,9 +40,14 @@ class GeneratePasswordViewModel extends ChangeNotifier {
     int words = 5,
     bool capitalize = true,
   }) async {
-    return await locator<PasswordService>().generateDicewarePassword(
+    String password = await locator<PasswordService>().generateDicewarePassword(
       words: words,
       capitalize: capitalize,
     );
+
+    _password = password;
+    notifyListeners();
+
+    return password;
   }
 }
