@@ -14,6 +14,8 @@ import 'biometrics/biometrics_localauth.dart';
 import 'biometrics/biometrics_service.dart';
 import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
+import 'password/password_impl.dart';
+import 'password/password_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
 import 'secure_kv/secure_kv.dart';
 import 'third_party.dart';
@@ -29,6 +31,7 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<NavigationService>(
       () => thirdPartySevices.navigationService);
+  gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage());
 }
 

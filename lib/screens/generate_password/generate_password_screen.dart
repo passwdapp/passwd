@@ -27,8 +27,8 @@ class GeneratePasswordScreen extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {
-                model.popWithPassword(model.password);
+              onPressed: () async {
+                model.popWithPassword(await model.getDicewarePassword());
               },
               tooltip: "Done",
               icon: Icon(Feather.check_circle),
