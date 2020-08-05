@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:passwd/services/locator.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class AddAccountViewModel extends ChangeNotifier {
   String _name;
@@ -31,5 +33,9 @@ class AddAccountViewModel extends ChangeNotifier {
   set notes(String notes) {
     _notes = notes;
     notifyListeners();
+  }
+
+  void pop() {
+    locator<NavigationService>().back();
   }
 }

@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           hoverColor: primaryColorHovered,
           highlightColor: primaryColorHovered,
         ),
+        backgroundColor: canvasColor,
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             fontSize: 14,

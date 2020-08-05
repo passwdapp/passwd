@@ -46,7 +46,9 @@ class AddAccountScreen extends HookWidget {
             ),
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              model.pop();
+            },
             tooltip: "Back",
             icon: Icon(Feather.x_circle),
           ),
@@ -124,6 +126,9 @@ class AddAccountScreen extends HookWidget {
                 ),
                 textInputAction: TextInputAction.done,
                 focusNode: notesFocus,
+                onFieldSubmitted: (val) {
+                  notesFocus.unfocus();
+                },
               ),
               SizedBox(
                 height: 12,
