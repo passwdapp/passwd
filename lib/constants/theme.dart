@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:passwd/constants/colors.dart';
 
 TextTheme textTheme = TextTheme(
   headline1: GoogleFonts.montserrat(
@@ -80,4 +81,15 @@ PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
 AppBarTheme appBarTheme = AppBarTheme(
   color: Colors.transparent,
   elevation: 0,
+);
+
+InputDecorationTheme inputTheme = InputDecorationTheme(
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(4),
+    borderSide: BorderSide(color: primaryColor.withOpacity(0.75), width: 1.4),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(4),
+    borderSide: BorderSide(color: primaryColor, width: 1.4),
+  ),
 );
