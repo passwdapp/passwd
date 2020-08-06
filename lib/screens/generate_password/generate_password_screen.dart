@@ -16,8 +16,8 @@ class GeneratePasswordScreen extends HookWidget {
     return ViewModelBuilder<GeneratePasswordViewModel>.reactive(
       viewModelBuilder: () => GeneratePasswordViewModel(),
       onModelReady: (model) {
-        model.getDicewarePassword(
-          words: model.words,
+        model.getPassword(
+          length: model.words,
           capitalize: model.capitalize,
         );
 
@@ -70,18 +70,44 @@ class GeneratePasswordScreen extends HookWidget {
             SizedBox(
               height: 12,
             ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 0,
+              ),
+              value: model.diceware,
+              onChanged: (val) {
+                model.diceware = val;
+                if (val) {
+                  model.words = 5;
+                  wordController.text = "5";
+                } else {
+                  model.words = 16;
+                  wordController.text = "16";
+                }
+                model.getPassword(
+                  length: model.words,
+                  capitalize: model.capitalize,
+                );
+              },
+              title: Text("Memorizable"),
+            ),
+            SizedBox(
+              height: 4,
+            ),
             TextFormField(
               controller: wordController,
               decoration: InputDecoration(
-                labelText: "Number of words".toUpperCase(),
+                labelText: model.diceware
+                    ? "Number of words".toUpperCase()
+                    : "Length".toUpperCase(),
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
               ],
               keyboardType: TextInputType.number,
               onFieldSubmitted: (val) {
-                model.getDicewarePassword(
-                  words: model.words,
+                model.getPassword(
+                  length: model.words,
                   capitalize: model.capitalize,
                 );
               },
@@ -89,27 +115,33 @@ class GeneratePasswordScreen extends HookWidget {
             SizedBox(
               height: 12,
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 0,
-              ),
-              value: model.capitalize,
-              onChanged: (val) {
-                model.capitalize = val;
-                model.getDicewarePassword(
-                  words: model.words,
-                  capitalize: model.capitalize,
-                );
-              },
-              title: Text("Capitalize"),
-            ),
-            SizedBox(
-              height: 4,
-            ),
+            model.diceware
+                ? Column(
+                    children: [
+                      SwitchListTile(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 0,
+                        ),
+                        value: model.capitalize,
+                        onChanged: (val) {
+                          model.capitalize = val;
+                          model.getPassword(
+                            length: model.words,
+                            capitalize: model.capitalize,
+                          );
+                        },
+                        title: Text("Capitalize"),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                    ],
+                  )
+                : Container(),
             RaisedButton(
               onPressed: () {
-                model.getDicewarePassword(
-                  words: model.words,
+                model.getPassword(
+                  length: model.words,
                   capitalize: model.capitalize,
                 );
               },

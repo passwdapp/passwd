@@ -28,6 +28,14 @@ class GeneratePasswordViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _diceware = true;
+  bool get diceware => _diceware;
+
+  set diceware(bool diceware) {
+    _diceware = diceware;
+    notifyListeners();
+  }
+
   void pop() {
     locator<NavigationService>().back(result: "");
   }
@@ -36,18 +44,30 @@ class GeneratePasswordViewModel extends ChangeNotifier {
     locator<NavigationService>().back(result: password);
   }
 
-  Future<String> getDicewarePassword({
-    int words = 5,
+  Future<String> getPassword({
+    int length = 5,
     bool capitalize = true,
   }) async {
-    String password = await locator<PasswordService>().generateDicewarePassword(
-      words: words,
-      capitalize: capitalize,
-    );
+    if (_diceware) {
+      String password =
+          await locator<PasswordService>().generateDicewarePassword(
+        words: length,
+        capitalize: capitalize,
+      );
 
-    _password = password;
-    notifyListeners();
+      _password = password;
+      notifyListeners();
 
-    return password;
+      return password;
+    } else {
+      String password = locator<PasswordService>().generateRandomPassword(
+        length: length,
+      );
+
+      _password = password;
+      notifyListeners();
+
+      return password;
+    }
   }
 }

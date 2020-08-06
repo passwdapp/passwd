@@ -25,7 +25,6 @@ dependencies:
   stacked_services: ^0.5.1
   flutter_otp_text_field: ^0.0.1+1
   aes_crypt: ^0.1.1
-  animated_text_kit: ^2.2.0
   crypto: ^2.1.5
   flutter_icons: ^1.1.0
 

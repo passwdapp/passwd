@@ -4,4 +4,7 @@ abstract class PasswordService {
     bool capitalize = true,
   });
   int getPsuedoRandomNumber(int max);
+  String generateRandomPassword({
+    int length = 12,
+  });
 }
