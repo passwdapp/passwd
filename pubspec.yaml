@@ -27,6 +27,8 @@ dependencies:
   aes_crypt: ^0.1.1
   crypto: ^2.1.5
   flutter_icons: ^1.1.0
+  favicon: ^1.0.13
+  cached_network_image: ^2.2.0+1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,7 @@ dev_dependencies:
   auto_route_generator: ^0.6.7
   hive_generator: ^0.7.1
   build_runner: ^1.10.2
+  mockito: ^4.1.1
 
 flutter:
   uses-material-design: true
