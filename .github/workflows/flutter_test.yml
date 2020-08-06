@@ -1,0 +1,14 @@
+name: Run flutter tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: dev
+      - run: flutter pub get
+      - run: flutter test
