@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/generate_password/generate_password_viewmodel.dart';
+import 'package:passwd/widgets/button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -138,19 +139,14 @@ class GeneratePasswordScreen extends HookWidget {
                     ],
                   )
                 : Container(),
-            RaisedButton(
-              onPressed: () {
+            Button(
+              child: Text("Regenerate Password"),
+              onClick: () {
                 model.getPassword(
                   length: model.words,
                   capitalize: model.capitalize,
                 );
               },
-              child: Text("Regenerate Password"),
-              color: Colors.white.withOpacity(0.14),
-              visualDensity: VisualDensity(
-                horizontal: 4,
-                vertical: 2,
-              ),
             ),
           ],
         ),
