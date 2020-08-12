@@ -55,7 +55,9 @@ class AddAccountScreen extends HookWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                model.popWithData();
+              },
               tooltip: "Done",
               icon: Icon(Feather.check_circle),
             ),
@@ -85,6 +87,8 @@ class AddAccountScreen extends HookWidget {
                 controller: usernameController,
                 decoration: InputDecoration(
                   labelText: "Email/Username".toUpperCase(),
+                  errorText:
+                      !model.isUsernameValid ? "Please enter a username" : null,
                 ),
                 focusNode: usernameFocus,
                 keyboardType: TextInputType.emailAddress,
@@ -100,6 +104,8 @@ class AddAccountScreen extends HookWidget {
                 controller: passwordController,
                 decoration: InputDecoration(
                   labelText: "Password".toUpperCase(),
+                  errorText:
+                      !model.isPasswordValid ? "Please enter a password" : null,
                 ),
                 focusNode: passwordFocus,
                 obscureText: true,
