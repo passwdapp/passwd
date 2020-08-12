@@ -29,6 +29,8 @@ dependencies:
   flutter_icons: ^1.1.0
   favicon: ^1.0.13
   cached_network_image: ^2.2.0+1
+  cryptography: ^1.4.1
+  encrypt: ^4.0.2
 
 dev_dependencies:
   flutter_test:

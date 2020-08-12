@@ -133,9 +133,19 @@ class AddAccountScreen extends HookWidget {
               SizedBox(
                 height: 12,
               ),
-              Button(
-                child: Text("Two factor authentication"),
-                onClick: () {},
+              Builder(
+                builder: (context) => Button(
+                  child: Text("Two factor authentication"),
+                  onClick: () {
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "Henlo World, I am just a teeny tiny snaccbar",
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
               SizedBox(
                 height: 16,
