@@ -43,7 +43,7 @@ class SetPinScreen extends StatelessWidget {
                           leading: Icon(
                             Icons.fingerprint_outlined,
                           ),
-                          contentPadding: EdgeInsets.all(0),
+                          contentPadding: const EdgeInsets.all(0),
                           title: Text("Enable biometrics"),
                           trailing: Switch(
                             value: model.biometrics,

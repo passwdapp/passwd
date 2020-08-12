@@ -54,7 +54,7 @@ class GeneratePasswordScreen extends HookWidget {
           ],
         ),
         body: ListView(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 16,
           ),
           children: [
@@ -72,7 +72,7 @@ class GeneratePasswordScreen extends HookWidget {
               height: 12,
             ),
             SwitchListTile(
-              contentPadding: EdgeInsets.symmetric(
+              contentPadding: const EdgeInsets.symmetric(
                 horizontal: 0,
               ),
               value: model.diceware,
@@ -120,7 +120,7 @@ class GeneratePasswordScreen extends HookWidget {
                 ? Column(
                     children: [
                       SwitchListTile(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                           horizontal: 0,
                         ),
                         value: model.capitalize,

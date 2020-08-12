@@ -46,7 +46,7 @@ class VerifyPinScreen extends StatelessWidget {
                           leading: Icon(
                             Icons.fingerprint_outlined,
                           ),
-                          contentPadding: EdgeInsets.all(0),
+                          contentPadding: const EdgeInsets.all(0),
                           trailing: Text(
                             "Retry with biometrics",
                             style: Theme.of(context).textTheme.bodyText1,

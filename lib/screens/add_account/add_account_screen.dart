@@ -55,9 +55,11 @@ class AddAccountScreen extends HookWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {
-                model.popWithData();
-              },
+              onPressed: model.isPasswordValid && model.isPasswordValid
+                  ? () {
+                      model.popWithData();
+                    }
+                  : null,
               tooltip: "Done",
               icon: Icon(Feather.check_circle),
             ),
@@ -66,7 +68,7 @@ class AddAccountScreen extends HookWidget {
         body: SafeArea(
           child: ListView(
             physics: AlwaysScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),
             children: [
