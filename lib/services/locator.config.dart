@@ -18,8 +18,12 @@ import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
 import 'password/password_impl.dart';
 import 'password/password_service.dart';
+import 'path/path_path_provider.dart';
+import 'path/path_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
 import 'secure_kv/secure_kv.dart';
+import 'sync/sync_impl.dart';
+import 'sync/sync_service.dart';
 import 'third_party.dart';
 
 /// adds generated dependencies
@@ -35,7 +39,9 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<NavigationService>(
       () => thirdPartySevices.navigationService);
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
+  gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage());
+  gh.lazySingleton<SyncService>(() => SyncImpl());
 }
 
 class _$ThirdPartySevices extends ThirdPartySevices {

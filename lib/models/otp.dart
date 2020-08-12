@@ -28,7 +28,7 @@ class Otp {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
     data['issuer'] = this.issuer;
     data['algorithm'] = this.algorithm;

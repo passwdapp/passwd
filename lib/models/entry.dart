@@ -23,11 +23,11 @@ class Entry {
     password = json['password'];
     note = json['note'];
     favicon = json['favicon'];
-    otp = json['otp'] != null ? new Otp.fromJson(json['otp']) : null;
+    otp = json['otp'] != null ? Otp.fromJson(json['otp']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['name'] = this.name;
     data['username'] = this.username;
     data['password'] = this.password;
