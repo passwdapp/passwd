@@ -5,9 +5,13 @@ import 'package:cryptography/cryptography.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:injectable/injectable.dart';
 import 'package:passwd/services/advance_crypto/advance_crypto_service.dart';
+import 'package:passwd/services/crypto/crypto_service.dart';
+import 'package:passwd/services/locator.dart';
 
 @LazySingleton(as: AdvanceCryptoService)
 class AdvanceCryptoAes implements AdvanceCryptoService {
+  final CryptoService cryptoService = locator<CryptoService>();
+
   @override
   Future<String> encryptText(
     String plainText,
@@ -114,7 +118,11 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
     String password,
   ) async {
     final hkdf = Hkdf(Hmac(sha512));
-    final input = SecretKey(utf8.encode(password));
+    final input = SecretKey(
+      utf8.encode(
+        cryptoService.hmac(utf8.encode(password)),
+      ),
+    );
     final output = await hkdf.deriveKey(input, outputLength: 32);
 
     return await output.extract();

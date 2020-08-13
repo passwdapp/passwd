@@ -32,6 +32,7 @@ dependencies:
   cryptography: ^1.4.1
   encrypt: ^4.0.2
   path: ^1.7.0
+  archive: ^2.0.13
 
 dev_dependencies:
   flutter_test:

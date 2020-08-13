@@ -12,7 +12,7 @@ import 'package:path/path.dart' as path;
 
 @LazySingleton(as: SyncService)
 class SyncImpl implements SyncService {
-  final String fileName = "db___000.passwd";
+  final String fileName = "db___test.passwd";
 
   final AdvanceCryptoService advanceCryptoService =
       locator<AdvanceCryptoService>();
