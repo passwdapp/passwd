@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
             letterSpacing: 1.5,
           ),
         ),
+        dialogTheme: dialogTheme,
       ),
       builder: (context, child) {
         SystemChrome.setSystemUIOverlayStyle(
