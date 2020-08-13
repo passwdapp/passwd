@@ -26,10 +26,10 @@ dependencies:
   flutter_otp_text_field: ^0.0.1+1
   crypto: ^2.1.5
   flutter_icons: ^1.1.0
-  cached_network_image: ^2.2.0+1
   cryptography: ^1.4.1
   encrypt: ^4.0.2
   path: ^1.7.0
+  flutter_advanced_networkimage: ^0.7.0
 
 dev_dependencies:
   flutter_test:
