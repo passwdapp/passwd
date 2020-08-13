@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
+import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
@@ -87,6 +90,7 @@ class AddAccountViewModel extends ChangeNotifier {
         note: _notes,
         password: _password,
         username: _username,
+        colorId: Random.secure().nextInt(iconColors.length),
       );
 
       locator<NavigationService>().back(result: data);

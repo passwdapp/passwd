@@ -75,7 +75,7 @@ class AddAccountScreen extends HookWidget {
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
-                  labelText: "URL".toUpperCase(),
+                  labelText: "URL/Name".toUpperCase(),
                 ),
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {

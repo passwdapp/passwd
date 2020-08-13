@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                   : ListView.builder(
                       itemBuilder: (context, i) => InkWell(
                         onLongPress: () {
-                          print("Henlo World");
+                          model.removeEntry(i);
                         },
                         onTap: () {
                           print("Hello world");

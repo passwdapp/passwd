@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:passwd/models/entries.dart';
 import 'package:passwd/models/entry.dart';
@@ -21,16 +19,27 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   HomeViewModel() {
-    loadDb();
+    reloadDB();
   }
 
-  Future loadDb() async {
+  Future reloadDB() async {
     Entries test = await locator<SyncService>().readDatabaseLocally();
-    print(jsonEncode(test));
     _entries = test;
     notifyListeners();
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(milliseconds: 1000));
     loading = false;
+  }
+
+  Future syncDB() async {
+    await locator<SyncService>().syncronizeDatabaseLocally(entries);
+  }
+
+  Future removeEntry(int itemId) async {
+    loading = true;
+    _entries.entries.removeAt(itemId);
+    notifyListeners();
+    await syncDB();
+    await reloadDB();
   }
 
   Future toAdd() async {
@@ -40,10 +49,9 @@ class HomeViewModel extends ChangeNotifier {
 
     if (entry != null) {
       _entries.entries.add(entry);
-      print(jsonEncode(_entries.toJson()));
-      await locator<SyncService>().syncronizeDatabaseLocally(entries);
-      print("Synced :thinking:");
-      await loadDb();
+      notifyListeners();
+      await syncDB();
+      await reloadDB();
     } else {
       loading = false;
     }

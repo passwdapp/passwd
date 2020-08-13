@@ -1,6 +1,7 @@
 import 'package:passwd/models/otp.dart';
 
 class Entry {
+  int colorId;
   String name;
   String username;
   String password;
@@ -9,6 +10,7 @@ class Entry {
   Otp otp;
 
   Entry({
+    this.colorId,
     this.name,
     this.username,
     this.password,
@@ -18,6 +20,7 @@ class Entry {
   });
 
   Entry.fromJson(Map<String, dynamic> json) {
+    colorId = json['colorId'];
     name = json['name'];
     username = json['username'];
     password = json['password'];
@@ -28,6 +31,7 @@ class Entry {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
+    data['colorId'] = this.colorId;
     data['name'] = this.name;
     data['username'] = this.username;
     data['password'] = this.password;
