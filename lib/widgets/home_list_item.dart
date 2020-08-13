@@ -57,6 +57,9 @@ class HomeListItem extends StatelessWidget {
                           entry.username,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.865),
+                          ),
                         )
                       : Container(),
                 ],
