@@ -83,7 +83,28 @@ class HomeScreen extends StatelessWidget {
                   : ListView.builder(
                       itemBuilder: (context, i) => InkWell(
                         onLongPress: () {
-                          model.removeEntry(i);
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title:
+                                  Text("Do you want to delete this account?"),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("No"),
+                                ),
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    model.removeEntry(i);
+                                  },
+                                  child: Text("Yes"),
+                                ),
+                              ],
+                            ),
+                          );
                         },
                         onTap: () {
                           print("Hello world");

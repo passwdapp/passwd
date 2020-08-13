@@ -24,10 +24,8 @@ dependencies:
   flutter_hooks: ^0.13.0
   stacked_services: ^0.5.1
   flutter_otp_text_field: ^0.0.1+1
-  aes_crypt: ^0.1.1
   crypto: ^2.1.5
   flutter_icons: ^1.1.0
-  favicon: ^1.0.13
   cached_network_image: ^2.2.0+1
   cryptography: ^1.4.1
   encrypt: ^4.0.2
