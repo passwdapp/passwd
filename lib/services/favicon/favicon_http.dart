@@ -19,10 +19,20 @@ class FaviconHttp implements FaviconService {
         if (faviconResponse.icons.isEmpty) {
           return "";
         } else {
-          Icons bestIcon = faviconResponse.icons[0];
+          List<Icons> filteredIcons = faviconResponse.icons
+              .where(
+                (element) =>
+                    element.src.endsWith("png") ||
+                    element.src.endsWith("ico") ||
+                    (element.type != null && element.type == "image/png") ||
+                    (element.type != null && element.type == "image/x-icon"),
+              )
+              .toList();
+
+          Icons bestIcon = filteredIcons[0];
           int bestQuality = 0;
 
-          for (Icons element in faviconResponse.icons) {
+          for (Icons element in filteredIcons) {
             if (RegExp(r"fluid[-_]?icon").hasMatch(element.src)) {
               bestIcon = element;
               bestQuality = 9999;

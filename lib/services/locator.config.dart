@@ -5,7 +5,7 @@
 // **************************************************************************
 
 import 'package:get_it/get_it.dart';
-import 'package:injectable/get_it_helper.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'advance_crypto/advance_crypto_aes.dart';
@@ -31,8 +31,12 @@ import 'third_party.dart';
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
-void $initGetIt(GetIt g, {String environment}) {
-  final gh = GetItHelper(g, environment);
+GetIt $initGetIt(
+  GetIt get, {
+  String environment,
+  EnvironmentFilter environmentFilter,
+}) {
+  final gh = GetItHelper(get, environment, environmentFilter);
   final thirdPartySevices = _$ThirdPartySevices();
   gh.lazySingleton<AdvanceCryptoService>(() => AdvanceCryptoAes());
   gh.lazySingleton<AuthenticationService>(() => AuthenticationImpl());
@@ -45,6 +49,7 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage());
   gh.lazySingleton<SyncService>(() => SyncImpl());
+  return get;
 }
 
 class _$ThirdPartySevices extends ThirdPartySevices {

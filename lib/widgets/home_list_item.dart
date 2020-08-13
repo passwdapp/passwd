@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/entry.dart';
@@ -22,18 +23,20 @@ class HomeListItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Container(
-                width: 52,
-                color: iconColors[entry.colorId],
-                child: Center(
-                  child: Text(
-                    getFirstLetter(entry),
-                    style: Theme.of(context).textTheme.headline4.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-              ),
+              child: entry.favicon.isNotEmpty
+                  ? Container(
+                      color: Colors.white,
+                      child: CachedNetworkImage(
+                        imageUrl: entry.favicon,
+                        width: 52,
+                        height: 52,
+                        placeholder: (context, url) =>
+                            getContainer(entry, context),
+                        errorWidget: (context, url, error) =>
+                            getContainer(entry, context),
+                      ),
+                    )
+                  : getContainer(entry, context),
             ),
             SizedBox(
               width: 16,
@@ -60,6 +63,21 @@ class HomeListItem extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget getContainer(Entry entry, BuildContext context) {
+    return Container(
+      width: 52,
+      color: iconColors[entry.colorId],
+      child: Center(
+        child: Text(
+          getFirstLetter(entry),
+          style: Theme.of(context).textTheme.headline4.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );
