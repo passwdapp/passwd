@@ -1,10 +1,10 @@
 import 'package:passwd/models/validator.dart';
 
-class MinValidator implements Validator {
+class MinMaxValidator implements Validator {
   int min;
   int max;
 
-  MinValidator({
+  MinMaxValidator({
     this.min,
     this.max,
   })  : assert(min != null),

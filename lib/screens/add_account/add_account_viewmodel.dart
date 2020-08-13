@@ -5,6 +5,8 @@ import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
+import 'package:passwd/utils/validate.dart';
+import 'package:passwd/validators/min_validator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class AddAccountViewModel extends ChangeNotifier {
@@ -22,11 +24,14 @@ class AddAccountViewModel extends ChangeNotifier {
   set username(String username) {
     _username = username;
 
-    if (username.isNotEmpty) {
-      isUsernameValid = true;
-    } else {
-      isUsernameValid = false;
-    }
+    isUsernameValid = validate<bool>(
+      MinValidator(
+        min: 1,
+      ),
+      username,
+      true,
+      false,
+    );
   }
 
   String _password = "";
@@ -35,11 +40,14 @@ class AddAccountViewModel extends ChangeNotifier {
   set password(String password) {
     _password = password;
 
-    if (password.isNotEmpty) {
-      isPasswordValid = true;
-    } else {
-      isPasswordValid = false;
-    }
+    isPasswordValid = validate<bool>(
+      MinValidator(
+        min: 1,
+      ),
+      username,
+      true,
+      false,
+    );
   }
 
   String _notes = "";
