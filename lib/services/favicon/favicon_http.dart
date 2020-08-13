@@ -19,18 +19,13 @@ class FaviconHttp implements FaviconService {
         if (faviconResponse.icons.isEmpty) {
           return "";
         } else {
-          List<Icons> filteredIcons = faviconResponse.icons
-              .where(
-                (element) => element.src.endsWith("png"),
-              )
-              .toList();
-
-          Icons bestIcon = filteredIcons[0];
+          Icons bestIcon = faviconResponse.icons[0];
           int bestQuality = 0;
 
-          for (Icons element in filteredIcons) {
-            if (RegExp("fluid[-_]?icon").hasMatch(element.src)) {
+          for (Icons element in faviconResponse.icons) {
+            if (RegExp(r"fluid[-_]?icon").hasMatch(element.src)) {
               bestIcon = element;
+              bestQuality = 9999;
               break;
             } else if (estimateQuality(element) > bestQuality) {
               bestIcon = element;
@@ -59,8 +54,8 @@ class FaviconHttp implements FaviconService {
     int rank = 1920;
 
     if (icon.sizes != null) {
-      if (RegExp("any").hasMatch(icon.src)) {
-        rank = 144;
+      if (RegExp("any").hasMatch(icon.sizes)) {
+        rank = 100;
       } else {
         RegExpMatch match = RegExp(
           r"(\d+)x(\d+)",
@@ -68,9 +63,13 @@ class FaviconHttp implements FaviconService {
         ).firstMatch(icon.sizes);
 
         if (match != null) {
-          int height = int.parse("128x128"
-              .substring(match.start, match.end)
-              .split(RegExp("x", caseSensitive: false))[0]);
+          int height = 100 -
+              int.parse(
+                icon.sizes
+                    .substring(match.start, match.end)
+                    .split(RegExp("x", caseSensitive: false))[0],
+                onError: (str) => 10,
+              );
 
           rank = height.abs();
         }
@@ -82,7 +81,7 @@ class FaviconHttp implements FaviconService {
       ).firstMatch(icon.src);
 
       if (match != null) {
-        int height = int.parse("128x128"
+        int height = int.parse(icon.sizes
             .substring(match.start, match.end)
             .split(RegExp("x", caseSensitive: false))[0]);
 
@@ -97,26 +96,26 @@ class FaviconHttp implements FaviconService {
     int rank = 0;
 
     if (RegExp(
-      "fluid[-_]?icon",
+      r"fluid[-_]?icon",
       caseSensitive: false,
     ).hasMatch(
       url,
     )) {
       rank = 3;
     } else if (RegExp(
-      "apple[-_]+(?:touch[-_]+)?icon",
+      r"apple[-_]+(?:touch[-_]+)?icon",
       caseSensitive: false,
     ).hasMatch(
       url,
     )) {
       rank = 2;
     } else if (RegExp(
-      "mask[-_]?icon",
+      r"mask[-_]?icon",
       caseSensitive: false,
     ).hasMatch(
       url,
     )) {
-      rank = 3;
+      rank = 1;
     }
 
     return rank;
@@ -126,8 +125,11 @@ class FaviconHttp implements FaviconService {
     int rank = 0;
 
     switch (getExtension(url)) {
-      case "png":
+      case ".png":
         rank = 2;
+        break;
+      case ".svg":
+        rank = 1;
         break;
       default:
         break;
