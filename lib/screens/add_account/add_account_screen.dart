@@ -67,7 +67,9 @@ class AddAccountScreen extends HookWidget {
         ),
         body: SafeArea(
           child: ListView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),
