@@ -55,7 +55,7 @@ class AddAccountScreen extends HookWidget {
           ),
           actions: [
             IconButton(
-              onPressed: model.isPasswordValid && model.isPasswordValid
+              onPressed: model.isUsernameValid && model.isPasswordValid
                   ? () {
                       model.popWithData();
                     }
