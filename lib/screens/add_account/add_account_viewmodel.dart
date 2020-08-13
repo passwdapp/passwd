@@ -44,7 +44,7 @@ class AddAccountViewModel extends ChangeNotifier {
       MinValidator(
         min: 1,
       ),
-      username,
+      password,
       true,
       false,
     );
