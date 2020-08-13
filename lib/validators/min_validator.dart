@@ -5,6 +5,7 @@ class MinValidator implements Validator {
 
   MinValidator({this.min}) : assert(min != null);
 
+  @override
   bool validate(String input) {
     return input.length >= min;
   }

@@ -5,6 +5,7 @@ class MaxValidator implements Validator {
 
   MaxValidator({this.max}) : assert(max != null);
 
+  @override
   bool validate(String input) {
     return input.length <= max;
   }

@@ -10,6 +10,7 @@ class MinMaxValidator implements Validator {
   })  : assert(min != null),
         assert(max != null);
 
+  @override
   bool validate(String input) {
     return input.length >= min && input.length <= max;
   }
