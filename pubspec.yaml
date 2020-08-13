@@ -32,14 +32,12 @@ dependencies:
   cryptography: ^1.4.1
   encrypt: ^4.0.2
   path: ^1.7.0
-  archive: ^2.0.13
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   injectable_generator: ^1.0.3
   auto_route_generator: ^0.6.7
-  hive_generator: ^0.7.1
   build_runner: ^1.10.2
   mockito: ^4.1.1
 
