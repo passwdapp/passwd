@@ -9,6 +9,9 @@ import 'package:passwd/services/path/path_service.dart';
 import 'package:passwd/services/sync/sync_service.dart';
 import 'package:path/path.dart' as path;
 
+// Newer binary implementation is *not* compatible with this JSON based implementation
+// This one is deprecated, but is still here, coz just in case...
+// Using the binary implementation is strongly recommended
 class SyncImpl implements SyncService {
   final String fileName = "db___test.passwd";
 
