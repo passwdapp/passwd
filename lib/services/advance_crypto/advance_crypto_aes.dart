@@ -26,6 +26,19 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
   }
 
   @override
+  Future<Uint8List> encryptBinary(
+    Uint8List data,
+    String password,
+  ) async {
+    final key = Key(await deriveKey(password));
+    final encrypter = Encrypter(AES(key));
+    final iv = IV.fromSecureRandom(16);
+    final encrypted = encrypter.encrypt(base64.encode(data), iv: iv);
+
+    return Uint8List.fromList([...encrypted.bytes, ...iv.bytes]);
+  }
+
+  @override
   Future<String> decryptText(
     String cipherText,
     String password,
