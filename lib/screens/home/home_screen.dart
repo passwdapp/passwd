@@ -13,10 +13,18 @@ class HomeScreen extends StatelessWidget {
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Feather.settings),
-            onPressed: () {},
-            tooltip: "Settings",
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Feather.settings),
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Hello? Did you call me?"),
+                  ),
+                );
+              },
+              tooltip: "Settings",
+            ),
           ),
           centerTitle: true,
           title: TitleWidget(

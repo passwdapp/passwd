@@ -40,6 +40,7 @@ class HomeViewModel extends ChangeNotifier {
 
   Future removeEntry(int itemId) async {
     loading = true;
+    notifyListeners();
     _entries.entries.removeAt(itemId);
     notifyListeners();
     await syncDB();

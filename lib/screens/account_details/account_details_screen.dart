@@ -33,12 +33,20 @@ class AccountDetailsScreen extends StatelessWidget {
             icon: Icon(Feather.x_circle),
           ),
           actions: [
-            IconButton(
-              onPressed: () {
-                // model.pop();
-              },
-              tooltip: "Edit",
-              icon: Icon(Feather.edit),
+            Builder(
+              builder: (context) => IconButton(
+                onPressed: () {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Henlo world, I am still under construction",
+                      ),
+                    ),
+                  );
+                },
+                tooltip: "Edit",
+                icon: Icon(Feather.edit),
+              ),
             ),
           ],
         ),
@@ -62,7 +70,7 @@ class AccountDetailsScreen extends StatelessWidget {
               false,
             ),
             SizedBox(
-              height: 4,
+              height: 12,
             ),
             Row(
               children: [
@@ -89,7 +97,7 @@ class AccountDetailsScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 4,
+              height: 12,
             ),
             if (entry.note.isNotEmpty)
               getRow("Notes".toUpperCase(), entry.note),
