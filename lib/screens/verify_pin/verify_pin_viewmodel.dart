@@ -39,7 +39,12 @@ class VerifyPinViewModel extends ChangeNotifier {
   }
 
   Future<bool> biometricsAvailable() async {
-    return await locator<BiometricsService>().biometricsAvailable();
+    if (await locator<AuthenticationService>().allowBiometrics() &&
+        await locator<BiometricsService>().biometricsAvailable()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future tryBiometrics() async {

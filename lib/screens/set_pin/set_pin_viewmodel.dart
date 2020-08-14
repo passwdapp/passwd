@@ -24,6 +24,8 @@ class SetPinViewModel extends ChangeNotifier {
       _biometrics = false;
     }
 
+    locator<AuthenticationService>().writeBiometrics(_biometrics);
+
     notifyListeners();
   }
 
