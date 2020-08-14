@@ -54,6 +54,9 @@ class GeneratePasswordScreen extends HookWidget {
           ],
         ),
         body: ListView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: const BouncingScrollPhysics(),
+          ),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
           ),
@@ -147,6 +150,9 @@ class GeneratePasswordScreen extends HookWidget {
                   capitalize: model.capitalize,
                 );
               },
+            ),
+            SizedBox(
+              height: 12,
             ),
           ],
         ),

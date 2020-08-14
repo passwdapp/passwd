@@ -50,10 +50,84 @@ class AccountDetailsScreen extends StatelessWidget {
             horizontal: 16,
           ),
           children: [
-            if (entry.name.isNotEmpty) Text("Hello"),
+            SizedBox(
+              height: 4,
+            ),
+            if (entry.name.isNotEmpty)
+              getRow("Name/URL".toUpperCase(), entry.name),
+            getRow("Username/Email".toUpperCase(), entry.username),
+            getRow(
+              "Password".toUpperCase(),
+              model.passwordVisible ? entry.password : "•••••••••••••••",
+              false,
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: FlatButton(
+                    onPressed: () {
+                      model.passwordVisible = !model.passwordVisible;
+                    },
+                    child: Text(
+                      model.passwordVisible ? "Hide Password" : "Show Password",
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: FlatButton(
+                    onPressed: () {
+                      model.copy(entry.password);
+                    },
+                    child: Text(
+                      "Copy Password",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            if (entry.note.isNotEmpty)
+              getRow("Notes".toUpperCase(), entry.note),
+            SizedBox(
+              height: 4,
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget getRow(String label, String content, [bool padding = true]) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 13,
+            letterSpacing: 1.5,
+            color: Colors.white.withOpacity(0.5),
+          ),
+        ),
+        SizedBox(
+          height: 2,
+        ),
+        Text(
+          content,
+          style: TextStyle(
+            fontSize: 16,
+          ),
+        ),
+        if (padding)
+          SizedBox(
+            height: 24,
+          ),
+      ],
     );
   }
 }
