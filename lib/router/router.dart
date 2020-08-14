@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:passwd/screens/account_details/account_details_screen.dart';
 import 'package:passwd/screens/add_account/add_account_screen.dart';
 import 'package:passwd/screens/generate_password/generate_password_screen.dart';
 import 'package:passwd/screens/get_started/get_started_screen.dart';
@@ -30,6 +31,9 @@ import 'package:passwd/screens/verify_pin/verify_pin_screen.dart';
     ),
     MaterialRoute(
       page: GeneratePasswordScreen,
+    ),
+    MaterialRoute(
+      page: AccountDetailsScreen,
     ),
   ],
 )

@@ -74,4 +74,13 @@ class HomeViewModel extends ChangeNotifier {
       loading = false;
     }
   }
+
+  void showDetails(Entry entry) {
+    locator<NavigationService>().navigateTo(
+      Routes.accountDetailsScreen,
+      arguments: AccountDetailsScreenArguments(
+        entry: entry,
+      ),
+    );
+  }
 }

@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         onTap: () {
-                          print("Hello world");
+                          model.showDetails(model.entries.entries[i]);
                         },
                         child: HomeListItem(
                           entry: model.entries.entries[i],
