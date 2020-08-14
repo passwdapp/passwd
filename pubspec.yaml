@@ -30,6 +30,8 @@ dependencies:
   encrypt: ^4.0.2
   path: ^1.7.0
   cached_network_image: ^2.2.0+1
+  msgpack_dart: ^0.0.7
+  archive: ^2.0.13
 
 dev_dependencies:
   flutter_test:

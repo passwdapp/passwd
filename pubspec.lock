@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  archive:
+    dependency: "direct main"
+    description:
+      name: archive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.13"
   args:
     dependency: transitive
     description:
@@ -466,6 +473,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.1"
+  msgpack_dart:
+    dependency: "direct main"
+    description:
+      name: msgpack_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   nested:
     dependency: transitive
     description:
