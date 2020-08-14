@@ -9,7 +9,7 @@ class Entries {
     if (json['entries'] != null) {
       entries = List<Entry>();
       json['entries'].forEach((v) {
-        entries.add(Entry.fromJson(v));
+        entries.add(Entry.fromJson(v.cast<String, dynamic>()));
       });
     }
   }

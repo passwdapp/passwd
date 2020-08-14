@@ -24,7 +24,7 @@ import 'path/path_path_provider.dart';
 import 'path/path_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
 import 'secure_kv/secure_kv.dart';
-import 'sync/sync_impl.dart';
+import 'sync/sync_binary.dart';
 import 'sync/sync_service.dart';
 import 'third_party.dart';
 
