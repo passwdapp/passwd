@@ -18,24 +18,24 @@ class Otp {
   });
 
   Otp.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    issuer = json['issuer'];
-    algorithm = json['algorithm'];
-    secret = json['secret'];
-    account = json['account'];
-    digits = json['digits'];
-    timeout = json['timeout'];
+    type = json['t'];
+    issuer = json['i'];
+    algorithm = json['a'];
+    secret = json['s'];
+    account = json['ac'];
+    digits = json['d'];
+    timeout = json['ti'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['type'] = this.type;
-    data['issuer'] = this.issuer;
-    data['algorithm'] = this.algorithm;
-    data['secret'] = this.secret;
-    data['account'] = this.account;
-    data['digits'] = this.digits;
-    data['timeout'] = this.timeout;
+    data['t'] = this.type;
+    data['i'] = this.issuer;
+    data['a'] = this.algorithm;
+    data['s'] = this.secret;
+    data['ac'] = this.account;
+    data['d'] = this.digits;
+    data['ti'] = this.timeout;
     return data;
   }
 }

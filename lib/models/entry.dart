@@ -20,25 +20,25 @@ class Entry {
   });
 
   Entry.fromJson(Map<String, dynamic> json) {
-    colorId = json['colorId'];
-    name = json['name'];
-    username = json['username'];
-    password = json['password'];
-    note = json['note'];
-    favicon = json['favicon'];
-    otp = json['otp'] != null ? Otp.fromJson(json['otp']) : null;
+    colorId = json['c'];
+    name = json['n'];
+    username = json['u'];
+    password = json['p'];
+    note = json['no'];
+    favicon = json['f'];
+    otp = json['o'] != null ? Otp.fromJson(json['otp']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['colorId'] = this.colorId;
-    data['name'] = this.name;
-    data['username'] = this.username;
-    data['password'] = this.password;
-    data['note'] = this.note;
-    data['favicon'] = this.favicon;
+    data['c'] = this.colorId;
+    data['n'] = this.name;
+    data['u'] = this.username;
+    data['p'] = this.password;
+    data['no'] = this.note;
+    data['f'] = this.favicon;
     if (this.otp != null) {
-      data['otp'] = this.otp.toJson();
+      data['o'] = this.otp.toJson();
     }
     return data;
   }
