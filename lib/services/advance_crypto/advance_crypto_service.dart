@@ -5,20 +5,12 @@ abstract class AdvanceCryptoService {
     String plainText,
     String password,
   );
-  Future<Uint8List> encryptTextToBinary(
-    String plainText,
-    String password,
-  );
   Future<Uint8List> encryptBinary(
     Uint8List data,
     String password,
   );
   Future<String> decryptText(
     String cipherText,
-    String password,
-  );
-  Future<String> decryptBinaryToText(
-    Uint8List data,
     String password,
   );
   Future<Uint8List> decryptBinary(

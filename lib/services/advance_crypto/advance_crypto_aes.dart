@@ -26,32 +26,6 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
   }
 
   @override
-  Future<Uint8List> encryptTextToBinary(
-    String plainText,
-    String password,
-  ) async {
-    final key = Key(await deriveKey(password));
-    final encrypter = Encrypter(AES(key));
-    final iv = IV.fromSecureRandom(16);
-    final encrypted = encrypter.encrypt(plainText, iv: iv);
-
-    return Uint8List.fromList([...encrypted.bytes, ...iv.bytes]);
-  }
-
-  @override
-  Future<Uint8List> encryptBinary(
-    Uint8List data,
-    String password,
-  ) async {
-    final key = Key(await deriveKey(password));
-    final encrypter = Encrypter(AES(key));
-    final iv = IV.fromSecureRandom(16);
-    final encrypted = encrypter.encrypt(base64.encode(data), iv: iv);
-
-    return Uint8List.fromList([...encrypted.bytes, ...iv.bytes]);
-  }
-
-  @override
   Future<String> decryptText(
     String cipherText,
     String password,
@@ -65,26 +39,6 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
       final decrypted = encrypter.decrypt(
         Encrypted.from64(encrypted[0]),
         iv: IV.fromBase64(encrypted[1]),
-      );
-
-      return decrypted;
-    } catch (e) {
-      throw Exception('There was an error decrypting the inputs');
-    }
-  }
-
-  @override
-  Future<String> decryptBinaryToText(
-    Uint8List data,
-    String password,
-  ) async {
-    final key = Key(await deriveKey(password));
-    final encrypter = Encrypter(AES(key));
-
-    try {
-      final decrypted = encrypter.decrypt(
-        Encrypted(data.sublist(0, data.length - 16)),
-        iv: IV(data.sublist(data.length - 16, data.length)),
       );
 
       return decrypted;
