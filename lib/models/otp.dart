@@ -13,8 +13,8 @@ class Otp {
     this.algorithm,
     this.secret,
     this.account,
-    this.digits,
-    this.timeout,
+    this.digits = 6,
+    this.timeout = 30,
   });
 
   Otp.fromJson(Map<String, dynamic> json) {
