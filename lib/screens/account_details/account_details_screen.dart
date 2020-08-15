@@ -85,12 +85,19 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      model.copy(entry.password);
-                    },
-                    child: Text(
-                      "Copy Password",
+                  child: Builder(
+                    builder: (context) => FlatButton(
+                      onPressed: () {
+                        model.copy(entry.password);
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Password copied to the clipboard"),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Copy Password",
+                      ),
                     ),
                   ),
                 ),
