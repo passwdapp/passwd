@@ -1,5 +1,5 @@
 name: passwd
-description: A new Flutter project.
+description: A beautiful and secure password manager.
 version: 1.0.0+1
 
 environment:
