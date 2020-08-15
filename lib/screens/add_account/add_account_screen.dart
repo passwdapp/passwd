@@ -145,12 +145,36 @@ class AddAccountScreen extends HookWidget {
               ),
               Builder(
                 builder: (context) => Button(
-                  child: Text("Two factor authentication"),
+                  child: Text("Two Factor Authentication"),
                   onClick: () {
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          "Henlo World, I am just a teeny tiny snaccbar",
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                        child: Wrap(
+                          children: [
+                            ListTile(
+                              leading: Icon(Feather.camera),
+                              title: Text("Scan a QR code"),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.keyboard),
+                              title: Text("Enter Manually"),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                                model.toOtp();
+                              },
+                            ),
+                            ListTile(
+                              leading: Icon(Feather.x),
+                              title: Text("Cancel"),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     );

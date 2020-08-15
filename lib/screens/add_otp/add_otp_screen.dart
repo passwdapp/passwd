@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/add_otp/add_otp_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-class AddOtpScreen extends StatelessWidget {
+class AddOtpScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddOtpViewModel>.reactive(
@@ -12,7 +13,7 @@ class AddOtpScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "Add an Account",
+            "Enter Manually",
             style: TextStyle(
               letterSpacing: 1.25,
               fontSize: 18,

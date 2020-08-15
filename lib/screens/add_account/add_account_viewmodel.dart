@@ -104,4 +104,8 @@ class AddAccountViewModel extends ChangeNotifier {
       locator<NavigationService>().back(result: data);
     }
   }
+
+  Future toOtp() async {
+    locator<NavigationService>().navigateTo(Routes.addOtpScreen);
+  }
 }
