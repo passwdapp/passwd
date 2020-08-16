@@ -118,6 +118,10 @@ class AddAccountViewModel extends ChangeNotifier {
         colorId: Random.secure().nextInt(iconColors.length),
       );
 
+      if (otpAvailable) {
+        data.otp = otp;
+      }
+
       locator<NavigationService>().back(result: data);
     }
   }

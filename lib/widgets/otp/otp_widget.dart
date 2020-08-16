@@ -27,18 +27,28 @@ class OtpWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Current OTP",
-                    style: Theme.of(context).textTheme.headline6,
+                    "Current OTP".toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 13,
+                      letterSpacing: 1.5,
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2,
                   ),
                   Text(
                     model.currentOtp,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),
             ),
             CircularPercentIndicator(
-              radius: 32,
+              radius: 28,
+              lineWidth: 4,
               percent: model.percentage,
               animation: true,
               animateFromLastPercent: true,

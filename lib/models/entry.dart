@@ -26,7 +26,9 @@ class Entry {
     password = json['p'];
     note = json['no'];
     favicon = json['f'];
-    otp = json['o'] != null ? Otp.fromJson(json['otp']) : null;
+    otp = json['o'] != null
+        ? Otp.fromJson(json['o'].cast<String, dynamic>())
+        : null;
   }
 
   Map<String, dynamic> toJson() {

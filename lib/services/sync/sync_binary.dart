@@ -33,11 +33,14 @@ class SyncImpl implements SyncService {
         fileContent,
         await authenticationService.readEncryptionKey(),
       );
-      Uint8List uncompressedContent =
-          GZipDecoder().decodeBytes(decryptedContent);
+      Uint8List uncompressedContent = GZipDecoder().decodeBytes(
+        decryptedContent,
+      );
 
       Entries entries = Entries.fromJson(
-        Map<String, dynamic>.from(deserialize(uncompressedContent)),
+        Map<String, dynamic>.from(
+          deserialize(uncompressedContent),
+        ),
       );
       return entries;
     } catch (e) {

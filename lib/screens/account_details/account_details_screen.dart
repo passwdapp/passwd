@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/screens/account_details/account_details_viewmodel.dart';
+import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
@@ -108,8 +109,9 @@ class AccountDetailsScreen extends StatelessWidget {
             ),
             if (entry.note.isNotEmpty)
               getRow("Notes".toUpperCase(), entry.note),
+            if (entry.otp != null) OtpWidget(otp: entry.otp),
             SizedBox(
-              height: 4,
+              height: 12,
             ),
           ],
         ),
