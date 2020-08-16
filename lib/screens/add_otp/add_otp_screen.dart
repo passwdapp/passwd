@@ -29,7 +29,8 @@ class AddOtpScreen extends HookWidget {
         });
 
         digitsController.addListener(() {
-          model.digits = digitsController.text.toInt();
+          model.digits =
+              digitsController.text.isEmpty ? 0 : digitsController.text.toInt();
         });
 
         periodController.addListener(() {
@@ -55,7 +56,13 @@ class AddOtpScreen extends HookWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: model.isSecretValid &&
+                      model.isDigitsValid &&
+                      model.isPeriodValid
+                  ? () {
+                      model.popWithData();
+                    }
+                  : null,
               tooltip: "Done",
               icon: Icon(Feather.check_circle),
             ),
@@ -117,7 +124,7 @@ class AddOtpScreen extends HookWidget {
                   labelText: "Period (Seconds)".toUpperCase(),
                   errorText: model.isPeriodValid
                       ? null
-                      : "The period must be between 30 and 60",
+                      : "The period must be 30 seconds or 60 seconds",
                 ),
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,

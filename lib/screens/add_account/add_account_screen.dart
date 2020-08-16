@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
 import 'package:passwd/widgets/button.dart';
+import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
 
 class AddAccountScreen extends HookWidget {
@@ -181,6 +182,14 @@ class AddAccountScreen extends HookWidget {
                   },
                 ),
               ),
+              if (model.otpAvailable)
+                SizedBox(
+                  height: 16,
+                ),
+              if (model.otpAvailable)
+                OtpWidget(
+                  otp: model.otp,
+                ),
               SizedBox(
                 height: 16,
               ),

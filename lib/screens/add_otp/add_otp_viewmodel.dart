@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:passwd/models/otp.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:passwd/utils/validate.dart';
 import 'package:passwd/validators/otp_secret_validator.dart';
@@ -34,7 +35,7 @@ class AddOtpViewModel extends ChangeNotifier {
   set period(int period) {
     _period = period;
 
-    if (period >= 30 && period <= 60) {
+    if (period == 30 || period == 60) {
       isPeriodValid = true;
     } else {
       isPeriodValid = false;
@@ -67,5 +68,21 @@ class AddOtpViewModel extends ChangeNotifier {
 
   void pop() {
     locator<NavigationService>().back();
+  }
+
+  void popWithData() {
+    Otp otp = Otp(
+      account: "ih", // ih stands for inherit (from parent)
+      algorithm: "1", // 1 is SHA1
+      digits: _digits,
+      issuer: "ih",
+      secret: _secret,
+      timeout: _period,
+      type: "t", // T is TOTP
+    );
+
+    locator<NavigationService>().back(
+      result: otp,
+    );
   }
 }

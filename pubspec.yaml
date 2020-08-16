@@ -32,6 +32,7 @@ dependencies:
   cached_network_image: ^2.2.0+1
   msgpack_dart: ^0.0.7
   archive: ^2.0.13
+  percent_indicator: ^2.1.5
 
 dev_dependencies:
   flutter_test:

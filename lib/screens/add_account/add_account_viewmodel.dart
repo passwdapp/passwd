@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/entry.dart';
+import 'package:passwd/models/otp.dart';
 import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:passwd/utils/validate.dart';
@@ -74,6 +75,22 @@ class AddAccountViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Otp _otp = Otp();
+  Otp get otp => _otp;
+
+  set otp(Otp otp) {
+    _otp = otp;
+    notifyListeners();
+  }
+
+  bool _otpAvailable = false;
+  bool get otpAvailable => _otpAvailable;
+
+  set otpAvailable(bool otpAvailable) {
+    _otpAvailable = otpAvailable;
+    notifyListeners();
+  }
+
   void pop() {
     locator<NavigationService>().back();
   }
@@ -106,6 +123,12 @@ class AddAccountViewModel extends ChangeNotifier {
   }
 
   Future toOtp() async {
-    locator<NavigationService>().navigateTo(Routes.addOtpScreen);
+    Otp otp =
+        await locator<NavigationService>().navigateTo(Routes.addOtpScreen);
+
+    if (otp != null) {
+      this.otp = otp;
+      otpAvailable = true;
+    }
   }
 }
