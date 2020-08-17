@@ -26,8 +26,8 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   Future reloadDB() async {
-    Entries test = await locator<SyncService>().readDatabaseLocally();
-    _entries = test;
+    Entries entries = await locator<SyncService>().readDatabaseLocally();
+    _entries = entries;
     notifyListeners();
     await Future.delayed(Duration(milliseconds: 500));
     loading = false;
