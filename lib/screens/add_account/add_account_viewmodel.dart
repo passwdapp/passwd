@@ -6,6 +6,7 @@ import 'package:passwd/models/entry.dart';
 import 'package:passwd/models/otp.dart';
 import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
+import 'package:passwd/services/password/password_service.dart';
 import 'package:passwd/services/qr/qr_service.dart';
 import 'package:passwd/utils/validate.dart';
 import 'package:passwd/validators/min_validator.dart';
@@ -117,6 +118,9 @@ class AddAccountViewModel extends ChangeNotifier {
         password: _password,
         username: _username,
         colorId: Random.secure().nextInt(iconColors.length),
+        id: locator<PasswordService>().generateRandomPassword(
+          length: 24,
+        ),
       );
 
       if (otpAvailable) {

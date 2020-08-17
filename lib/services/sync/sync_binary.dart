@@ -15,7 +15,7 @@ import 'package:path/path.dart' as path;
 @LazySingleton(as: SyncService)
 class SyncImpl implements SyncService {
   // TODO: change DB name for production
-  final String fileName = "db___test__bin.passwd";
+  final String fileName = "db___test0__bin.passwd";
   // final String fileName = "db___prod__00.passwd";
 
   final AdvanceCryptoService advanceCryptoService =

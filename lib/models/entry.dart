@@ -7,6 +7,7 @@ class Entry {
   String password;
   String note;
   String favicon;
+  String id;
   Otp otp;
 
   Entry({
@@ -17,6 +18,7 @@ class Entry {
     this.note,
     this.favicon,
     this.otp,
+    this.id,
   });
 
   Entry.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Entry {
     password = json['p'];
     note = json['no'];
     favicon = json['f'];
+    id = json['i'];
     otp = json['o'] != null
         ? Otp.fromJson(json['o'].cast<String, dynamic>())
         : null;
@@ -39,6 +42,7 @@ class Entry {
     data['p'] = this.password;
     data['no'] = this.note;
     data['f'] = this.favicon;
+    data['i'] = this.id;
     if (this.otp != null) {
       data['o'] = this.otp.toJson();
     }
