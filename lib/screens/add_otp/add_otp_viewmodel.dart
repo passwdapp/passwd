@@ -73,7 +73,7 @@ class AddOtpViewModel extends ChangeNotifier {
   void popWithData() {
     Otp otp = Otp(
       account: "ih", // ih stands for inherit (from parent)
-      algorithm: "1", // 1 is SHA1
+      algorithm: "SHA1",
       digits: _digits,
       issuer: "ih",
       secret: _secret,

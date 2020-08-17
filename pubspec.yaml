@@ -33,6 +33,7 @@ dependencies:
   msgpack_dart: ^0.0.7
   archive: ^2.0.13
   percent_indicator: ^2.1.5
+  barcode_scan: ^3.0.1
 
 dev_dependencies:
   flutter_test:

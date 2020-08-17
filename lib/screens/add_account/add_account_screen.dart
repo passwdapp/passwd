@@ -156,8 +156,18 @@ class AddAccountScreen extends HookWidget {
                             ListTile(
                               leading: Icon(Feather.camera),
                               title: Text("Scan a QR code"),
-                              onTap: () {
+                              onTap: () async {
                                 Navigator.of(context).pop();
+
+                                await model.scanOtp(() {
+                                  Scaffold.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        "Failed to scan QR code",
+                                      ),
+                                    ),
+                                  );
+                                });
                               },
                             ),
                             ListTile(

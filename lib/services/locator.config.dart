@@ -22,6 +22,8 @@ import 'password/password_impl.dart';
 import 'password/password_service.dart';
 import 'path/path_path_provider.dart';
 import 'path/path_service.dart';
+import 'qr/qr_flutter_barcode_scanner.dart';
+import 'qr/qr_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
 import 'secure_kv/secure_kv.dart';
 import 'sync/sync_binary.dart';
@@ -47,6 +49,7 @@ GetIt $initGetIt(
       () => thirdPartySevices.navigationService);
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
+  gh.lazySingleton<QRService>(() => QRFlutterBarcodeScanner());
   gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage());
   gh.lazySingleton<SyncService>(() => SyncImpl());
   return get;

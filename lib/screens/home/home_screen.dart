@@ -94,21 +94,36 @@ class HomeScreen extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title:
-                                  Text("Do you want to delete this account?"),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text("No"),
+                              title: Text(
+                                "Do you really want to delete this account?",
+                              ),
+                              content: RichText(
+                                text: TextSpan(
+                                  text: "WARNING: ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red[200],
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: "This is irreversible",
+                                    ),
+                                  ],
                                 ),
+                              ),
+                              actions: [
                                 FlatButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                     model.removeEntry(i);
                                   },
                                   child: Text("Yes"),
+                                ),
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("No"),
                                 ),
                               ],
                             ),

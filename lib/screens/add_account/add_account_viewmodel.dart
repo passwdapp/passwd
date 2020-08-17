@@ -6,6 +6,7 @@ import 'package:passwd/models/entry.dart';
 import 'package:passwd/models/otp.dart';
 import 'package:passwd/router/router.gr.dart';
 import 'package:passwd/services/locator.dart';
+import 'package:passwd/services/qr/qr_service.dart';
 import 'package:passwd/utils/validate.dart';
 import 'package:passwd/validators/min_validator.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -133,6 +134,17 @@ class AddAccountViewModel extends ChangeNotifier {
     if (otp != null) {
       this.otp = otp;
       otpAvailable = true;
+    }
+  }
+
+  Future<void> scanOtp(void Function() showError) async {
+    try {
+      Otp otp = await locator<QRService>().scanQRForOtp();
+
+      this.otp = otp;
+      otpAvailable = true;
+    } catch (e) {
+      showError();
     }
   }
 }
