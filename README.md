@@ -1,16 +1,19 @@
-# passwd
+# Passwd.
 
-A new Flutter project.
+A beautiful, encrypted password manager, build using Flutter and Dart.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Fully encrypted using AES-256-CTR (including the database stored on-device)
+- Support for TOTP
+- Secure Password Generation (Diceware and Random)
+- A really nice UI
+- Really compact database, allowing for efficient disk operations (Thanks to MsgPack)
 
-A few resources to get you started if this is your first Flutter project:
+## Roadmap
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+See [ROADMAP.md](./ROADMAP.md).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributors
+
+See [CONTRIBUTORS.md](./CONTRIBUTORS.md).
