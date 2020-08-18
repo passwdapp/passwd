@@ -192,7 +192,7 @@ class AddAccountScreen extends HookWidget {
                             ListTile(
                               leading: Icon(Feather.x),
                               title: Text(
-                                context.getString("Cancel"),
+                                context.getString("cancel"),
                               ),
                               onTap: () {
                                 Navigator.of(context).pop();
