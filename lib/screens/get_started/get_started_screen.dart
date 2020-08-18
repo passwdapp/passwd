@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/screens/get_started/get_started_viewmodel.dart';
 import 'package:passwd/widgets/title.dart';
@@ -21,7 +22,7 @@ class GetStartedScreen extends StatelessWidget {
             RaisedButton(
               onPressed: model.handleClick,
               child: Text(
-                "Get Started",
+                context.getString("get_started"),
                 style: TextStyle(
                   color: "#121212".toColor(),
                 ),

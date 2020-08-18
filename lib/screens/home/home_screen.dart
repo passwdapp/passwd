@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/constants/colors.dart';
@@ -19,11 +20,13 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("Hello? Did you call me?"),
+                    content: Text(
+                      context.getString("under_construction"),
+                    ),
                   ),
                 );
               },
-              tooltip: "Settings",
+              tooltip: context.getString("settings_tooltip"),
             ),
           ),
           centerTitle: true,
@@ -36,7 +39,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () async {
                 await model.toAdd();
               },
-              tooltip: "Add an account",
+              tooltip: context.getString("add_account"),
             ),
           ],
         ),
@@ -49,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "No accounts here",
+                          context.getString("no_accounts"),
                           style: Theme.of(context).textTheme.headline5.copyWith(
                                 color: Colors.white.withOpacity(0.6),
                               ),
@@ -62,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Use the ",
+                              context.getString("use_the"),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1
@@ -76,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                               size: 20,
                             ),
                             Text(
-                              " icon to add one",
+                              context.getString("icon_to_add"),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1
@@ -95,18 +98,18 @@ class HomeScreen extends StatelessWidget {
                             context: context,
                             builder: (context) => AlertDialog(
                               title: Text(
-                                "Do you really want to delete this account?",
+                                context.getString("deletion_dialog_title"),
                               ),
                               content: RichText(
                                 text: TextSpan(
-                                  text: "WARNING: ",
+                                  text: context.getString("warning"),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red[200],
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: "This is irreversible",
+                                      text: context.getString("irreversible"),
                                     ),
                                   ],
                                 ),
@@ -117,13 +120,17 @@ class HomeScreen extends StatelessWidget {
                                     Navigator.of(context).pop();
                                     model.removeEntry(i);
                                   },
-                                  child: Text("Yes"),
+                                  child: Text(
+                                    context.getString("yes"),
+                                  ),
                                 ),
                                 FlatButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text("No"),
+                                  child: Text(
+                                    context.getString("no"),
+                                  ),
                                 ),
                               ],
                             ),
@@ -162,7 +169,9 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        Text("Syncing"),
+                        Text(
+                          context.getString("syncing"),
+                        ),
                       ],
                     ),
                   )

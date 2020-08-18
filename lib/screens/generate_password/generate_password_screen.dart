@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,7 +31,7 @@ class GeneratePasswordScreen extends HookWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "Password",
+            context.getString("password"),
             style: TextStyle(
               letterSpacing: 1.25,
               fontSize: 18,
@@ -40,7 +41,7 @@ class GeneratePasswordScreen extends HookWidget {
             onPressed: () {
               model.pop();
             },
-            tooltip: "Back",
+            tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
           actions: [
@@ -48,7 +49,7 @@ class GeneratePasswordScreen extends HookWidget {
               onPressed: () {
                 model.popWithPassword(model.password);
               },
-              tooltip: "Done",
+              tooltip: context.getString("done_tooltip"),
               icon: Icon(Feather.check_circle),
             ),
           ],
@@ -93,7 +94,9 @@ class GeneratePasswordScreen extends HookWidget {
                   capitalize: model.capitalize,
                 );
               },
-              title: Text("Memorizable"),
+              title: Text(
+                context.getString("memorizable"),
+              ),
             ),
             SizedBox(
               height: 4,
@@ -102,8 +105,8 @@ class GeneratePasswordScreen extends HookWidget {
               controller: wordController,
               decoration: InputDecoration(
                 labelText: model.diceware
-                    ? "Number of words".toUpperCase()
-                    : "Length".toUpperCase(),
+                    ? context.getString("no_words").toUpperCase()
+                    : context.getString("length").toUpperCase(),
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -134,7 +137,9 @@ class GeneratePasswordScreen extends HookWidget {
                             capitalize: model.capitalize,
                           );
                         },
-                        title: Text("Capitalize"),
+                        title: Text(
+                          context.getString("capitalize"),
+                        ),
                       ),
                       SizedBox(
                         height: 4,
@@ -143,7 +148,9 @@ class GeneratePasswordScreen extends HookWidget {
                   )
                 : Container(),
             Button(
-              child: Text("Regenerate Password"),
+              child: Text(
+                context.getString("regenrate_password"),
+              ),
               onClick: () {
                 model.getPassword(
                   length: model.words,

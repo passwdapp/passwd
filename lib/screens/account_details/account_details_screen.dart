@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/models/entry.dart';
@@ -30,7 +31,7 @@ class AccountDetailsScreen extends StatelessWidget {
             onPressed: () {
               model.pop();
             },
-            tooltip: "Back",
+            tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
           actions: [
@@ -40,12 +41,12 @@ class AccountDetailsScreen extends StatelessWidget {
                   Scaffold.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "Henlo world, I am still under construction",
+                        context.getString("under_construction"),
                       ),
                     ),
                   );
                 },
-                tooltip: "Edit",
+                tooltip: context.getString("edit_tooltip"),
                 icon: Icon(Feather.edit),
               ),
             ),
@@ -63,10 +64,11 @@ class AccountDetailsScreen extends StatelessWidget {
               height: 4,
             ),
             if (entry.name.isNotEmpty)
-              getRow("Name/URL".toUpperCase(), entry.name),
-            getRow("Username/Email".toUpperCase(), entry.username),
+              getRow(context.getString("name_url").toUpperCase(), entry.name),
+            getRow(context.getString("username_email").toUpperCase(),
+                entry.username),
             getRow(
-              "Password".toUpperCase(),
+              context.getString("password").toUpperCase(),
               model.passwordVisible ? entry.password : "•••••••••••••••",
               false,
             ),
@@ -81,7 +83,9 @@ class AccountDetailsScreen extends StatelessWidget {
                       model.passwordVisible = !model.passwordVisible;
                     },
                     child: Text(
-                      model.passwordVisible ? "Hide Password" : "Show Password",
+                      model.passwordVisible
+                          ? context.getString("hide_password")
+                          : context.getString("show_password"),
                     ),
                   ),
                 ),
@@ -92,12 +96,14 @@ class AccountDetailsScreen extends StatelessWidget {
                         model.copy(entry.password);
                         Scaffold.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Password copied to the clipboard"),
+                            content: Text(
+                              context.getString("copied_to_clipboard"),
+                            ),
                           ),
                         );
                       },
                       child: Text(
-                        "Copy Password",
+                        context.getString("copy_password"),
                       ),
                     ),
                   ),
@@ -108,7 +114,7 @@ class AccountDetailsScreen extends StatelessWidget {
               height: 12,
             ),
             if (entry.note.isNotEmpty)
-              getRow("Notes".toUpperCase(), entry.note),
+              getRow(context.getString("notes").toUpperCase(), entry.note),
             if (entry.otp != null) OtpWidget(otp: entry.otp),
             SizedBox(
               height: 12,

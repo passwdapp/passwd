@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/screens/verify_pin/verify_pin_viewmodel.dart';
 import 'package:passwd/widgets/pin_input.dart';
@@ -15,7 +16,9 @@ class VerifyPinScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              model.error.isEmpty ? "Please enter your pin" : model.error,
+              model.error.isEmpty
+                  ? context.getString("enter_pin")
+                  : model.error,
               style: Theme.of(context).textTheme.headline5.copyWith(
                     fontWeight: FontWeight.w900,
                     color: model.error.isEmpty
@@ -48,7 +51,7 @@ class VerifyPinScreen extends StatelessWidget {
                           ),
                           contentPadding: const EdgeInsets.all(0),
                           trailing: Text(
-                            "Retry with biometrics",
+                            context.getString("biometrics_retry"),
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           onTap: () {

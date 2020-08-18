@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -41,7 +42,7 @@ class AddOtpScreen extends HookWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "Enter Manually",
+            context.getString("enter_manually"),
             style: TextStyle(
               letterSpacing: 1.25,
               fontSize: 18,
@@ -51,7 +52,7 @@ class AddOtpScreen extends HookWidget {
             onPressed: () {
               model.pop();
             },
-            tooltip: "Back",
+            tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
           actions: [
@@ -63,7 +64,7 @@ class AddOtpScreen extends HookWidget {
                       model.popWithData();
                     }
                   : null,
-              tooltip: "Done",
+              tooltip: context.getString("done_tooltip"),
               icon: Icon(Feather.check_circle),
             ),
           ],
@@ -80,10 +81,10 @@ class AddOtpScreen extends HookWidget {
               TextFormField(
                 controller: secretController,
                 decoration: InputDecoration(
-                  labelText: "Secret".toUpperCase(),
+                  labelText: context.getString("otp_secret").toUpperCase(),
                   errorText: model.isSecretValid
                       ? null
-                      : "Please enter a valid secret",
+                      : context.getString("otp_secret_invalid"),
                 ),
                 inputFormatters: [
                   CapitalizationFormatter(),
@@ -100,10 +101,10 @@ class AddOtpScreen extends HookWidget {
               TextFormField(
                 controller: digitsController,
                 decoration: InputDecoration(
-                  labelText: "Digits".toUpperCase(),
+                  labelText: context.getString("digits").toUpperCase(),
                   errorText: model.isDigitsValid
                       ? null
-                      : "The number of digits must be between 6 and 8",
+                      : context.getString("digits_invalid"),
                 ),
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
@@ -121,10 +122,10 @@ class AddOtpScreen extends HookWidget {
               TextFormField(
                 controller: periodController,
                 decoration: InputDecoration(
-                  labelText: "Period (Seconds)".toUpperCase(),
+                  labelText: context.getString("otp_period").toUpperCase(),
                   errorText: model.isPeriodValid
                       ? null
-                      : "The period must be 30 seconds or 60 seconds",
+                      : context.getString("otp_period_invalid"),
                 ),
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,

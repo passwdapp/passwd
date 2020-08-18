@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/otp.dart';
@@ -27,7 +28,7 @@ class OtpWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Current OTP".toUpperCase(),
+                    context.getString("current_otp").toUpperCase(),
                     style: TextStyle(
                       fontSize: 13,
                       letterSpacing: 1.5,

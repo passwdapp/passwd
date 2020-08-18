@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/screens/set_pin/set_pin_viewmodel.dart';
 import 'package:passwd/widgets/pin_input.dart';
@@ -15,7 +16,7 @@ class SetPinScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Set a pin",
+              context.getString("set_pin"),
               style: Theme.of(context).textTheme.headline5.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
@@ -44,7 +45,9 @@ class SetPinScreen extends StatelessWidget {
                             Icons.fingerprint_outlined,
                           ),
                           contentPadding: const EdgeInsets.all(0),
-                          title: Text("Enable biometrics"),
+                          title: Text(
+                            context.getString("enable_biometrics"),
+                          ),
                           trailing: Switch(
                             value: model.biometrics,
                             onChanged: (bool value) {
@@ -68,7 +71,9 @@ class SetPinScreen extends StatelessWidget {
                   model.next();
                 }
               : null,
-          label: Text("Next"),
+          label: Text(
+            context.getString("next"),
+          ),
           icon: Icon(Icons.chevron_right),
           disabledElevation: 0.0,
           elevation: 52.0,

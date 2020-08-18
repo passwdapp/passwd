@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -41,7 +42,7 @@ class AddAccountScreen extends HookWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "Add an Account",
+            context.getString("add_account"),
             style: TextStyle(
               letterSpacing: 1.25,
               fontSize: 18,
@@ -51,7 +52,7 @@ class AddAccountScreen extends HookWidget {
             onPressed: () {
               model.pop();
             },
-            tooltip: "Back",
+            tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
           actions: [
@@ -61,7 +62,7 @@ class AddAccountScreen extends HookWidget {
                       model.popWithData();
                     }
                   : null,
-              tooltip: "Done",
+              tooltip: context.getString("done_tooltip"),
               icon: Icon(Feather.check_circle),
             ),
           ],
@@ -78,7 +79,7 @@ class AddAccountScreen extends HookWidget {
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
-                  labelText: "URL/Name".toUpperCase(),
+                  labelText: context.getString("name_url").toUpperCase(),
                 ),
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {
@@ -91,9 +92,10 @@ class AddAccountScreen extends HookWidget {
               TextFormField(
                 controller: usernameController,
                 decoration: InputDecoration(
-                  labelText: "Email/Username".toUpperCase(),
-                  errorText:
-                      !model.isUsernameValid ? "Please enter a username" : null,
+                  labelText: context.getString("username_email").toUpperCase(),
+                  errorText: !model.isUsernameValid
+                      ? context.getString("empty_username")
+                      : null,
                 ),
                 focusNode: usernameFocus,
                 keyboardType: TextInputType.emailAddress,
@@ -108,9 +110,10 @@ class AddAccountScreen extends HookWidget {
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  labelText: "Password".toUpperCase(),
-                  errorText:
-                      !model.isPasswordValid ? "Please enter a password" : null,
+                  labelText: context.getString("password").toUpperCase(),
+                  errorText: !model.isPasswordValid
+                      ? context.getString("empty_password")
+                      : null,
                 ),
                 focusNode: passwordFocus,
                 obscureText: true,
@@ -123,7 +126,9 @@ class AddAccountScreen extends HookWidget {
                 height: 12,
               ),
               Button(
-                child: Text("Generate a Password"),
+                child: Text(
+                  context.getString("generate_password"),
+                ),
                 onClick: () {
                   model.generatePassword((pass) {
                     passwordController.text = pass;
@@ -133,7 +138,7 @@ class AddAccountScreen extends HookWidget {
               TextFormField(
                 controller: notesController,
                 decoration: InputDecoration(
-                  labelText: "Notes".toUpperCase(),
+                  labelText: context.getString("notes").toUpperCase(),
                 ),
                 textInputAction: TextInputAction.done,
                 focusNode: notesFocus,
@@ -146,7 +151,9 @@ class AddAccountScreen extends HookWidget {
               ),
               Builder(
                 builder: (context) => Button(
-                  child: Text("Two Factor Authentication"),
+                  child: Text(
+                    context.getString("two_factor_authentication"),
+                  ),
                   onClick: () {
                     showModalBottomSheet(
                       context: context,
@@ -155,7 +162,9 @@ class AddAccountScreen extends HookWidget {
                           children: [
                             ListTile(
                               leading: Icon(Feather.camera),
-                              title: Text("Scan a QR code"),
+                              title: Text(
+                                context.getString("scan_qr"),
+                              ),
                               onTap: () async {
                                 Navigator.of(context).pop();
 
@@ -163,7 +172,7 @@ class AddAccountScreen extends HookWidget {
                                   Scaffold.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        "Failed to scan QR code",
+                                        context.getString("failed_qr"),
                                       ),
                                     ),
                                   );
@@ -172,7 +181,9 @@ class AddAccountScreen extends HookWidget {
                             ),
                             ListTile(
                               leading: Icon(Icons.keyboard),
-                              title: Text("Enter Manually"),
+                              title: Text(
+                                context.getString("enter_manually"),
+                              ),
                               onTap: () {
                                 Navigator.of(context).pop();
                                 model.toOtp();
@@ -180,7 +191,9 @@ class AddAccountScreen extends HookWidget {
                             ),
                             ListTile(
                               leading: Icon(Feather.x),
-                              title: Text("Cancel"),
+                              title: Text(
+                                context.getString("Cancel"),
+                              ),
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
