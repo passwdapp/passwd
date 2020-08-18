@@ -43,9 +43,18 @@ dev_dependencies:
   auto_route_generator: ^0.6.8
   build_runner: ^1.10.2
   mockito: ^4.1.1
+  flutter_launcher_icons: ^0.7.5
 
 flutter:
   uses-material-design: true
   assets:
     - assets/data/
     - assets/languages/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path_ios: assets/icons/ios.png
+  adaptive_icon_background: assets/icons/adaptive_bg.png
+  adaptive_icon_foreground: assets/icons/adaptive_fg.png
+  image_path_android: assets/icons/android.png
