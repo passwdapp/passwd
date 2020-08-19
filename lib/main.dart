@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/constants/theme.dart';
-import 'package:passwd/router/router.gr.dart';
+import 'package:passwd/router/router.gr.dart' as router;
 import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -85,8 +85,8 @@ class MyApp extends StatelessWidget {
           return child;
         },
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: Router(),
-        initialRoute: Routes.initScreen,
+        onGenerateRoute: router.Router(),
+        initialRoute: router.Routes.initScreen,
         navigatorKey: locator<NavigationService>().navigatorKey,
       ),
     );
