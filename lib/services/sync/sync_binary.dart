@@ -26,7 +26,7 @@ class SyncImpl implements SyncService {
   @override
   Future<Entries> readDatabaseLocally() async {
     try {
-      String filePath = path.join(await pathService.getDocDir(), "./$fileName");
+      String filePath = path.join(await pathService.getDocDir(), "$fileName");
       File dbFile = File(filePath);
 
       Uint8List fileContent = await dbFile.readAsBytes();
