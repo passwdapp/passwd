@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:msgpack_dart/msgpack_dart.dart';
+import 'package:passwd/constants/config.dart';
 import 'package:passwd/models/entries.dart';
 import 'package:passwd/services/advance_crypto/advance_crypto_service.dart';
 import 'package:passwd/services/authentication/authentication_service.dart';
@@ -14,9 +15,7 @@ import 'package:path/path.dart' as path;
 
 @LazySingleton(as: SyncService)
 class SyncImpl implements SyncService {
-  // TODO: change DB name for production
-  // final String fileName = "db___test0__bin.passwd";
-  final String fileName = "db_v0.passwd";
+  final String fileName = "db0.passwd";
 
   final AdvanceCryptoService advanceCryptoService =
       locator<AdvanceCryptoService>();
@@ -54,6 +53,7 @@ class SyncImpl implements SyncService {
   @override
   Future<bool> syncronizeDatabaseLocally(Entries entries) async {
     try {
+      entries.version = dbVersion;
       Uint8List unencryptedData = serialize(entries.toJson());
       Uint8List unencryptedCompressedData =
           GZipEncoder().encode(unencryptedData);

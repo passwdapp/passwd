@@ -2,13 +2,18 @@ import 'package:passwd/models/entry.dart';
 
 class Entries {
   List<Entry> entries;
+  int version;
 
-  Entries({this.entries});
+  Entries({
+    this.entries,
+    this.version,
+  });
 
   Entries.fromJson(Map<String, dynamic> json) {
-    if (json['entries'] != null) {
+    version = json['v'];
+    if (json['e'] != null) {
       entries = List<Entry>();
-      json['entries'].forEach((v) {
+      json['e'].forEach((v) {
         entries.add(Entry.fromJson(v.cast<String, dynamic>()));
       });
     }
@@ -17,8 +22,9 @@ class Entries {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.entries != null) {
-      data['entries'] = this.entries.map((v) => v.toJson()).toList();
+      data['e'] = this.entries.map((v) => v.toJson()).toList();
     }
+    data['v'] = this.version;
     return data;
   }
 }
