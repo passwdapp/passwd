@@ -2,7 +2,9 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:passwd/constants/colors.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
+import 'package:passwd/utils/is_dark.dart';
 import 'package:passwd/widgets/button.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
@@ -125,11 +127,15 @@ class AddAccountScreen extends HookWidget {
               SizedBox(
                 height: 12,
               ),
-              Button(
+              RaisedButton(
                 child: Text(
                   context.getString("generate_password"),
+                  style: TextStyle(
+                    color:
+                        isDark(context) ? Theme.of(context).canvasColor : null,
+                  ),
                 ),
-                onClick: () {
+                onPressed: () {
                   model.generatePassword((pass) {
                     passwordController.text = pass;
                   });
@@ -150,11 +156,16 @@ class AddAccountScreen extends HookWidget {
                 height: 12,
               ),
               Builder(
-                builder: (context) => Button(
+                builder: (context) => RaisedButton(
                   child: Text(
                     context.getString("two_factor_authentication"),
+                    style: TextStyle(
+                      color: isDark(context)
+                          ? Theme.of(context).canvasColor
+                          : null,
+                    ),
                   ),
-                  onClick: () {
+                  onPressed: () {
                     showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(

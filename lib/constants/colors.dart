@@ -5,7 +5,7 @@ Color primaryColor = "#00ECD7".toColor();
 Color canvasColor = "#151618".toColor();
 Color primaryColorHovered = "#00AFA0".toColor();
 
-Color primaryColorLight = "#00C2B1".toColor();
+Color primaryColorLight = "#11A698".toColor();
 Color canvasColorLight = "#f0f0f0".toColor();
 
 List<Color> iconColors = [

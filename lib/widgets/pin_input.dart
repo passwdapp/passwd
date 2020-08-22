@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:passwd/utils/is_dark.dart';
 
 class PinInputWidget extends StatelessWidget {
   final void Function(String) onSubmit;
@@ -11,7 +12,9 @@ class PinInputWidget extends StatelessWidget {
     return OtpTextField(
       filled: true,
       obscureText: false,
-      fillColor: Colors.white.withOpacity(0.18),
+      fillColor: isDark(context)
+          ? Colors.white.withOpacity(0.18)
+          : Colors.grey[900].withOpacity(0.1),
       borderColor: Colors.transparent,
       cursorColor: Theme.of(context).primaryColor,
       showFieldAsBox: true,

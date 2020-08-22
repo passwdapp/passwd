@@ -2,6 +2,7 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/home/home_viewmodel.dart';
+import 'package:passwd/utils/is_dark.dart';
 import 'package:passwd/widgets/home_list_item.dart';
 import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
@@ -9,6 +10,9 @@ import 'package:stacked/stacked.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Color noEntriesTextColor =
+        isDark(context) ? Colors.white.withOpacity(0.6) : null;
+
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => Scaffold(
@@ -53,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           context.getString("no_accounts"),
                           style: Theme.of(context).textTheme.headline5.copyWith(
-                                color: Colors.white.withOpacity(0.6),
+                                color: noEntriesTextColor,
                               ),
                         ),
                         SizedBox(
@@ -69,12 +73,12 @@ class HomeScreen extends StatelessWidget {
                                   .textTheme
                                   .bodyText1
                                   .copyWith(
-                                    color: Colors.white.withOpacity(0.6),
+                                    color: noEntriesTextColor,
                                   ),
                             ),
                             Icon(
                               Icons.add,
-                              color: Colors.white.withOpacity(0.6),
+                              color: noEntriesTextColor,
                               size: 20,
                             ),
                             Text(
@@ -83,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                   .textTheme
                                   .bodyText1
                                   .copyWith(
-                                    color: Colors.white.withOpacity(0.6),
+                                    color: noEntriesTextColor,
                                   ),
                             ),
                           ],
@@ -104,7 +108,9 @@ class HomeScreen extends StatelessWidget {
                                   text: context.getString("warning"),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.red[200],
+                                    color: isDark(context)
+                                        ? Colors.red[200]
+                                        : Colors.red,
                                   ),
                                   children: [
                                     TextSpan(

@@ -31,7 +31,11 @@ class OtpWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       letterSpacing: 1.5,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          .color
+                          .withOpacity(0.5),
                     ),
                   ),
                   SizedBox(

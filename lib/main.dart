@@ -5,6 +5,7 @@ import 'package:passwd/constants/colors.dart';
 import 'package:passwd/constants/theme.dart';
 import 'package:passwd/router/router.gr.dart' as router;
 import 'package:passwd/services/locator.dart';
+import 'package:passwd/utils/is_dark.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 void main() {
@@ -32,8 +33,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         builder: (context, child) {
-          print(Theme.of(context).brightness);
-          if (Theme.of(context).brightness == Brightness.dark) {
+          if (isDark(context)) {
             SystemChrome.setSystemUIOverlayStyle(
               SystemUiOverlayStyle(
                 systemNavigationBarColor: canvasColor,

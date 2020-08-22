@@ -64,12 +64,20 @@ class AccountDetailsScreen extends StatelessWidget {
               height: 4,
             ),
             if (entry.name.isNotEmpty)
-              getRow(context.getString("name_url").toUpperCase(), entry.name),
-            getRow(context.getString("username_email").toUpperCase(),
-                entry.username),
+              getRow(
+                context.getString("name_url").toUpperCase(),
+                entry.name,
+                context,
+              ),
+            getRow(
+              context.getString("username_email").toUpperCase(),
+              entry.username,
+              context,
+            ),
             getRow(
               context.getString("password").toUpperCase(),
               model.passwordVisible ? entry.password : "•••••••••••••••",
+              context,
               false,
             ),
             SizedBox(
@@ -114,7 +122,11 @@ class AccountDetailsScreen extends StatelessWidget {
               height: 12,
             ),
             if (entry.note.isNotEmpty)
-              getRow(context.getString("notes").toUpperCase(), entry.note),
+              getRow(
+                context.getString("notes").toUpperCase(),
+                entry.note,
+                context,
+              ),
             if (entry.otp != null) OtpWidget(otp: entry.otp),
             SizedBox(
               height: 12,
@@ -125,7 +137,8 @@ class AccountDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget getRow(String label, String content, [bool padding = true]) {
+  Widget getRow(String label, String content, BuildContext context,
+      [bool padding = true]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -134,7 +147,7 @@ class AccountDetailsScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             letterSpacing: 1.5,
-            color: Colors.white.withOpacity(0.5),
+            color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.5),
           ),
         ),
         SizedBox(

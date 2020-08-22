@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:passwd/utils/is_dark.dart';
+import 'package:supercharged/supercharged.dart';
 
 class TitleWidget extends StatelessWidget {
   final double textSize;
@@ -15,6 +17,7 @@ class TitleWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.headline4.copyWith(
                 fontSize: textSize,
                 fontWeight: FontWeight.w900,
+                color: isDark(context) ? null : "#181818".toColor(),
               ),
         ),
         Text(
@@ -30,6 +33,7 @@ class TitleWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.headline4.copyWith(
                 fontSize: textSize,
                 fontWeight: FontWeight.w900,
+                color: isDark(context) ? null : "#181818".toColor(),
               ),
         ),
       ],

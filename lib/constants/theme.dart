@@ -82,10 +82,11 @@ PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
 AppBarTheme appBarTheme = AppBarTheme(
   color: Colors.transparent,
   elevation: 0,
+  centerTitle: true,
 );
 
-DialogTheme dialogTheme = DialogTheme(
-  backgroundColor: "#181818".toColor(),
+SnackBarThemeData snackBarTheme = SnackBarThemeData(
+  behavior: SnackBarBehavior.floating,
 );
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -128,16 +129,18 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
       letterSpacing: 1.5,
     ),
   ),
+  buttonColor: primaryColor,
   dialogTheme: DialogTheme(
     backgroundColor: "#181818".toColor(),
   ),
+  snackBarTheme: snackBarTheme,
 );
 
 ThemeData lightTheme = ThemeData(
   primaryColor: primaryColorLight,
   accentColor: primaryColorLight,
   iconTheme: IconThemeData(
-    color: ThemeData.dark().iconTheme.color,
+    color: "#181818".toColor(),
   ),
   textTheme: textTheme,
   visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -146,9 +149,9 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: primaryColorLight,
   ),
   appBarTheme: appBarTheme.copyWith(
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     iconTheme: IconThemeData(
-      color: ThemeData.dark().textTheme.bodyText1.color,
+      color: "#181818".toColor(),
     ),
   ),
   canvasColor: canvasColorLight,
@@ -173,7 +176,9 @@ ThemeData lightTheme = ThemeData(
       letterSpacing: 1.5,
     ),
   ),
+  buttonColor: primaryColorLight,
   dialogTheme: DialogTheme(
     backgroundColor: "#f4f4f4".toColor(),
   ),
+  snackBarTheme: snackBarTheme,
 );
