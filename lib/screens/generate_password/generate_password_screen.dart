@@ -148,14 +148,14 @@ class GeneratePasswordScreen extends HookWidget {
                     ],
                   )
                 : Container(),
-            RaisedButton(
+            Button(
               child: Text(
                 context.getString("regenrate_password"),
                 style: TextStyle(
                   color: isDark(context) ? Theme.of(context).canvasColor : null,
                 ),
               ),
-              onPressed: () {
+              onClick: () {
                 model.getPassword(
                   length: model.words,
                   capitalize: model.capitalize,

@@ -73,7 +73,7 @@ TextTheme textTheme = TextTheme(
 PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
   builders: <TargetPlatform, PageTransitionsBuilder>{
     TargetPlatform.android: SharedAxisPageTransitionsBuilder(
-      transitionType: SharedAxisTransitionType.horizontal,
+      transitionType: SharedAxisTransitionType.scaled,
     ),
     TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
   },

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/screens/account_details/account_details_viewmodel.dart';
+import 'package:passwd/utils/is_dark.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
 
@@ -147,7 +148,9 @@ class AccountDetailsScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             letterSpacing: 1.5,
-            color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.5),
+            color: isDark(context)
+                ? Colors.white.withOpacity(0.5)
+                : Colors.grey[900].withOpacity(0.65),
           ),
         ),
         SizedBox(

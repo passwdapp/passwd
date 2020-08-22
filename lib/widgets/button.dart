@@ -14,7 +14,6 @@ class Button extends StatelessWidget {
     return RaisedButton(
       onPressed: onClick,
       child: child,
-      color: Colors.white.withOpacity(0.14),
       visualDensity: VisualDensity(
         horizontal: 4,
         vertical: 2,

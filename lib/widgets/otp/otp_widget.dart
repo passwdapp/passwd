@@ -1,6 +1,7 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:passwd/models/otp.dart';
+import 'package:passwd/utils/is_dark.dart';
 import 'package:passwd/widgets/otp/otp_viewmodel.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:stacked/stacked.dart';
@@ -31,11 +32,9 @@ class OtpWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       letterSpacing: 1.5,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          .color
-                          .withOpacity(0.5),
+                      color: isDark(context)
+                          ? Colors.white.withOpacity(0.5)
+                          : Colors.grey[900].withOpacity(0.65),
                     ),
                   ),
                   SizedBox(

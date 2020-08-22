@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/utils/get_first_letter.dart';
+import 'package:passwd/utils/is_dark.dart';
 
 class HomeListItem extends StatelessWidget {
   final Entry entry;
@@ -58,7 +59,9 @@ class HomeListItem extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.85),
+                            color: isDark(context)
+                                ? Colors.white.withOpacity(0.85)
+                                : Colors.grey[900].withOpacity(0.85),
                           ),
                         )
                       : Container(),

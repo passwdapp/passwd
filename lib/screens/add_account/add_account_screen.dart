@@ -127,7 +127,7 @@ class AddAccountScreen extends HookWidget {
               SizedBox(
                 height: 12,
               ),
-              RaisedButton(
+              Button(
                 child: Text(
                   context.getString("generate_password"),
                   style: TextStyle(
@@ -135,7 +135,7 @@ class AddAccountScreen extends HookWidget {
                         isDark(context) ? Theme.of(context).canvasColor : null,
                   ),
                 ),
-                onPressed: () {
+                onClick: () {
                   model.generatePassword((pass) {
                     passwordController.text = pass;
                   });
@@ -156,7 +156,7 @@ class AddAccountScreen extends HookWidget {
                 height: 12,
               ),
               Builder(
-                builder: (context) => RaisedButton(
+                builder: (context) => Button(
                   child: Text(
                     context.getString("two_factor_authentication"),
                     style: TextStyle(
@@ -165,7 +165,7 @@ class AddAccountScreen extends HookWidget {
                           : null,
                     ),
                   ),
-                  onPressed: () {
+                  onClick: () {
                     showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(
