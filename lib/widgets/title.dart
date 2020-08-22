@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/constants/colors.dart';
 
 class TitleWidget extends StatelessWidget {
   final double textSize;
@@ -21,7 +20,7 @@ class TitleWidget extends StatelessWidget {
         Text(
           "wd",
           style: Theme.of(context).textTheme.headline4.copyWith(
-                color: primaryColor,
+                color: Theme.of(context).primaryColor,
                 fontSize: textSize,
                 fontWeight: FontWeight.w900,
               ),

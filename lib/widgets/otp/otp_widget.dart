@@ -1,6 +1,5 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/otp.dart';
 import 'package:passwd/widgets/otp/otp_viewmodel.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -54,7 +53,7 @@ class OtpWidget extends StatelessWidget {
               animation: true,
               animateFromLastPercent: true,
               animationDuration: 1000,
-              progressColor: primaryColor,
+              progressColor: Theme.of(context).primaryColor,
               backgroundColor: Colors.transparent,
               circularStrokeCap: CircularStrokeCap.round,
             ),

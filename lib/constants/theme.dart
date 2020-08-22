@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:passwd/constants/colors.dart';
 import 'package:supercharged/supercharged.dart';
 
 TextTheme textTheme = TextTheme(
@@ -85,4 +86,94 @@ AppBarTheme appBarTheme = AppBarTheme(
 
 DialogTheme dialogTheme = DialogTheme(
   backgroundColor: "#181818".toColor(),
+);
+
+ThemeData darkTheme = ThemeData.dark().copyWith(
+  primaryColor: primaryColor,
+  accentColor: primaryColor,
+  iconTheme: IconThemeData(
+    color: ThemeData.dark().iconTheme.color,
+  ),
+  textTheme: textTheme,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  pageTransitionsTheme: pageTransitionsTheme,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: primaryColor,
+  ),
+  appBarTheme: appBarTheme.copyWith(
+    brightness: Brightness.dark,
+    iconTheme: IconThemeData(
+      color: ThemeData.dark().textTheme.bodyText1.color,
+    ),
+  ),
+  canvasColor: canvasColor,
+  scaffoldBackgroundColor: canvasColor,
+  bottomNavigationBarTheme: ThemeData.dark().bottomNavigationBarTheme.copyWith(
+        backgroundColor: Colors.white,
+        elevation: 4,
+      ),
+  cursorColor: primaryColor,
+  buttonTheme: ButtonThemeData(
+    buttonColor: primaryColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    hoverColor: primaryColorHovered,
+    highlightColor: primaryColorHovered,
+  ),
+  backgroundColor: canvasColor,
+  inputDecorationTheme: InputDecorationTheme(
+    labelStyle: TextStyle(
+      fontSize: 14,
+      letterSpacing: 1.5,
+    ),
+  ),
+  dialogTheme: DialogTheme(
+    backgroundColor: "#181818".toColor(),
+  ),
+);
+
+ThemeData lightTheme = ThemeData(
+  primaryColor: primaryColorLight,
+  accentColor: primaryColorLight,
+  iconTheme: IconThemeData(
+    color: ThemeData.dark().iconTheme.color,
+  ),
+  textTheme: textTheme,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  pageTransitionsTheme: pageTransitionsTheme,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: primaryColorLight,
+  ),
+  appBarTheme: appBarTheme.copyWith(
+    brightness: Brightness.dark,
+    iconTheme: IconThemeData(
+      color: ThemeData.dark().textTheme.bodyText1.color,
+    ),
+  ),
+  canvasColor: canvasColorLight,
+  scaffoldBackgroundColor: canvasColorLight,
+  bottomNavigationBarTheme: ThemeData.dark().bottomNavigationBarTheme.copyWith(
+        backgroundColor: Colors.white,
+        elevation: 4,
+      ),
+  cursorColor: primaryColorLight,
+  buttonTheme: ButtonThemeData(
+    buttonColor: primaryColorLight,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    hoverColor: primaryColorHovered,
+    highlightColor: primaryColorHovered,
+  ),
+  backgroundColor: canvasColorLight,
+  inputDecorationTheme: InputDecorationTheme(
+    labelStyle: TextStyle(
+      fontSize: 14,
+      letterSpacing: 1.5,
+    ),
+  ),
+  dialogTheme: DialogTheme(
+    backgroundColor: "#f4f4f4".toColor(),
+  ),
 );

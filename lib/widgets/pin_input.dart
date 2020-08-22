@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:passwd/constants/colors.dart';
 
 class PinInputWidget extends StatelessWidget {
   final void Function(String) onSubmit;
@@ -14,7 +13,7 @@ class PinInputWidget extends StatelessWidget {
       obscureText: false,
       fillColor: Colors.white.withOpacity(0.18),
       borderColor: Colors.transparent,
-      cursorColor: primaryColor,
+      cursorColor: Theme.of(context).primaryColor,
       showFieldAsBox: true,
       autoFocus: true,
       numberOfFields: 4,

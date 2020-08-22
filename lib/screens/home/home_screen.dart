@@ -1,7 +1,6 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/constants/colors.dart';
 import 'package:passwd/screens/home/home_viewmodel.dart';
 import 'package:passwd/widgets/home_list_item.dart';
 import 'package:passwd/widgets/title.dart';
@@ -161,8 +160,9 @@ class HomeScreen extends StatelessWidget {
                           width: 16,
                           height: 16,
                           child: CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(primaryColor),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Theme.of(context).primaryColor,
+                            ),
                             strokeWidth: 3.0,
                           ),
                         ),
