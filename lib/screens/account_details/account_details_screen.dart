@@ -4,6 +4,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/screens/account_details/account_details_viewmodel.dart';
 import 'package:passwd/utils/is_dark.dart';
+import 'package:passwd/widgets/custom_app_bar.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,41 +18,30 @@ class AccountDetailsScreen extends StatelessWidget {
     return ViewModelBuilder<AccountDetailsViewModel>.reactive(
       viewModelBuilder: () => AccountDetailsViewModel(),
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            entry.name.isNotEmpty ? entry.name : entry.username,
-            style: TextStyle(
-              letterSpacing: 1.25,
-              fontSize: 18,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-          leading: IconButton(
+        appBar: CustomAppBar(
+          text: entry.name.isNotEmpty ? entry.name : entry.username,
+          left: IconButton(
             onPressed: () {
               model.pop();
             },
             tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        context.getString("under_construction"),
-                      ),
+          right: Builder(
+            builder: (context) => IconButton(
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      context.getString("under_construction"),
                     ),
-                  );
-                },
-                tooltip: context.getString("edit_tooltip"),
-                icon: Icon(Feather.edit),
-              ),
+                  ),
+                );
+              },
+              tooltip: context.getString("edit_tooltip"),
+              icon: Icon(Feather.edit),
             ),
-          ],
+          ),
         ),
         body: ListView(
           physics: const AlwaysScrollableScrollPhysics(

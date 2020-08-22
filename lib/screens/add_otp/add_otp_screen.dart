@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/add_otp/add_otp_viewmodel.dart';
 import 'package:passwd/utils/capitalization_formatter.dart';
+import 'package:passwd/widgets/custom_app_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -39,35 +40,26 @@ class AddOtpScreen extends HookWidget {
         });
       },
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            context.getString("enter_manually"),
-            style: TextStyle(
-              letterSpacing: 1.25,
-              fontSize: 18,
-            ),
-          ),
-          leading: IconButton(
+        appBar: CustomAppBar(
+          text: context.getString("enter_manually"),
+          left: IconButton(
             onPressed: () {
               model.pop();
             },
             tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
-          actions: [
-            IconButton(
-              onPressed: model.isSecretValid &&
-                      model.isDigitsValid &&
-                      model.isPeriodValid
-                  ? () {
-                      model.popWithData();
-                    }
-                  : null,
-              tooltip: context.getString("done_tooltip"),
-              icon: Icon(Feather.check_circle),
-            ),
-          ],
+          right: IconButton(
+            onPressed: model.isSecretValid &&
+                    model.isDigitsValid &&
+                    model.isPeriodValid
+                ? () {
+                    model.popWithData();
+                  }
+                : null,
+            tooltip: context.getString("done_tooltip"),
+            icon: Icon(Feather.check_circle),
+          ),
         ),
         body: SafeArea(
           child: ListView(

@@ -6,6 +6,7 @@ import 'package:passwd/constants/colors.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
 import 'package:passwd/utils/is_dark.dart';
 import 'package:passwd/widgets/button.dart';
+import 'package:passwd/widgets/custom_app_bar.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:stacked/stacked.dart';
 
@@ -41,33 +42,24 @@ class AddAccountScreen extends HookWidget {
         });
       },
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            context.getString("add_account"),
-            style: TextStyle(
-              letterSpacing: 1.25,
-              fontSize: 18,
-            ),
-          ),
-          leading: IconButton(
+        appBar: CustomAppBar(
+          text: context.getString("add_account"),
+          left: IconButton(
             onPressed: () {
               model.pop();
             },
             tooltip: context.getString("back_tooltip"),
             icon: Icon(Feather.x_circle),
           ),
-          actions: [
-            IconButton(
-              onPressed: model.isUsernameValid && model.isPasswordValid
-                  ? () {
-                      model.popWithData();
-                    }
-                  : null,
-              tooltip: context.getString("done_tooltip"),
-              icon: Icon(Feather.check_circle),
-            ),
-          ],
+          right: IconButton(
+            onPressed: model.isUsernameValid && model.isPasswordValid
+                ? () {
+                    model.popWithData();
+                  }
+                : null,
+            tooltip: context.getString("done_tooltip"),
+            icon: Icon(Feather.check_circle),
+          ),
         ),
         body: SafeArea(
           child: ListView(
