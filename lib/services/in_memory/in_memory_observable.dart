@@ -1,17 +1,13 @@
 import 'package:injectable/injectable.dart';
-import 'package:observable_ish/observable_ish.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/models/entries.dart';
 import 'package:passwd/services/in_memory/in_memory_service.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:passwd/services/sync/sync_service.dart';
-import 'package:stacked/stacked.dart';
 
 @LazySingleton(as: InMemoryService)
-class InMemoryObservable with ReactiveServiceMixin implements InMemoryService {
-  RxValue _entries = RxValue<Entries>(
-    initial: Entries(entries: []),
-  );
+class InMemoryObservable implements InMemoryService {
+  Entries _entries = Entries(entries: []);
   SyncService syncService = locator<SyncService>();
 
   InMemoryObservable() {
@@ -19,11 +15,11 @@ class InMemoryObservable with ReactiveServiceMixin implements InMemoryService {
   }
 
   Future reloadDatabaseFromDisk() async {
-    _entries.value = await syncService.readDatabaseLocally();
+    _entries = await syncService.readDatabaseLocally();
   }
 
   @override
-  Entries get entries => _entries.value;
+  Entries get entries => _entries;
 
   @override
   Future addEntry(Entry entry) async {
