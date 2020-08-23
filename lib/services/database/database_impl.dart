@@ -1,12 +1,12 @@
 import 'package:injectable/injectable.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/models/entries.dart';
-import 'package:passwd/services/in_memory/in_memory_service.dart';
+import 'package:passwd/services/database/databas_service.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:passwd/services/sync/sync_service.dart';
 
-@LazySingleton(as: InMemoryService)
-class InMemoryImpl implements InMemoryService {
+@LazySingleton(as: DatabaseService)
+class DatabaseImpl implements DatabaseService {
   Entries _entries = Entries(entries: []);
   SyncService syncService = locator<SyncService>();
 
