@@ -8,6 +8,7 @@ class Entry {
   String note;
   String favicon;
   String id;
+  List<String> tags;
   Otp otp;
 
   Entry({
@@ -18,6 +19,7 @@ class Entry {
     this.note,
     this.favicon,
     this.otp,
+    this.tags,
     this.id,
   });
 
@@ -29,6 +31,7 @@ class Entry {
     note = json['no'];
     favicon = json['f'];
     id = json['i'];
+    tags = json['t'].cast<String>();
     otp = json['o'] != null
         ? Otp.fromJson(json['o'].cast<String, dynamic>())
         : null;
@@ -43,6 +46,7 @@ class Entry {
     data['no'] = this.note;
     data['f'] = this.favicon;
     data['i'] = this.id;
+    data['t'] = this.tags;
     if (this.otp != null) {
       data['o'] = this.otp.toJson();
     }
