@@ -6,16 +6,17 @@ import 'package:passwd/services/locator.dart';
 import 'package:passwd/services/sync/sync_service.dart';
 
 @LazySingleton(as: InMemoryService)
-class InMemoryObservable implements InMemoryService {
+class InMemoryImpl implements InMemoryService {
   Entries _entries = Entries(entries: []);
   SyncService syncService = locator<SyncService>();
 
-  InMemoryObservable() {
-    reloadDatabaseFromDisk();
-  }
-
   Future reloadDatabaseFromDisk() async {
     _entries = await syncService.readDatabaseLocally();
+  }
+
+  Future syncAndReloadDatabase() async {
+    await syncService.syncronizeDatabaseLocally(_entries);
+    await reloadDatabaseFromDisk();
   }
 
   @override
@@ -23,15 +24,20 @@ class InMemoryObservable implements InMemoryService {
 
   @override
   Future addEntry(Entry entry) async {
-    entries.entries.add(entry);
-    syncService.syncronizeDatabaseLocally(entries);
-    reloadDatabaseFromDisk();
+    _entries.entries.add(entry);
+    await syncAndReloadDatabase();
   }
 
   @override
-  Future removeAt(int index) async {
-    entries.entries.removeAt(index);
-    syncService.syncronizeDatabaseLocally(entries);
-    reloadDatabaseFromDisk();
+  Future removeEntryAt(int index) async {
+    _entries.entries.removeAt(index);
+    await syncAndReloadDatabase();
+  }
+
+  @override
+  Future modifyEntry(Entry old, Entry changed) async {
+    int oldIndex = _entries.entries.indexOf(old);
+    _entries.entries[oldIndex] = changed;
+    await syncAndReloadDatabase();
   }
 }

@@ -4,5 +4,6 @@ import 'package:passwd/models/entry.dart';
 abstract class InMemoryService {
   Entries get entries;
   Future addEntry(Entry entry);
-  Future removeAt(int index);
+  Future modifyEntry(Entry old, Entry changed);
+  Future removeEntryAt(int index);
 }
