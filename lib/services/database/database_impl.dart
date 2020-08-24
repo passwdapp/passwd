@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:passwd/models/entry.dart';
 import 'package:passwd/models/entries.dart';
-import 'package:passwd/services/database/databas_service.dart';
+import 'package:passwd/services/database/database_service.dart';
 import 'package:passwd/services/locator.dart';
 import 'package:passwd/services/sync/sync_service.dart';
 
