@@ -1,7 +1,9 @@
 import 'package:passwd/models/entry.dart';
+import 'package:passwd/models/tag.dart';
 
 class Entries {
   List<Entry> entries;
+  List<Tag> tags;
   int version;
 
   Entries({
@@ -17,12 +19,21 @@ class Entries {
         entries.add(Entry.fromJson(v.cast<String, dynamic>()));
       });
     }
+    if (json['t'] != null) {
+      tags = List<Tag>();
+      json['t'].forEach((v) {
+        tags.add(Tag.fromJson(v.cast<String, dynamic>()));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.entries != null) {
       data['e'] = this.entries.map((v) => v.toJson()).toList();
+    }
+    if (this.tags != null) {
+      data['t'] = this.tags.map((v) => v.toJson()).toList();
     }
     data['v'] = this.version;
     return data;
