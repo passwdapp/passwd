@@ -16,6 +16,8 @@ import 'biometrics/biometrics_localauth.dart';
 import 'biometrics/biometrics_service.dart';
 import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
+import 'database/database_impl.dart';
+import 'database/database_service.dart';
 import 'favicon/favicon_http.dart';
 import 'favicon/favicon_service.dart';
 import 'password/password_impl.dart';
@@ -44,6 +46,7 @@ GetIt $initGetIt(
   gh.lazySingleton<AuthenticationService>(() => AuthenticationImpl());
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
+  gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<FaviconService>(() => FaviconHttp());
   gh.lazySingleton<NavigationService>(
       () => thirdPartySevices.navigationService);
