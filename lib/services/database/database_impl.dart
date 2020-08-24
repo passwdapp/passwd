@@ -10,10 +10,12 @@ class DatabaseImpl implements DatabaseService {
   Entries _entries = Entries(entries: []);
   SyncService syncService = locator<SyncService>();
 
+  @override
   Future reloadDatabaseFromDisk() async {
     _entries = await syncService.readDatabaseLocally();
   }
 
+  @override
   Future syncAndReloadDatabase() async {
     await syncService.syncronizeDatabaseLocally(_entries);
     await reloadDatabaseFromDisk();
