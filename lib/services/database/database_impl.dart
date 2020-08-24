@@ -38,8 +38,14 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future modifyEntry(Entry old, Entry changed) async {
-    int oldIndex = _entries.entries.indexOf(old);
-    _entries.entries[oldIndex] = changed;
-    await syncAndReloadDatabase();
+    int index = _entries.entries.indexWhere(
+      (element) => element.id == old.id,
+    );
+
+    if (index != null) {
+      print(index);
+      _entries.entries[index] = changed;
+      await syncAndReloadDatabase();
+    }
   }
 }
