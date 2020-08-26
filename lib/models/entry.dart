@@ -31,7 +31,7 @@ class Entry {
     note = json['no'];
     favicon = json['f'];
     id = json['i'];
-    tags = json['t'].cast<String>();
+    tags = json['t'] != null ? json['t'].cast<String>() : [];
     otp = json['o'] != null
         ? Otp.fromJson(json['o'].cast<String, dynamic>())
         : null;

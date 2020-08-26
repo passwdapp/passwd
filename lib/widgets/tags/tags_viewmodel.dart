@@ -20,6 +20,7 @@ class TagsViewModel extends ChangeNotifier {
     postChange();
   }
 
+  // postChange is a hook that we call after the tag is changed, for processing (duplicate filtering)
   void postChange() {
     tags = tags.toSet().toList();
     notifyListeners();

@@ -5,6 +5,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
 import 'package:passwd/widgets/button.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
+import 'package:passwd/widgets/tags/tags_widget.dart';
 import 'package:stacked/stacked.dart';
 
 class AddAccountScreen extends HookWidget {
@@ -213,6 +214,16 @@ class AddAccountScreen extends HookWidget {
                 OtpWidget(
                   otp: model.otp,
                 ),
+              SizedBox(
+                height: 16,
+              ),
+              TagsWidget(
+                onChange: (tags) {
+                  print(tags);
+                },
+                tags: [],
+                showAdd: true,
+              ),
               SizedBox(
                 height: 16,
               ),

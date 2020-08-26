@@ -1,5 +1,6 @@
 import 'package:passwd/models/entries.dart';
 import 'package:passwd/models/entry.dart';
+import 'package:passwd/models/tag.dart';
 
 abstract class DatabaseService {
   Future reloadDatabaseFromDisk();
@@ -8,4 +9,5 @@ abstract class DatabaseService {
   Future addEntry(Entry entry);
   Future modifyEntry(Entry old, Entry changed);
   Future removeEntryAt(int index);
+  Future addTag(Tag tag);
 }

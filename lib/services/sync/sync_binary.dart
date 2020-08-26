@@ -62,7 +62,7 @@ class SyncImpl implements SyncService {
         await authenticationService.readEncryptionKey(),
       );
 
-      String filePath = path.join(await pathService.getDocDir(), "./$fileName");
+      String filePath = path.join(await pathService.getDocDir(), "$fileName");
       File dbFile = File(filePath);
 
       await dbFile.writeAsBytes(encryptedJson);

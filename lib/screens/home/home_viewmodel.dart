@@ -54,7 +54,6 @@ class HomeViewModel extends ChangeNotifier {
 
       if (entry.name != null) {
         if (validate<bool>(URLValidator(), entry.name, true, false)) {
-          print("here");
           String favicon = await locator<FaviconService>().getBestFavicon(
             entry.name.startsWith("http")
                 ? Uri.parse(entry.name).host

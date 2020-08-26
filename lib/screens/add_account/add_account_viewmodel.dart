@@ -121,6 +121,7 @@ class AddAccountViewModel extends ChangeNotifier {
         id: locator<PasswordService>().generateRandomPassword(
           length: 24,
         ),
+        tags: [],
       );
 
       if (otpAvailable) {
