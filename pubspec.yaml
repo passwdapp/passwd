@@ -35,6 +35,7 @@ dependencies:
   percent_indicator: ^2.1.5
   barcode_scan: ^3.0.1
   ez_localization: ^0.3.0+1
+  shared_preferences: ^0.5.10
 
 dev_dependencies:
   flutter_test:

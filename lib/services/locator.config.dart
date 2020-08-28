@@ -27,10 +27,15 @@ import 'path/path_service.dart';
 import 'qr/qr_flutter_barcode_scanner.dart';
 import 'qr/qr_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
+import 'secure_kv/secure_kv_sharedprefs.dart' as passwd;
 import 'secure_kv/secure_kv.dart';
 import 'sync/sync_binary.dart';
 import 'sync/sync_service.dart';
 import 'third_party.dart';
+
+/// Environment names
+const _mobile = 'mobile';
+const _desktop = 'desktop';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -53,7 +58,10 @@ GetIt $initGetIt(
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<QRService>(() => QRFlutterBarcodeScanner());
-  gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage());
+  gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage(),
+      registerFor: {_mobile});
+  gh.lazySingleton<SecureKVService>(() => passwd.SecureKVSecureStorage(),
+      registerFor: {_desktop});
   gh.lazySingleton<SyncService>(() => SyncImpl());
   return get;
 }

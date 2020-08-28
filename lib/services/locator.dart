@@ -5,4 +5,5 @@ import 'package:passwd/services/locator.config.dart';
 GetIt locator = GetIt.instance;
 
 @injectableInit
-void initializeLocator() => $initGetIt(locator);
+void initializeLocator([String env = "mobile"]) =>
+    $initGetIt(locator, environment: env);
