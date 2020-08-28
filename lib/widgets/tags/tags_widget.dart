@@ -225,7 +225,6 @@ class TagsWidget extends HookWidget {
                           child: InkWell(
                             onTap: () {
                               setState(() => currentColor = index);
-                              print(currentColor);
                             },
                           ),
                         ),

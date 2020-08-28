@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:passwd/models/tag.dart';
 import 'package:passwd/services/database/database_service.dart';
@@ -29,7 +27,6 @@ class TagsViewModel extends ChangeNotifier {
   void loadTags() {
     List<Tag> _tags = locator<DatabaseService>().entries.tags;
     databaseTags = _tags ?? [];
-    print(json.encode(databaseTags));
 
     currentTags = databaseTags
         .where(
