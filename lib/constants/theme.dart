@@ -75,6 +75,18 @@ PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
       transitionType: SharedAxisTransitionType.horizontal,
     ),
     TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.windows: SharedAxisPageTransitionsBuilder(
+      transitionType: SharedAxisTransitionType.horizontal,
+    ),
+    TargetPlatform.linux: SharedAxisPageTransitionsBuilder(
+      transitionType: SharedAxisTransitionType.horizontal,
+    ),
+    TargetPlatform.macOS: SharedAxisPageTransitionsBuilder(
+      transitionType: SharedAxisTransitionType.horizontal,
+    ),
+    TargetPlatform.fuchsia: SharedAxisPageTransitionsBuilder(
+      transitionType: SharedAxisTransitionType.horizontal,
+    ),
   },
 );
 

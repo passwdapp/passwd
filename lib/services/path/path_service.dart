@@ -1,3 +1,5 @@
+import 'dart:io';
+
 abstract class PathService {
-  Future<String> getDocDir();
+  Future<Directory> getDocDir();
 }

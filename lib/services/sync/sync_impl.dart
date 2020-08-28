@@ -24,7 +24,8 @@ class SyncImpl implements SyncService {
   @override
   Future<Entries> readDatabaseLocally() async {
     try {
-      String filePath = path.join(await pathService.getDocDir(), "./$fileName");
+      Directory directory = await pathService.getDocDir();
+      String filePath = path.join(directory.path, "$fileName");
       File dbFile = File(filePath);
 
       String fileContent = await dbFile.readAsString();
@@ -50,7 +51,8 @@ class SyncImpl implements SyncService {
         await authenticationService.readEncryptionKey(),
       );
 
-      String filePath = path.join(await pathService.getDocDir(), "./$fileName");
+      Directory directory = await pathService.getDocDir();
+      String filePath = path.join(directory.path, "$fileName");
       File dbFile = File(filePath);
 
       await dbFile.writeAsString(encryptedJson);

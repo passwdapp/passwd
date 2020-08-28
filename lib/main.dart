@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             color: ThemeData.dark().iconTheme.color,
           ),
           textTheme: textTheme,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+          // visualDensity: VisualDensity.adaptivePlatformDensity,
           pageTransitionsTheme: pageTransitionsTheme,
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: primaryColor,
@@ -76,6 +76,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
           dialogTheme: dialogTheme,
+          snackBarTheme: SnackBarThemeData(
+            behavior: SnackBarBehavior.floating,
+          ),
         ),
         builder: (context, child) {
           SystemChrome.setSystemUIOverlayStyle(
