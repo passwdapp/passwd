@@ -9,6 +9,7 @@ A beautiful, encrypted password manager, build using Flutter and Dart.
 - Secure Password Generation (Diceware and Random)
 - A really nice UI
 - Really compact database, allowing for efficient disk operations (Thanks to MsgPack)
+- Desktop Support (Beta)
 
 ## Screenshots
 
