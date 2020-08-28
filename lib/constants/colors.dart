@@ -19,39 +19,35 @@ List<Color> iconColors = [
 
 List<ColorInfo> tagColors = [
   ColorInfo(
-    color: "#000000".toColor().withOpacity(0),
-    localizationTag: "color_none",
-  ),
-  ColorInfo(
-    color: "#5B2925".toColor(),
+    color: "#F44336".toColor(),
     localizationTag: "color_red",
   ),
   ColorInfo(
-    color: "#5B5525".toColor(),
+    color: "#F57C00".toColor(),
     localizationTag: "color_orange",
   ),
   ColorInfo(
-    color: "#255B27".toColor(),
+    color: "#FFB300".toColor(),
     localizationTag: "color_green",
   ),
   ColorInfo(
-    color: "#255B53".toColor(),
+    color: "#4CAf50".toColor(),
     localizationTag: "color_cyan",
   ),
   ColorInfo(
-    color: "#254A5B".toColor(),
+    color: "#00ACC1".toColor(),
     localizationTag: "color_light_blue",
   ),
   ColorInfo(
-    color: "#252E5B".toColor(),
+    color: "#1E88E5".toColor(),
     localizationTag: "color_blue",
   ),
   ColorInfo(
-    color: "#3A255B".toColor(),
+    color: "#9C27B0".toColor(),
     localizationTag: "color_purple",
   ),
   ColorInfo(
-    color: "#5B2547".toColor(),
+    color: "#E91E63".toColor(),
     localizationTag: "color_pink",
   ),
 ];
