@@ -219,9 +219,9 @@ class AddAccountScreen extends HookWidget {
               ),
               TagsWidget(
                 onChange: (tags) {
-                  print(tags);
+                  model.tags = tags;
                 },
-                tags: [],
+                tags: model.tags,
                 showAdd: true,
               ),
               SizedBox(

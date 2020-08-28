@@ -93,6 +93,14 @@ class AddAccountViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<String> _tags = [];
+  List<String> get tags => _tags;
+
+  set tags(List<String> tags) {
+    _tags = tags;
+    notifyListeners();
+  }
+
   void pop() {
     locator<NavigationService>().back();
   }
@@ -121,7 +129,7 @@ class AddAccountViewModel extends ChangeNotifier {
         id: locator<PasswordService>().generateRandomPassword(
           length: 24,
         ),
-        tags: [],
+        tags: _tags,
       );
 
       if (otpAvailable) {
@@ -133,8 +141,9 @@ class AddAccountViewModel extends ChangeNotifier {
   }
 
   Future toOtp() async {
-    Otp otp =
-        await locator<NavigationService>().navigateTo(Routes.addOtpScreen);
+    Otp otp = await locator<NavigationService>().navigateTo(
+      Routes.addOtpScreen,
+    );
 
     if (otp != null) {
       this.otp = otp;
