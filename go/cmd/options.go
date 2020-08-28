@@ -7,7 +7,7 @@ import (
 )
 
 var options = []flutter.Option{
-	flutter.WindowInitialDimensions(800, 475),
+	flutter.WindowInitialDimensions(400, 800),
 	flutter.AddPlugin(&path_provider.PathProviderPlugin{
 		VendorName:      "gargakshit",
 		ApplicationName: "passwd",
