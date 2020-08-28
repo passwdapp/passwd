@@ -19,6 +19,7 @@ class TagsWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Localize tags before release
     return ViewModelBuilder<TagsViewModel>.reactive(
       viewModelBuilder: () => TagsViewModel(
         tags: tags,
