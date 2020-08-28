@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/constants/colors.dart';
 import 'package:passwd/models/tag.dart';
 import 'package:passwd/widgets/tags/tags_viewmodel.dart';
