@@ -48,26 +48,36 @@ class TagsWidget extends HookWidget {
               children: [
                 ...model.currentTags
                     .map(
-                      (tag) => InputChip(
-                        avatar: Container(
-                          height: 12,
-                          width: 12,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32),
-                            color: tagColors[tag.color].color,
-                          ),
-                        ),
-                        label: Text(tag.name),
-                        deleteIcon: Icon(
-                          Icons.clear,
-                          size: 16,
-                        ),
-                        onDeleted: () {
-                          if (showAdd) {
-                            model.removeFromCurrentTags(tag);
-                          }
-                        },
-                      ),
+                      (tag) => showAdd
+                          ? InputChip(
+                              avatar: Container(
+                                height: 12,
+                                width: 12,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(32),
+                                  color: tagColors[tag.color].color,
+                                ),
+                              ),
+                              label: Text(tag.name),
+                              deleteIcon: Icon(
+                                Icons.clear,
+                                size: 16,
+                              ),
+                              onDeleted: () {
+                                model.removeFromCurrentTags(tag);
+                              },
+                            )
+                          : Chip(
+                              avatar: Container(
+                                height: 12,
+                                width: 12,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(32),
+                                  color: tagColors[tag.color].color,
+                                ),
+                              ),
+                              label: Text(tag.name),
+                            ),
                     )
                     .toList(),
                 if (showAdd)
