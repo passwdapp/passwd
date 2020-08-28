@@ -122,17 +122,6 @@ class TagsWidget extends HookWidget {
                           width: 16,
                         ),
                         Text(tag.name),
-                        Expanded(
-                          child: Container(),
-                        ),
-                        IconButton(
-                          icon: Icon(Feather.delete),
-                          onPressed: () {
-                            model.removeFromCurrentTags(tag);
-                            Navigator.of(context).pop();
-                            showCheckSheet(context, model);
-                          },
-                        ),
                       ],
                     ),
                     onChanged: (val) {
