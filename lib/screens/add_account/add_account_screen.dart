@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -156,53 +158,57 @@ class AddAccountScreen extends HookWidget {
                     context.getString("two_factor_authentication"),
                   ),
                   onClick: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => Container(
-                        child: Wrap(
-                          children: [
-                            ListTile(
-                              leading: Icon(Feather.camera),
-                              title: Text(
-                                context.getString("scan_qr"),
-                              ),
-                              onTap: () async {
-                                Navigator.of(context).pop();
+                    if (!Platform.isAndroid || !Platform.isIOS) {
+                      model.toOtp();
+                    } else {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          child: Wrap(
+                            children: [
+                              ListTile(
+                                leading: Icon(Feather.camera),
+                                title: Text(
+                                  context.getString("scan_qr"),
+                                ),
+                                onTap: () async {
+                                  Navigator.of(context).pop();
 
-                                await model.scanOtp(() {
-                                  Scaffold.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context.getString("failed_qr"),
+                                  await model.scanOtp(() {
+                                    Scaffold.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          context.getString("failed_qr"),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                });
-                              },
-                            ),
-                            ListTile(
-                              leading: Icon(Icons.keyboard),
-                              title: Text(
-                                context.getString("enter_manually"),
+                                    );
+                                  });
+                                },
                               ),
-                              onTap: () {
-                                Navigator.of(context).pop();
-                                model.toOtp();
-                              },
-                            ),
-                            ListTile(
-                              leading: Icon(Feather.x),
-                              title: Text(
-                                context.getString("cancel"),
+                              ListTile(
+                                leading: Icon(Icons.keyboard),
+                                title: Text(
+                                  context.getString("enter_manually"),
+                                ),
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                  model.toOtp();
+                                },
                               ),
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
+                              ListTile(
+                                leading: Icon(Feather.x),
+                                title: Text(
+                                  context.getString("cancel"),
+                                ),
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   },
                 ),
               ),
