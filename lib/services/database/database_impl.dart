@@ -51,6 +51,10 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future addTag(Tag tag) async {
+    if (_entries.tags == null) {
+      _entries.tags = [];
+    }
+
     _entries.tags.add(tag);
     await syncAndReloadDatabase();
   }
