@@ -1,6 +1,7 @@
 name: passwd
 description: A beautiful and secure password manager.
 version: 1.0.0+1
+author: Akshit Garg
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
