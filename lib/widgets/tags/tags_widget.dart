@@ -63,7 +63,7 @@ class TagsWidget extends HookWidget {
                         ),
                         onDeleted: () {
                           if (showAdd) {
-                            model.remove(tag.id);
+                            model.removeFromCurrentTags(tag);
                           }
                         },
                       ),
@@ -92,7 +92,8 @@ class TagsWidget extends HookWidget {
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: ListView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             ...model.databaseTags.map(
               (tag) {
@@ -101,15 +102,21 @@ class TagsWidget extends HookWidget {
                     ) !=
                     -1;
 
-                return CheckboxListTile(
-                  value: isChecked,
-                  onChanged: (val) {
-                    if (val) {
-                      model.addToCurrentTags(tag);
-                    } else {
-                      model.removeFromCurrentTags(tag);
-                    }
-                  },
+                return StatefulBuilder(
+                  builder: (context, setState) => CheckboxListTile(
+                    value: isChecked,
+                    checkColor: Colors.black,
+                    title: Text(tag.name),
+                    onChanged: (val) {
+                      setState(() => isChecked = val);
+
+                      if (val) {
+                        model.addToCurrentTags(tag);
+                      } else {
+                        model.removeFromCurrentTags(tag);
+                      }
+                    },
+                  ),
                 );
               },
             ).toList(),
@@ -117,6 +124,8 @@ class TagsWidget extends HookWidget {
               leading: Icon(Icons.add),
               title: Text("Add a tag"),
               onTap: () {
+                Navigator.of(context).pop();
+
                 showAddSheet(context, (t) async {
                   await model.addTag(t);
                   showCheckSheet(context, model);
@@ -190,6 +199,7 @@ class TagsWidget extends HookWidget {
                           child: InkWell(
                             onTap: () {
                               setState(() => currentColor = index);
+                              print(currentColor);
                             },
                           ),
                         ),

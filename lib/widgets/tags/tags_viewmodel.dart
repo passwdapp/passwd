@@ -42,7 +42,7 @@ class TagsViewModel extends ChangeNotifier {
 
   void remove(String id) {
     tags.remove(id);
-    currentTags = currentTags.where((element) => element.id != id);
+    currentTags = currentTags.where((element) => element.id != id).toList();
     postChange();
   }
 
@@ -53,7 +53,7 @@ class TagsViewModel extends ChangeNotifier {
   }
 
   void removeFromCurrentTags(Tag tag) {
-    currentTags = currentTags.where((element) => element.id != tag.id);
+    currentTags = currentTags.where((element) => element.id != tag.id).toList();
     tags.remove(tag.id);
 
     postChange();
