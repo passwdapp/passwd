@@ -33,7 +33,20 @@ Nothing is complete without screenshots :P
 - Switch to the master channel: `flutter channel master`
 - Run `flutter upgrade`
 - Clone the repository
+
+### Android
+
+- Connect your device / emulator to your computer
 - `flutter run`
+
+### iOS
+
+- Connect your device / simulator to your computer (only macs are supported)
+- `flutter run`
+
+### Desktop
+
+- See hover's build instructions [here](https://github.com/go-flutter-desktop/hover)
 
 ## Contributors
 
