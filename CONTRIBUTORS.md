@@ -1,4 +1,4 @@
-Passwd wouldn't have been possible without the follow people.
+Passwd wouldn't have been possible without the following people.
 
 # Non Code Contributions
 
