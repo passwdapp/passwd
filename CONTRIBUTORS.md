@@ -4,6 +4,7 @@ Passwd wouldn't have been possible without the following people.
 
 ## Translations
 
+- [Atrate (Polish)](https://github.com/Atrate)
 - [ghnou (Dutch)](https://git.ghnou.su/ghnou)
 - [Tushar Sadhwani (Hindi)](https://github.com/tusharsadhwani)
 - [Akshit Garg (English, Hindi, French)](https://github.com/gargakshit)
