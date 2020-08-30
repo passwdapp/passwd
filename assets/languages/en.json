@@ -42,10 +42,10 @@
   "yes": "Yes",
   "no": "No",
   "syncing": "Syncing",
-  "set_pin": "Set a pin",
+  "set_pin": "Set a PIN",
   "enable_biometrics": "Enable biometrics",
   "next": "Next",
-  "enter_pin": "Please enter your pin",
+  "enter_pin": "Please enter your PIN",
   "biometrics_retry": "Retry with biometrics",
   "current_otp": "Current OTP"
 }
