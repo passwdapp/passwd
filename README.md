@@ -1,6 +1,6 @@
 # Passwd.
 
-A beautiful, encrypted password manager, build using Flutter and Dart.
+A beautiful, encrypted password manager, built using Flutter and Dart.
 
 ## Features
 
