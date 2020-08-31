@@ -26,6 +26,7 @@ class SyncImpl implements SyncService {
   @override
   Future<Entries> readDatabaseLocally() async {
     try {
+      await pathService.checkCacheDir();
       Directory directory = await pathService.getDocDir();
       String filePath = path.join(directory.path, "$fileName");
 
