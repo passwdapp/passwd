@@ -6,6 +6,7 @@ import 'package:passwd/constants/theme.dart';
 import 'package:passwd/router/router.gr.dart' as router;
 import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:supercharged/supercharged.dart';
 
 void main() {
   initializeLocator();
@@ -57,7 +58,11 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: canvasColor,
           bottomNavigationBarTheme:
               ThemeData.dark().bottomNavigationBarTheme.copyWith(
-                    backgroundColor: Colors.white,
+                    backgroundColor: "#141414".toColor(),
+                    unselectedIconTheme: IconThemeData(
+                      color: Colors.white.withOpacity(0.92),
+                    ),
+                    showUnselectedLabels: false,
                     elevation: 4,
                   ),
           cursorColor: primaryColor,

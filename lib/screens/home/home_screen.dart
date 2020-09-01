@@ -22,6 +22,22 @@ class HomeScreen extends StatelessWidget {
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ScreenTypeBuilder(
         mobile: Scaffold(
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: (i) {
+              if (i != model.currentItem) {
+                model.currentItem = i;
+              }
+            },
+            currentIndex: model.currentItem,
+            items: navMenuEntries
+                .map(
+                  (e) => BottomNavigationBarItem(
+                    icon: Icon(e.icon),
+                    label: e.localizationTag,
+                  ),
+                )
+                .toList(),
+          ),
           body: getStack(
             model.currentItem,
           ),
