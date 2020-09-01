@@ -109,6 +109,10 @@ class AddAccountViewModel extends ChangeNotifier {
     String password = (await locator<NavigationService>()
         .navigateTo(Routes.generatePasswordScreen)) as String;
 
+    processGeneratePassword(password, setText);
+  }
+
+  void processGeneratePassword(String password, void Function(String) setText) {
     if (password.isNotEmpty) {
       _password = password;
       notifyListeners();
@@ -145,6 +149,10 @@ class AddAccountViewModel extends ChangeNotifier {
       Routes.addOtpScreen,
     );
 
+    processAddOtp(otp);
+  }
+
+  void processAddOtp(Otp otp) {
     if (otp != null) {
       this.otp = otp;
       otpAvailable = true;
@@ -155,8 +163,7 @@ class AddAccountViewModel extends ChangeNotifier {
     try {
       Otp otp = await locator<QRService>().scanQRForOtp();
 
-      this.otp = otp;
-      otpAvailable = true;
+      processAddOtp(otp);
     } catch (e) {
       showError();
     }

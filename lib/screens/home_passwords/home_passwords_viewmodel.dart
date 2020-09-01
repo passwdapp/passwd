@@ -50,6 +50,10 @@ class HomePasswordsViewModel extends ChangeNotifier {
     Entry entry =
         await locator<NavigationService>().navigateTo(Routes.addAccountScreen);
 
+    await processAddedEntry(entry);
+  }
+
+  Future processAddedEntry(Entry entry) async {
     if (entry != null) {
       await locator<DatabaseService>().addEntry(entry);
       reloadDB();

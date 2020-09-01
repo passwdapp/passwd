@@ -4,7 +4,12 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:passwd/models/device_type.dart';
+import 'package:passwd/models/otp.dart';
 import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
+import 'package:passwd/screens/add_otp/add_otp_screen.dart';
+import 'package:passwd/screens/generate_password/generate_password_screen.dart';
+import 'package:passwd/utils/get_device_type.dart';
 import 'package:passwd/widgets/button.dart';
 import 'package:passwd/widgets/otp/otp_widget.dart';
 import 'package:passwd/widgets/tags/tags_widget.dart';
@@ -132,10 +137,33 @@ class AddAccountScreen extends HookWidget {
                 child: Text(
                   context.getString("generate_password"),
                 ),
-                onClick: () {
-                  model.generatePassword((pass) {
-                    passwordController.text = pass;
-                  });
+                onClick: () async {
+                  MediaQueryData data = MediaQuery.of(context);
+                  if (getDeviceType(data) == DeviceType.DESKTOP) {
+                    String password = await showDialog(
+                      context: context,
+                      child: Center(
+                        child: SizedBox(
+                          height: 412,
+                          width: 460,
+                          child: Dialog(
+                            child: GeneratePasswordScreen(),
+                          ),
+                        ),
+                      ),
+                    );
+
+                    model.processGeneratePassword(
+                      password,
+                      (pass) {
+                        passwordController.text = pass;
+                      },
+                    );
+                  } else {
+                    await model.generatePassword((pass) {
+                      passwordController.text = pass;
+                    });
+                  }
                 },
               ),
               TextFormField(
@@ -157,9 +185,27 @@ class AddAccountScreen extends HookWidget {
                   child: Text(
                     context.getString("two_factor_authentication"),
                   ),
-                  onClick: () {
+                  onClick: () async {
                     if (!Platform.isAndroid || !Platform.isIOS) {
-                      model.toOtp();
+                      MediaQueryData data = MediaQuery.of(context);
+                      if (getDeviceType(data) == DeviceType.DESKTOP) {
+                        Otp otp = await showDialog(
+                          context: context,
+                          child: Center(
+                            child: SizedBox(
+                              height: 360,
+                              width: 460,
+                              child: Dialog(
+                                child: AddOtpScreen(),
+                              ),
+                            ),
+                          ),
+                        );
+
+                        model.processAddOtp(otp);
+                      } else {
+                        model.toOtp();
+                      }
                     } else {
                       showModalBottomSheet(
                         context: context,

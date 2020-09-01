@@ -2,7 +2,11 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/constants/colors.dart';
+import 'package:passwd/models/device_type.dart';
+import 'package:passwd/models/entry.dart';
+import 'package:passwd/screens/add_account/add_account_screen.dart';
 import 'package:passwd/screens/home_passwords/home_passwords_viewmodel.dart';
+import 'package:passwd/utils/get_device_type.dart';
 import 'package:passwd/widgets/home_list_item.dart';
 import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
@@ -39,7 +43,25 @@ class HomePasswordsScreen extends StatelessWidget {
             IconButton(
               icon: Icon(Feather.plus_circle),
               onPressed: () async {
-                await model.toAdd();
+                MediaQueryData data = MediaQuery.of(context);
+                if (getDeviceType(data) == DeviceType.DESKTOP) {
+                  Entry entry = await showDialog(
+                    context: context,
+                    child: Center(
+                      child: SizedBox(
+                        height: 840,
+                        width: 500,
+                        child: Dialog(
+                          child: AddAccountScreen(),
+                        ),
+                      ),
+                    ),
+                  );
+
+                  await model.processAddedEntry(entry);
+                } else {
+                  await model.toAdd();
+                }
               },
               tooltip: context.getString("add_account"),
             ),
