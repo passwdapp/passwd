@@ -3,7 +3,7 @@ import 'package:passwd/models/color_info.dart';
 import 'package:supercharged/supercharged.dart';
 
 Color primaryColor = "#00ECD7".toColor();
-Color canvasColor = "#151618".toColor();
+Color canvasColor = "#1A1A1A".toColor();
 Color primaryColorHovered = "#00AFA0".toColor();
 
 List<Color> iconColors = [

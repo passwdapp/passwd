@@ -3,13 +3,17 @@ import 'package:passwd/constants/colors.dart';
 
 class TitleWidget extends StatelessWidget {
   final double textSize;
+  final MainAxisAlignment mainAxisAlignment;
 
-  TitleWidget({this.textSize = 36});
+  TitleWidget({
+    this.textSize = 36,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         Text(
           "Pass",

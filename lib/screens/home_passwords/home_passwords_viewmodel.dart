@@ -30,6 +30,8 @@ class HomePasswordsViewModel extends ChangeNotifier {
       await locator<DatabaseService>().reloadDatabaseFromDisk();
     }
     _entries = locator<DatabaseService>().entries;
+
+    notifyListeners();
     await Future.delayed(Duration(milliseconds: 500));
     loading = false;
 

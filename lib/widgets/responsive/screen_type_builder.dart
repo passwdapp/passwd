@@ -22,7 +22,7 @@ class ScreenTypeBuilder extends StatelessWidget {
         }
 
         if (information.deviceType == DeviceType.TABLET && tablet != null) {
-          return desktop;
+          return tablet;
         }
 
         return mobile;
