@@ -35,15 +35,15 @@ if (keystorePropertiesFile.exists()) {
 android {
     compileSdkVersion 28
 
-    splits {
-        abi {
-            enable true
-            reset()
+    // splits {
+    //     abi {
+    //         enable true
+    //         reset()
 
-            include "x86_64", "armeabi-v7a", "arm64-v8a"
-            universalApk false
-        }
-    }
+    //         include "x86_64", "armeabi-v7a", "arm64-v8a"
+    //         universalApk false
+    //     }
+    // }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'

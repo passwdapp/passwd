@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/menu_entries.dart';
@@ -22,21 +22,25 @@ class HomeScreen extends StatelessWidget {
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ScreenTypeLayout(
         mobile: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: (i) {
-              if (i != model.currentItem) {
-                model.currentItem = i;
-              }
+          bottomNavigationBar: Builder(
+            builder: (context) {
+              return BottomNavigationBar(
+                onTap: (i) {
+                  if (i != model.currentItem) {
+                    model.currentItem = i;
+                  }
+                },
+                currentIndex: model.currentItem,
+                items: navMenuEntries
+                    .map(
+                      (e) => BottomNavigationBarItem(
+                        icon: Icon(e.icon),
+                        label: e.localizationTag,
+                      ),
+                    )
+                    .toList(),
+              );
             },
-            currentIndex: model.currentItem,
-            items: navMenuEntries
-                .map(
-                  (e) => BottomNavigationBarItem(
-                    icon: Icon(e.icon),
-                    label: e.localizationTag,
-                  ),
-                )
-                .toList(),
           ),
           body: getStack(
             model.currentItem,

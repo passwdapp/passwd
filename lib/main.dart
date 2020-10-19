@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: canvasColor,
           bottomNavigationBarTheme:
               ThemeData.dark().bottomNavigationBarTheme.copyWith(
-                    backgroundColor: "#141414".toColor(),
+                    backgroundColor: canvasColor,
                     unselectedIconTheme: IconThemeData(
                       color: Colors.white.withOpacity(0.92),
                     ),
