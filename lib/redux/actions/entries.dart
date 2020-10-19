@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:passwd/redux/actions/favicon.dart';
 
 import '../../models/entry.dart';
 import '../../services/database/database_service.dart';
@@ -56,7 +57,10 @@ class AddEntryAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() => dispatch(ReloadAction());
+  void after() {
+    dispatch(ReloadAction());
+    dispatchFuture(AddFaviconAction(entry));
+  }
 }
 
 class ModifyEntryAction extends ReduxAction<AppState> {
