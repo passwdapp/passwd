@@ -17,10 +17,6 @@ class HomeTagsScreen extends StatelessWidget {
           ? ListView.builder(
               itemCount: model.tags.length,
               itemBuilder: (context, i) => ExpansionTile(
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Feather.chevron_down),
-                ),
                 title: Row(
                   children: [
                     Container(
