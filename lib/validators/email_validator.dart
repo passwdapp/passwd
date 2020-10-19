@@ -1,4 +1,4 @@
-import 'package:passwd/models/validator.dart';
+import '../models/validator.dart';
 
 class EmailValidator implements Validator {
   @override

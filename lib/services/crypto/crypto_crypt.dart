@@ -3,7 +3,8 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:injectable/injectable.dart';
-import 'package:passwd/services/crypto/crypto_service.dart';
+
+import 'crypto_service.dart';
 
 @LazySingleton(as: CryptoService)
 class CryptoCrypt implements CryptoService {

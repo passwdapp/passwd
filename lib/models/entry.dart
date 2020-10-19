@@ -1,4 +1,4 @@
-import 'package:passwd/models/otp.dart';
+import 'otp.dart';
 
 class Entry {
   int colorId;

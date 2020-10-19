@@ -1,9 +1,10 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:passwd/screens/get_started/get_started_viewmodel.dart';
-import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../widgets/title.dart';
+import 'get_started_viewmodel.dart';
 
 class GetStartedScreen extends StatelessWidget {
   @override

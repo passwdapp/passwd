@@ -1,12 +1,13 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/constants/theme.dart';
-import 'package:passwd/router/router.gr.dart' as router;
-import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:supercharged/supercharged.dart';
+
+import 'constants/colors.dart';
+import 'constants/theme.dart';
+import 'router/router.gr.dart' as router;
+import 'services/locator.dart';
 
 void main() {
   initializeLocator();

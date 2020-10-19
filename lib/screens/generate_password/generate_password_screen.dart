@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/screens/generate_password/generate_password_viewmodel.dart';
-import 'package:passwd/widgets/button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../widgets/button.dart';
+import 'generate_password_viewmodel.dart';
 
 class GeneratePasswordScreen extends HookWidget {
   @override

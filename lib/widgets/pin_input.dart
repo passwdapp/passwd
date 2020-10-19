@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:passwd/constants/colors.dart';
+
+import '../constants/colors.dart';
 
 class PinInputWidget extends StatelessWidget {
   final void Function(String) onSubmit;

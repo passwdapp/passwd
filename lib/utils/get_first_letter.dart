@@ -1,4 +1,4 @@
-import 'package:passwd/models/entry.dart';
+import '../models/entry.dart';
 
 String getFirstLetter(Entry entry) {
   if (entry.name.isNotEmpty) {

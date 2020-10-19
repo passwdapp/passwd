@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:passwd/models/biometrics_result.dart';
-import 'package:passwd/router/router.gr.dart';
-import 'package:passwd/services/authentication/authentication_service.dart';
-import 'package:passwd/services/biometrics/biometrics_service.dart';
-import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../models/biometrics_result.dart';
+import '../../router/router.gr.dart';
+import '../../services/authentication/authentication_service.dart';
+import '../../services/biometrics/biometrics_service.dart';
+import '../../services/locator.dart';
 
 class VerifyPinViewModel extends ChangeNotifier {
   VerifyPinViewModel() {

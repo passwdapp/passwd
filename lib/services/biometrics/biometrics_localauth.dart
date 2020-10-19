@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:passwd/models/biometrics_result.dart';
-import 'package:passwd/services/biometrics/biometrics_service.dart';
+
+import '../../models/biometrics_result.dart';
+import 'biometrics_service.dart';
 
 @LazySingleton(as: BiometricsService)
 class BiometricsLocalAuth implements BiometricsService {

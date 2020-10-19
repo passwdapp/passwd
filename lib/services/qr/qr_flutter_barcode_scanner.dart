@@ -1,8 +1,9 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:injectable/injectable.dart';
-import 'package:passwd/models/otp.dart';
-import 'package:passwd/services/qr/qr_service.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../models/otp.dart';
+import 'qr_service.dart';
 
 @LazySingleton(as: QRService)
 class QRFlutterBarcodeScanner implements QRService {

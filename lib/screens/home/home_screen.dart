@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/constants/menu_entries.dart';
-import 'package:passwd/screens/home/home_viewmodel.dart';
-import 'package:passwd/screens/home_passwords/home_passwords_sceeen.dart';
-import 'package:passwd/screens/home_settings/home_settings_screen.dart';
-import 'package:passwd/screens/home_tags/home_tags_screen.dart';
-import 'package:passwd/widgets/responsive/screen_type_builder.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/menu_entries.dart';
+import '../../widgets/responsive/screen_type_builder.dart';
+import '../home_passwords/home_passwords_sceeen.dart';
+import '../home_settings/home_settings_screen.dart';
+import '../home_tags/home_tags_screen.dart';
+import 'home_viewmodel.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Widget> items = [

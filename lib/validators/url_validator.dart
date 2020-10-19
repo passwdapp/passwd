@@ -1,4 +1,4 @@
-import 'package:passwd/models/validator.dart';
+import '../models/validator.dart';
 
 class URLValidator implements Validator {
   @override
@@ -8,7 +8,7 @@ class URLValidator implements Validator {
 
       return true;
     } catch (e) {
-      // It throws a [FormatException] when the URL is not valid
+      /// It throws a [FormatException] when the URL is not valid
       return false;
     }
   }

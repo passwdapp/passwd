@@ -5,8 +5,9 @@ import 'dart:typed_data';
 import 'package:base_x/base_x.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:passwd/constants/config.dart';
-import 'package:passwd/services/password/password_service.dart';
+
+import '../../constants/config.dart';
+import 'password_service.dart';
 
 @LazySingleton(as: PasswordService)
 class PasswordImpl implements PasswordService {

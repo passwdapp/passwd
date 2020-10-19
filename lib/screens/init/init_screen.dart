@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/screens/init/init_viewmodel.dart';
-import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../widgets/title.dart';
+import 'init_viewmodel.dart';
 
 class InitScreen extends StatelessWidget {
   @override

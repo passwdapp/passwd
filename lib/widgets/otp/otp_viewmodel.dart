@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:dart_otp/dart_otp.dart';
-import 'package:passwd/models/otp.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../models/otp.dart';
 
 class OtpWidgetViewModel extends BaseViewModel {
   final Otp otp;

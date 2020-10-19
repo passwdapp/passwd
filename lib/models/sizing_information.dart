@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:passwd/models/device_type.dart';
+
+import 'device_type.dart';
 
 class SizingInformation {
   final DeviceType deviceType;

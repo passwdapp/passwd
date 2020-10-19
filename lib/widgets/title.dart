@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/constants/colors.dart';
+
+import '../constants/colors.dart';
 
 class TitleWidget extends StatelessWidget {
   final double textSize;

@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:passwd/models/entries.dart';
-import 'package:passwd/services/advance_crypto/advance_crypto_service.dart';
-import 'package:passwd/services/authentication/authentication_service.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/services/path/path_service.dart';
-import 'package:passwd/services/sync/sync_service.dart';
 import 'package:path/path.dart' as path;
+
+import '../../models/entries.dart';
+import '../advance_crypto/advance_crypto_service.dart';
+import '../authentication/authentication_service.dart';
+import '../locator.dart';
+import '../path/path_service.dart';
+import 'sync_service.dart';
 
 // Newer binary implementation is *not* compatible with this JSON based implementation
 // This one is deprecated, but is still here, coz just in case...

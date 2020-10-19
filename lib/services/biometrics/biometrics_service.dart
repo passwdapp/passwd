@@ -1,4 +1,4 @@
-import 'package:passwd/models/biometrics_result.dart';
+import '../../models/biometrics_result.dart';
 
 abstract class BiometricsService {
   Future<bool> biometricsAvailable();

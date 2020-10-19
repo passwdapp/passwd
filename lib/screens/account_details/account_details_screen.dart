@@ -1,11 +1,12 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/screens/account_details/account_details_viewmodel.dart';
-import 'package:passwd/widgets/otp/otp_widget.dart';
-import 'package:passwd/widgets/tags/tags_widget.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../models/entry.dart';
+import '../../widgets/otp/otp_widget.dart';
+import '../../widgets/tags/tags_widget.dart';
+import 'account_details_viewmodel.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
   final Entry entry;

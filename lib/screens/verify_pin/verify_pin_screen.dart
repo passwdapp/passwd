@@ -1,9 +1,10 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:passwd/screens/verify_pin/verify_pin_viewmodel.dart';
-import 'package:passwd/widgets/pin_input.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../widgets/pin_input.dart';
+import 'verify_pin_viewmodel.dart';
 
 class VerifyPinScreen extends StatelessWidget {
   @override

@@ -1,10 +1,11 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/models/otp.dart';
-import 'package:passwd/widgets/otp/otp_viewmodel.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../constants/colors.dart';
+import '../../models/otp.dart';
+import 'otp_viewmodel.dart';
 
 class OtpWidget extends StatelessWidget {
   final Otp otp;

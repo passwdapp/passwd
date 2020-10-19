@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/utils/get_first_letter.dart';
+
+import '../constants/colors.dart';
+import '../models/entry.dart';
+import '../utils/get_first_letter.dart';
 
 class HomeListItem extends StatelessWidget {
   final Entry entry;

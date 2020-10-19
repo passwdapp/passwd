@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/screens/add_otp/add_otp_viewmodel.dart';
-import 'package:passwd/utils/capitalization_formatter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../utils/capitalization_formatter.dart';
+import 'add_otp_viewmodel.dart';
 
 class AddOtpScreen extends HookWidget {
   @override

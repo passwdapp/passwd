@@ -1,15 +1,16 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/models/device_type.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/screens/add_account/add_account_screen.dart';
-import 'package:passwd/screens/home_passwords/home_passwords_viewmodel.dart';
-import 'package:passwd/utils/get_device_type.dart';
-import 'package:passwd/widgets/home_list_item.dart';
-import 'package:passwd/widgets/title.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../constants/colors.dart';
+import '../../models/device_type.dart';
+import '../../models/entry.dart';
+import '../../utils/get_device_type.dart';
+import '../../widgets/home_list_item.dart';
+import '../../widgets/title.dart';
+import '../add_account/add_account_screen.dart';
+import 'home_passwords_viewmodel.dart';
 
 // Navigation Item, not to be navigated to
 // So not injected in auto_route

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:passwd/models/device_type.dart';
+
+import '../models/device_type.dart';
 
 DeviceType getDeviceType(MediaQueryData data) {
   double deviceWidth = data.size.shortestSide;

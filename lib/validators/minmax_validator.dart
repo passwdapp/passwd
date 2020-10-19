@@ -1,4 +1,4 @@
-import 'package:passwd/models/validator.dart';
+import '../models/validator.dart';
 
 class MinMaxValidator implements Validator {
   int min;

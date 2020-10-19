@@ -1,5 +1,6 @@
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/models/menu_entry.dart';
+
+import '../models/menu_entry.dart';
 
 // TODO: Add navMenuEntries to localization data
 List<MenuEntry> navMenuEntries = [

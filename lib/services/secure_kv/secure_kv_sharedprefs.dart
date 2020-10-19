@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:passwd/services/secure_kv/secure_kv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'secure_kv.dart';
 
 @Environment("desktop")
 @LazySingleton(as: SecureKVService)

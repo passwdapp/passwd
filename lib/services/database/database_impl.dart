@@ -1,10 +1,11 @@
 import 'package:injectable/injectable.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/models/entries.dart';
-import 'package:passwd/models/tag.dart';
-import 'package:passwd/services/database/database_service.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/services/sync/sync_service.dart';
+
+import '../../models/entries.dart';
+import '../../models/entry.dart';
+import '../../models/tag.dart';
+import '../locator.dart';
+import '../sync/sync_service.dart';
+import 'database_service.dart';
 
 @LazySingleton(as: DatabaseService)
 class DatabaseImpl implements DatabaseService {

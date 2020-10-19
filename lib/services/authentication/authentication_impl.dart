@@ -1,9 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:passwd/services/authentication/authentication_service.dart';
-import 'package:passwd/services/crypto/crypto_service.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/services/secure_kv/secure_kv.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../crypto/crypto_service.dart';
+import '../locator.dart';
+import '../secure_kv/secure_kv.dart';
+import 'authentication_service.dart';
 
 @LazySingleton(as: AuthenticationService)
 class AuthenticationImpl implements AuthenticationService {

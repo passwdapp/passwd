@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:passwd/models/otp.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/utils/validate.dart';
-import 'package:passwd/validators/otp_secret_validator.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../models/otp.dart';
+import '../../services/locator.dart';
+import '../../utils/validate.dart';
+import '../../validators/otp_secret_validator.dart';
 
 class AddOtpViewModel extends ChangeNotifier {
   String _secret = "";

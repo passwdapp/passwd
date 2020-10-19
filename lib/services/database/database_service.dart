@@ -1,6 +1,6 @@
-import 'package:passwd/models/entries.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/models/tag.dart';
+import '../../models/entries.dart';
+import '../../models/entry.dart';
+import '../../models/tag.dart';
 
 abstract class DatabaseService {
   Future reloadDatabaseFromDisk();

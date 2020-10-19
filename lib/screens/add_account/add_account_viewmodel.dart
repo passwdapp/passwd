@@ -1,16 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:passwd/constants/colors.dart';
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/models/otp.dart';
-import 'package:passwd/router/router.gr.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/services/password/password_service.dart';
-import 'package:passwd/services/qr/qr_service.dart';
-import 'package:passwd/utils/validate.dart';
-import 'package:passwd/validators/min_validator.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../constants/colors.dart';
+import '../../models/entry.dart';
+import '../../models/otp.dart';
+import '../../router/router.gr.dart';
+import '../../services/locator.dart';
+import '../../services/password/password_service.dart';
+import '../../services/qr/qr_service.dart';
+import '../../utils/validate.dart';
+import '../../validators/min_validator.dart';
 
 class AddAccountViewModel extends ChangeNotifier {
   String _name = "";

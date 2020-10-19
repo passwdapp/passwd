@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:passwd/services/locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../services/locator.dart';
 
 class AccountDetailsViewModel extends ChangeNotifier {
   bool _passwordVisible = false;

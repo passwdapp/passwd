@@ -1,4 +1,4 @@
-import 'package:passwd/models/otp.dart';
+import '../../models/otp.dart';
 
 abstract class QRService {
   Future<Otp> scanQRForOtp();

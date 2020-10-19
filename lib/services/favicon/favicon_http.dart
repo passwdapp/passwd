@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:passwd/models/favicon.dart';
-import 'package:passwd/services/favicon/favicon_service.dart';
+
+import '../../models/favicon.dart';
+import 'favicon_service.dart';
 
 @LazySingleton(as: FaviconService)
 class FaviconHttp implements FaviconService {

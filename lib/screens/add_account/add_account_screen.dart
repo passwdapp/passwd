@@ -4,16 +4,17 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/models/device_type.dart';
-import 'package:passwd/models/otp.dart';
-import 'package:passwd/screens/add_account/add_account_viewmodel.dart';
-import 'package:passwd/screens/add_otp/add_otp_screen.dart';
-import 'package:passwd/screens/generate_password/generate_password_screen.dart';
-import 'package:passwd/utils/get_device_type.dart';
-import 'package:passwd/widgets/button.dart';
-import 'package:passwd/widgets/otp/otp_widget.dart';
-import 'package:passwd/widgets/tags/tags_widget.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../models/device_type.dart';
+import '../../models/otp.dart';
+import '../../utils/get_device_type.dart';
+import '../../widgets/button.dart';
+import '../../widgets/otp/otp_widget.dart';
+import '../../widgets/tags/tags_widget.dart';
+import '../add_otp/add_otp_screen.dart';
+import '../generate_password/generate_password_screen.dart';
+import 'add_account_viewmodel.dart';
 
 class AddAccountScreen extends HookWidget {
   @override

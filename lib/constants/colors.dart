@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/models/color_info.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../models/color_info.dart';
 
 Color primaryColor = "#00ECD7".toColor();
 Color canvasColor = "#1A1A1A".toColor();

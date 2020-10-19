@@ -1,4 +1,4 @@
-import 'package:passwd/models/entries.dart';
+import '../../models/entries.dart';
 
 abstract class SyncService {
   Future<bool> syncronizeDatabaseLocally(Entries entries);

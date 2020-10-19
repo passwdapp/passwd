@@ -4,9 +4,10 @@ import 'dart:typed_data';
 import 'package:cryptography/cryptography.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:injectable/injectable.dart';
-import 'package:passwd/services/advance_crypto/advance_crypto_service.dart';
-import 'package:passwd/services/crypto/crypto_service.dart';
-import 'package:passwd/services/locator.dart';
+
+import '../crypto/crypto_service.dart';
+import '../locator.dart';
+import 'advance_crypto_service.dart';
 
 @LazySingleton(as: AdvanceCryptoService)
 class AdvanceCryptoAes implements AdvanceCryptoService {

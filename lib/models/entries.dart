@@ -1,5 +1,5 @@
-import 'package:passwd/models/entry.dart';
-import 'package:passwd/models/tag.dart';
+import 'entry.dart';
+import 'tag.dart';
 
 class Entries {
   List<Entry> entries;

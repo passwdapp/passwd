@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:passwd/models/sizing_information.dart';
-import 'package:passwd/utils/get_device_type.dart';
+
+import '../../models/sizing_information.dart';
+import '../../utils/get_device_type.dart';
 
 class ResponsiveBuilder extends StatelessWidget {
   final Widget Function(

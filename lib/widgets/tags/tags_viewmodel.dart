@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
-import 'package:passwd/models/tag.dart';
-import 'package:passwd/services/database/database_service.dart';
-import 'package:passwd/services/locator.dart';
-import 'package:passwd/services/password/password_service.dart';
+
+import '../../models/tag.dart';
+import '../../services/database/database_service.dart';
+import '../../services/locator.dart';
+import '../../services/password/password_service.dart';
 
 class TagsViewModel extends ChangeNotifier {
   // Tags coming from the widget
