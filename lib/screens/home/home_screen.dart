@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/menu_entries.dart';
-import '../../widgets/responsive/screen_type_builder.dart';
 import '../home_passwords/home_passwords_sceeen.dart';
 import '../home_settings/home_settings_screen.dart';
 import '../home_tags/home_tags_screen.dart';
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      builder: (context, model, child) => ScreenTypeBuilder(
+      builder: (context, model, child) => ScreenTypeLayout(
         mobile: Scaffold(
           bottomNavigationBar: BottomNavigationBar(
             onTap: (i) {
