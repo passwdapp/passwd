@@ -86,6 +86,21 @@ class MyApp extends StatelessWidget {
           snackBarTheme: SnackBarThemeData(
             behavior: SnackBarBehavior.floating,
           ),
+          navigationRailTheme: NavigationRailThemeData(
+            backgroundColor: Colors.white.withOpacity(0.025),
+            unselectedIconTheme: IconThemeData(
+              color: Colors.white.withOpacity(0.92),
+            ),
+            selectedIconTheme: IconThemeData(
+              color: primaryColor,
+            ),
+            unselectedLabelTextStyle: TextStyle(
+              color: Colors.white.withOpacity(0.92),
+            ),
+            selectedLabelTextStyle: TextStyle(
+              color: primaryColor,
+            ),
+          ),
         ),
         builder: (context, child) {
           SystemChrome.setSystemUIOverlayStyle(

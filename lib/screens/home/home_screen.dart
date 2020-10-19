@@ -83,8 +83,39 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        tablet: getStack(
-          model.currentItem,
+        tablet: Scaffold(
+          body: Row(
+            children: [
+              NavigationRail(
+                selectedIndex: model.currentItem,
+                onDestinationSelected: (i) {
+                  if (i != model.currentItem) {
+                    model.currentItem = i;
+                  }
+                },
+                labelType: NavigationRailLabelType.all,
+                destinations: navMenuEntries
+                    .map(
+                      (e) => NavigationRailDestination(
+                        icon: Icon(e.icon),
+                        label: Text(e.localizationTag),
+                      ),
+                    )
+                    .toList(),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 2,
+                    horizontal: 4,
+                  ),
+                  child: getStack(
+                    model.currentItem,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
