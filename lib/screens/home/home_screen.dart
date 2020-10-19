@@ -1,125 +1,133 @@
+import 'package:async_redux/async_redux.dart' hide ViewModelBuilder;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:stacked/stacked.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/menu_entries.dart';
+import '../../redux/actions/entries.dart';
 import '../home_passwords/home_passwords_sceeen.dart';
 import '../home_settings/home_settings_screen.dart';
 import '../home_tags/home_tags_screen.dart';
-import 'home_viewmodel.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> items = [
     HomePasswordsScreen(),
     HomeTagsScreen(),
     HomeSettingsScreen(),
   ];
 
+  final currentItem = 0;
+  set currentItem(int item) {
+    if (currentItem != item) {
+      setState(() {
+        currentItem = item;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.reactive(
-      viewModelBuilder: () => HomeViewModel(),
-      builder: (context, model, child) => ScreenTypeLayout(
-        mobile: Scaffold(
-          bottomNavigationBar: Builder(
-            builder: (context) {
-              return BottomNavigationBar(
-                onTap: (i) {
-                  if (i != model.currentItem) {
-                    model.currentItem = i;
-                  }
-                },
-                currentIndex: model.currentItem,
-                items: navMenuEntries
-                    .map(
-                      (e) => BottomNavigationBarItem(
-                        icon: Icon(e.icon),
-                        label: e.localizationTag,
-                      ),
-                    )
-                    .toList(),
-              );
-            },
-          ),
-          body: getStack(
-            model.currentItem,
-          ),
-        ),
-        desktop: Scaffold(
-          body: Row(
-            children: [
-              Container(
-                width: 272,
-                color: Colors.white.withOpacity(0.025),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                  vertical: 12,
-                ),
-                child: ListView.builder(
-                  itemCount: navMenuEntries.length,
-                  itemBuilder: (context, i) => ListTile(
-                    leading: Icon(navMenuEntries[i].icon),
-                    title: Text(
-                      navMenuEntries[i].localizationTag,
+    context.read<DispatchFuture>()(ReloadAction(reloadFromDisk: true));
+
+    return ScreenTypeLayout(
+      mobile: Scaffold(
+        bottomNavigationBar: Builder(
+          builder: (context) {
+            return BottomNavigationBar(
+              onTap: (i) {
+                currentItem = i;
+              },
+              currentIndex: currentItem,
+              items: navMenuEntries
+                  .map(
+                    (e) => BottomNavigationBarItem(
+                      icon: Icon(e.icon),
+                      label: e.localizationTag,
                     ),
-                    onTap: () {
-                      if (i != model.currentItem) {
-                        model.currentItem = i;
-                      }
-                    },
-                    hoverColor: primaryColor.withOpacity(0.08),
-                    selected: i == model.currentItem,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 2,
-                    horizontal: 4,
-                  ),
-                  child: getStack(
-                    model.currentItem,
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  )
+                  .toList(),
+            );
+          },
         ),
-        tablet: Scaffold(
-          body: Row(
-            children: [
-              NavigationRail(
-                selectedIndex: model.currentItem,
-                onDestinationSelected: (i) {
-                  if (i != model.currentItem) {
-                    model.currentItem = i;
-                  }
-                },
-                labelType: NavigationRailLabelType.all,
-                destinations: navMenuEntries
-                    .map(
-                      (e) => NavigationRailDestination(
-                        icon: Icon(e.icon),
-                        label: Text(e.localizationTag),
-                      ),
-                    )
-                    .toList(),
+        body: getStack(
+          currentItem,
+        ),
+      ),
+      desktop: Scaffold(
+        body: Row(
+          children: [
+            Container(
+              width: 272,
+              color: Colors.white.withOpacity(0.025),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 12,
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 2,
-                    horizontal: 4,
+              child: ListView.builder(
+                itemCount: navMenuEntries.length,
+                itemBuilder: (context, i) => ListTile(
+                  leading: Icon(navMenuEntries[i].icon),
+                  title: Text(
+                    navMenuEntries[i].localizationTag,
                   ),
-                  child: getStack(
-                    model.currentItem,
-                  ),
+                  onTap: () {
+                    currentItem = i;
+                  },
+                  hoverColor: primaryColor.withOpacity(0.08),
+                  selected: i == currentItem,
                 ),
               ),
-            ],
-          ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 2,
+                  horizontal: 4,
+                ),
+                child: getStack(
+                  currentItem,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      tablet: Scaffold(
+        body: Row(
+          children: [
+            NavigationRail(
+              selectedIndex: currentItem,
+              onDestinationSelected: (i) {
+                currentItem = i;
+              },
+              labelType: NavigationRailLabelType.all,
+              destinations: navMenuEntries
+                  .map(
+                    (e) => NavigationRailDestination(
+                      icon: Icon(e.icon),
+                      label: Text(e.localizationTag),
+                    ),
+                  )
+                  .toList(),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 2,
+                  horizontal: 4,
+                ),
+                child: getStack(
+                  currentItem,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
