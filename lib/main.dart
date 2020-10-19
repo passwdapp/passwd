@@ -2,7 +2,6 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:supercharged/supercharged.dart';
 
 import 'constants/colors.dart';
 import 'constants/theme.dart';
