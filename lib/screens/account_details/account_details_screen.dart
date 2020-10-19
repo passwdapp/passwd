@@ -89,7 +89,9 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
               Expanded(
                 child: FlatButton(
                   onPressed: () {
-                    isPasswordVisible = !isPasswordVisible;
+                    setState(() {
+                      isPasswordVisible = !isPasswordVisible;
+                    });
                   },
                   child: Text(
                     isPasswordVisible
