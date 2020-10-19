@@ -700,15 +700,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  provide:
-    dependency: "direct main"
-    description:
-      name: provide
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"

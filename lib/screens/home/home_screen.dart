@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeSettingsScreen(),
   ];
 
-  final currentItem = 0;
-  set currentItem(int item) {
+  var currentItem = 0;
+  void setCurrentItem(int item) {
     if (currentItem != item) {
       setState(() {
         currentItem = item;
@@ -33,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<DispatchFuture>()(ReloadAction(reloadFromDisk: true));
+    Provider.of<DispatchFuture>(
+      context,
+      listen: false,
+    )(ReloadAction(reloadFromDisk: true));
 
     return ScreenTypeLayout(
       mobile: Scaffold(
@@ -41,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) {
             return BottomNavigationBar(
               onTap: (i) {
-                currentItem = i;
+                setCurrentItem(i);
               },
               currentIndex: currentItem,
               items: navMenuEntries
@@ -55,9 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-        body: getStack(
-          currentItem,
-        ),
+        body: stack,
       ),
       desktop: Scaffold(
         body: Row(
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     navMenuEntries[i].localizationTag,
                   ),
                   onTap: () {
-                    currentItem = i;
+                    setCurrentItem(i);
                   },
                   hoverColor: primaryColor.withOpacity(0.08),
                   selected: i == currentItem,
@@ -90,9 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   vertical: 2,
                   horizontal: 4,
                 ),
-                child: getStack(
-                  currentItem,
-                ),
+                child: stack,
               ),
             ),
           ],
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             NavigationRail(
               selectedIndex: currentItem,
               onDestinationSelected: (i) {
-                currentItem = i;
+                setCurrentItem(i);
               },
               labelType: NavigationRailLabelType.all,
               destinations: navMenuEntries
@@ -122,9 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   vertical: 2,
                   horizontal: 4,
                 ),
-                child: getStack(
-                  currentItem,
-                ),
+                child: stack,
               ),
             ),
           ],
@@ -133,10 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget getStack(int i) {
-    return IndexedStack(
-      children: items,
-      index: i,
-    );
-  }
+  Widget get stack => IndexedStack(
+        children: items,
+        index: currentItem,
+      );
 }
