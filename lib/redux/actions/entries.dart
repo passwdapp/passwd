@@ -1,10 +1,10 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:passwd/redux/actions/favicon.dart';
 
 import '../../models/entry.dart';
 import '../../services/database/database_service.dart';
 import '../../services/locator.dart';
 import '../appstate.dart';
+import 'favicon.dart';
 
 class SyncIndicatorAction extends ReduxAction<AppState> {
   final bool isSyncing;
