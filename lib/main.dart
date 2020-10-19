@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       value: Store<AppState>(
         initialState: AppState(
           entries: Entries(entries: []),
+          isSyncing: false,
         ),
       ),
       child: EzLocalizationBuilder(

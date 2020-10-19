@@ -44,7 +44,7 @@ class DatabaseImpl implements DatabaseService {
       (element) => element.id == old.id,
     );
 
-    if (index != null) {
+    if (index != -1) {
       _entries.entries[index] = changed;
       await syncAndReloadDatabase();
     }

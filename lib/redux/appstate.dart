@@ -7,6 +7,10 @@ part 'appstate.g.dart';
 @FunctionalData()
 class AppState extends $AppState {
   final Entries entries;
+  final bool isSyncing;
 
-  AppState({this.entries});
+  AppState({
+    this.entries,
+    this.isSyncing,
+  });
 }
