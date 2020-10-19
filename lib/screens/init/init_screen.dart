@@ -1,19 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
+import '../../services/authentication/authentication_service.dart';
+import '../../services/locator.dart';
 import '../../widgets/title.dart';
-import 'init_viewmodel.dart';
+import '../get_started/get_started_screen.dart';
+import '../verify_pin/verify_pin_screen.dart';
 
-class InitScreen extends StatelessWidget {
+class InitScreen extends StatefulWidget {
+  @override
+  _InitScreenState createState() => _InitScreenState();
+}
+
+class _InitScreenState extends State<InitScreen> {
+  Future<bool> isAuthenticated() async {
+    await locator.allReady();
+    String key = await locator<AuthenticationService>().readEncryptionKey();
+
+    return key != null;
+  }
+
+  Future navigate() async {
+    if (await isAuthenticated()) {
+      await Future.delayed(Duration(milliseconds: 750));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => VerifyPinScreen(),
+        ),
+      );
+    } else {
+      await Future.delayed(Duration(milliseconds: 1500));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => GetStartedScreen(),
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    navigate();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<InitViewModel>.nonReactive(
-      viewModelBuilder: () => InitViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: Center(
-          child: TitleWidget(
-            textSize: 44,
-          ),
+    return Scaffold(
+      body: Center(
+        child: TitleWidget(
+          textSize: 44,
         ),
       ),
     );
