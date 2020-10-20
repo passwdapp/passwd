@@ -1,8 +1,0 @@
-#application-name: "passwd" # Uncomment to modify this value.
-#executable-name: "passwd" # Uncomment to modify this value. Only lowercase a-z, numbers, underscores and no spaces
-#package-name: "passwd" # Uncomment to modify this value. Only lowercase a-z, numbers and no underscores or spaces
-license: "GPL-3.0-or-later" # MANDATORY: Fill in your SPDX license name: https://spdx.org/licenses
-target: lib/main_desktop.dart
-# opengl: "none" # Uncomment this line if you have trouble with your OpenGL driver (https://github.com/go-flutter-desktop/go-flutter/issues/272)
-docker: false
-engine-version: "" # change to a engine version commit

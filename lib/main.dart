@@ -26,11 +26,6 @@ void main() {
   runApp(MyApp());
 }
 
-void runDesktop() {
-  initializeLocator("desktop");
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
