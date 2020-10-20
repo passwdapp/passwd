@@ -12,7 +12,10 @@ part 'appstate.g.dart';
 /// As dart doesn't natively support data classes, [AppState] uses [FunctionData] and codegen to generate the copyWith method and the == operator
 @FunctionalData()
 class AppState extends $AppState {
+  @override
   final Entries entries;
+
+  @override
   final bool isSyncing;
 
   AppState({

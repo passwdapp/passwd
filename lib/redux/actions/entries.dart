@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../models/entry.dart';
 import '../../services/database/database_service.dart';
@@ -10,7 +11,7 @@ import 'favicon.dart';
 /// It accepts a boolean as its input
 class SyncIndicatorAction extends ReduxAction<AppState> {
   final bool isSyncing;
-  SyncIndicatorAction({this.isSyncing}) : assert(isSyncing != null);
+  SyncIndicatorAction({@required this.isSyncing}) : assert(isSyncing != null);
 
   @override
   AppState reduce() {

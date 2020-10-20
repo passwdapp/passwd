@@ -18,7 +18,7 @@ class AddTagAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    Tag newTag = tag
+    final newTag = tag
       ..id = locator<PasswordService>().generateRandomPassword(
         length: 24,
       );

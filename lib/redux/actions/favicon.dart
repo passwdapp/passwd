@@ -19,15 +19,14 @@ class AddFaviconAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     if (entry.name != null &&
         validate<bool>(URLValidator(), entry.name, true, false)) {
-      String favicon = await locator<FaviconService>().getBestFavicon(
-        entry.name.startsWith("http")
+      final favicon = await locator<FaviconService>().getBestFavicon(
+        entry.name.startsWith('http')
             ? Uri.parse(entry.name).host
-            : entry.name.split("/")[0],
+            : entry.name.split('/')[0],
       );
 
       if (favicon.isNotEmpty) {
-        Entry newEntry = entry..favicon = favicon;
-
+        final newEntry = entry..favicon = favicon;
         await dispatchFuture(ModifyEntryAction(entry, newEntry));
       }
     }
