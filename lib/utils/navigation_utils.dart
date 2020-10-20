@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 // TODO: Move navigation to this util
+/// [navigate] provides an abstraction over the [Dialog] and the [Navigator] APIs of flutter
+/// It pushes a [MaterialPageRoute] on mobile devices and a [Dialog] on tablets and desktops
 Future<dynamic> navigate(
   BuildContext context,
   Widget to, {

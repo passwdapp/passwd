@@ -2,6 +2,9 @@ import 'package:flutter/widgets.dart';
 
 import '../models/device_type.dart';
 
+/// [getDeviceType] returns [DeviceType] after processing the supplied [MediaQueryData]
+/// This is deprecated and is not used in the app
+@deprecated
 DeviceType getDeviceType(MediaQueryData data) {
   double deviceWidth = data.size.shortestSide;
 
