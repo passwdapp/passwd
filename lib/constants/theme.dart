@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:supercharged/supercharged.dart';
 
 // Application's text theme
-TextTheme textTheme = TextTheme(
+final textTheme = TextTheme(
   headline1: GoogleFonts.montserrat(
     fontSize: 96,
     fontWeight: FontWeight.w300,
@@ -71,7 +71,7 @@ TextTheme textTheme = TextTheme(
 );
 
 // Application's pageTransitionTheme
-PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
+final pageTransitionsTheme = PageTransitionsTheme(
   builders: <TargetPlatform, PageTransitionsBuilder>{
     TargetPlatform.android: SharedAxisPageTransitionsBuilder(
       transitionType: SharedAxisTransitionType.horizontal,
@@ -93,12 +93,12 @@ PageTransitionsTheme pageTransitionsTheme = PageTransitionsTheme(
 );
 
 // Application's appBarTheme
-AppBarTheme appBarTheme = AppBarTheme(
+final appBarTheme = AppBarTheme(
   color: Colors.transparent,
   elevation: 0,
 );
 
 // Application's dialogTheme
-DialogTheme dialogTheme = DialogTheme(
-  backgroundColor: "#181818".toColor(),
+final dialogTheme = DialogTheme(
+  backgroundColor: '#181818'.toColor(),
 );

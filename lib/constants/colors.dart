@@ -4,12 +4,12 @@ import 'package:supercharged/supercharged.dart';
 import '../models/color_info.dart';
 
 // These are the main colors of the app
-Color primaryColor = "#00ECD7".toColor();
-Color canvasColor = "#1A1A1A".toColor();
-Color primaryColorHovered = "#00AFA0".toColor();
+final primaryColor = '#00ECD7'.toColor();
+final canvasColor = '#1A1A1A'.toColor();
+final primaryColorHovered = '#00AFA0'.toColor();
 
 // These are used when no favicon is available
-List<Color> iconColors = [
+final iconColors = <Color>[
   Color(0xff49306B),
   Color(0xff6B2D5C),
   Color(0xffEE277C),
@@ -21,37 +21,37 @@ List<Color> iconColors = [
 ];
 
 // These are used for tags
-List<ColorInfo> tagColors = [
+final tagColors = <ColorInfo>[
   ColorInfo(
-    color: "#F44336".toColor(),
-    localizationTag: "color_red",
+    color: '#F44336'.toColor(),
+    localizationTag: 'color_red',
   ),
   ColorInfo(
-    color: "#F57C00".toColor(),
-    localizationTag: "color_orange",
+    color: '#F57C00'.toColor(),
+    localizationTag: 'color_orange',
   ),
   ColorInfo(
-    color: "#FFB300".toColor(),
-    localizationTag: "color_green",
+    color: '#FFB300'.toColor(),
+    localizationTag: 'color_green',
   ),
   ColorInfo(
-    color: "#4CAf50".toColor(),
-    localizationTag: "color_cyan",
+    color: '#4CAf50'.toColor(),
+    localizationTag: 'color_cyan',
   ),
   ColorInfo(
-    color: "#00ACC1".toColor(),
-    localizationTag: "color_light_blue",
+    color: '#00ACC1'.toColor(),
+    localizationTag: 'color_light_blue',
   ),
   ColorInfo(
-    color: "#1E88E5".toColor(),
-    localizationTag: "color_blue",
+    color: '#1E88E5'.toColor(),
+    localizationTag: 'color_blue',
   ),
   ColorInfo(
-    color: "#9C27B0".toColor(),
-    localizationTag: "color_purple",
+    color: '#9C27B0'.toColor(),
+    localizationTag: 'color_purple',
   ),
   ColorInfo(
-    color: "#E91E63".toColor(),
-    localizationTag: "color_pink",
+    color: '#E91E63'.toColor(),
+    localizationTag: 'color_pink',
   ),
 ];
