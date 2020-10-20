@@ -8,7 +8,7 @@ import '../../models/tag.dart';
 import '../../utils/get_device_type.dart';
 import 'tags_viewmodel.dart';
 
-class TagsWidget extends HookWidget {
+class TagsWidget extends StatelessWidget {
   final List<String> tags;
   final Function(List<String>) onChange;
   final bool showAdd;
@@ -23,82 +23,76 @@ class TagsWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Localize tags before release
-    return ViewModelBuilder<TagsViewModel>.reactive(
-      viewModelBuilder: () => TagsViewModel(
-        tags: tags,
-        onChange: onChange,
-      ),
-      builder: (context, model, child) => Container(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Tags".toUpperCase(),
-              style: TextStyle(
-                fontSize: 13,
-                letterSpacing: 1.5,
-                color: Colors.white.withOpacity(0.5),
-              ),
+    return Container(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Tags".toUpperCase(),
+            style: TextStyle(
+              fontSize: 13,
+              letterSpacing: 1.5,
+              color: Colors.white.withOpacity(0.5),
             ),
-            SizedBox(
-              height: 2,
-            ),
-            Wrap(
-              spacing: 8,
-              runSpacing: -8,
-              children: [
-                ...model.currentTags
-                    .map(
-                      (tag) => showAdd
-                          ? InputChip(
-                              avatar: Container(
-                                height: 12,
-                                width: 12,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(32),
-                                  color: tagColors[tag.color].color,
-                                ),
+          ),
+          SizedBox(
+            height: 2,
+          ),
+          Wrap(
+            spacing: 8,
+            runSpacing: -8,
+            children: [
+              ...model.currentTags
+                  .map(
+                    (tag) => showAdd
+                        ? InputChip(
+                            avatar: Container(
+                              height: 12,
+                              width: 12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(32),
+                                color: tagColors[tag.color].color,
                               ),
-                              label: Text(tag.name),
-                              deleteIcon: Icon(
-                                Icons.clear,
-                                size: 16,
-                              ),
-                              onDeleted: () {
-                                model.removeFromCurrentTags(tag);
-                              },
-                            )
-                          : Chip(
-                              avatar: Container(
-                                height: 12,
-                                width: 12,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(32),
-                                  color: tagColors[tag.color].color,
-                                ),
-                              ),
-                              label: Text(tag.name),
                             ),
-                    )
-                    .toList(),
-                if (showAdd)
-                  InputChip(
-                    label: Text("+"),
-                    onPressed: () {
-                      MediaQueryData data = MediaQuery.of(context);
-                      if (getDeviceType(data) == DeviceType.DESKTOP) {
-                        showCheckDialog(context, model);
-                      } else {
-                        showCheckSheet(context, model);
-                      }
-                    },
+                            label: Text(tag.name),
+                            deleteIcon: Icon(
+                              Icons.clear,
+                              size: 16,
+                            ),
+                            onDeleted: () {
+                              model.removeFromCurrentTags(tag);
+                            },
+                          )
+                        : Chip(
+                            avatar: Container(
+                              height: 12,
+                              width: 12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(32),
+                                color: tagColors[tag.color].color,
+                              ),
+                            ),
+                            label: Text(tag.name),
+                          ),
                   )
-              ],
-            )
-          ],
-        ),
+                  .toList(),
+              if (showAdd)
+                InputChip(
+                  label: Text("+"),
+                  onPressed: () {
+                    MediaQueryData data = MediaQuery.of(context);
+                    if (getDeviceType(data) == DeviceType.DESKTOP) {
+                      showCheckDialog(context, model);
+                    } else {
+                      showCheckSheet(context, model);
+                    }
+                  },
+                )
+            ],
+          )
+        ],
       ),
     );
   }
@@ -125,7 +119,8 @@ class TagsWidget extends HookWidget {
 
   Widget getCheckSheet(
     BuildContext context,
-    TagsViewModel model, [
+    List<Tag> databaseTags,
+    List<Tag> currentTags, [
     bool preferDialog = false,
   ]) {
     Widget sheet = Container(
@@ -135,9 +130,9 @@ class TagsWidget extends HookWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ...model.databaseTags.map(
+          ...databaseTags.map(
             (tag) {
-              bool isChecked = model.currentTags.indexWhere(
+              bool isChecked = currentTags.indexWhere(
                     (element) => element.id == tag.id,
                   ) !=
                   -1;

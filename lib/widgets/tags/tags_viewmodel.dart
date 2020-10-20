@@ -38,13 +38,6 @@ class TagsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  @deprecated
-  void remove(String id) {
-    tags.remove(id);
-    currentTags = currentTags.where((element) => element.id != id).toList();
-    postChange();
-  }
-
   void addToCurrentTags(Tag tag) {
     currentTags.add(tag);
     tags.add(tag.id);

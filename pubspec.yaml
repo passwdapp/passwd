@@ -22,7 +22,6 @@ dependencies:
   dio: ^3.0.10
   encrypt: ^4.1.0
   ez_localization: ^0.3.0+1
-  flutter_hooks: ^0.14.1
   flutter_icons: ^1.1.0
   flutter_otp_text_field: ^0.0.1+1
   flutter_secure_storage: ^3.3.4
@@ -39,8 +38,6 @@ dependencies:
   provider_for_redux: ^1.1.3
   responsive_builder: ^0.3.0
   shared_preferences: ^0.5.12+2
-  stacked: ^1.7.6
-  stacked_services: ^0.5.4+4
   supercharged: ^1.10.0
 
 dev_dependencies:
