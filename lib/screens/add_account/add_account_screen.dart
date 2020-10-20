@@ -142,8 +142,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   }
 
   void add() {
-    print("here");
-
     Entry data = Entry(
       favicon: "",
       name: name,

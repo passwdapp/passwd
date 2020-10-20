@@ -34,7 +34,6 @@ class _TagsWidgetState extends State<TagsWidget> {
     super.initState();
 
     tags = widget.tags;
-    loadTags();
   }
 
   void loadTags() {
@@ -66,7 +65,10 @@ class _TagsWidgetState extends State<TagsWidget> {
   }
 
   Future addTag(Tag tag) async {
-    await Provider.of<DispatchFuture>(context)(AddTagAction(tag));
+    await Provider.of<DispatchFuture>(
+      context,
+      listen: false,
+    )(AddTagAction(tag));
 
     loadTags();
     postChange();
@@ -80,6 +82,7 @@ class _TagsWidgetState extends State<TagsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    loadTags();
     // TODO: Localize tags before release
     return Container(
       width: double.infinity,
@@ -293,7 +296,7 @@ class _TagsWidgetState extends State<TagsWidget> {
 
     return Material(
       child: StatefulBuilder(
-        builder: (context, setState) => Container(
+        builder: (context, setSheetState) => Container(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
@@ -333,7 +336,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            setState(() => currentColor = index);
+                            setSheetState(() => currentColor = index);
                           },
                         ),
                       ),
@@ -351,6 +354,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                     FlatButton(
                       onPressed: () {
                         Navigator.of(context).pop();
+                        newTagController.clear();
                       },
                       child: Text(
                         "Cancel".toUpperCase(),
