@@ -20,7 +20,7 @@ void main() {
   if (Platform.isAndroid || Platform.isIOS) {
     initializeLocator();
   } else {
-    initializeLocator("desktop");
+    initializeLocator('desktop');
   }
 
   runApp(MyApp());
@@ -44,15 +44,15 @@ class MyApp extends StatelessWidget {
       child: EzLocalizationBuilder(
         delegate: EzLocalizationDelegate(
           supportedLocales: [
-            Locale("en"),
-            Locale("hi"),
-            Locale("fr"),
-            Locale("nl"),
-            Locale("pl"),
+            Locale('en'),
+            Locale('hi'),
+            Locale('fr'),
+            Locale('nl'),
+            Locale('pl'),
           ],
         ),
         builder: (context, localizationDelegate) => MaterialApp(
-          title: "Passwd",
+          title: 'Passwd',
           localizationsDelegates: localizationDelegate.localizationDelegates,
           supportedLocales: localizationDelegate.supportedLocales,
           localeResolutionCallback:
