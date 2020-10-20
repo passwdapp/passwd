@@ -20,7 +20,7 @@ import 'sync_service.dart';
 /// Using the binary implementation is strongly recommended
 /// This is not injected currently
 class SyncImpl implements SyncService {
-  final String fileName = "db___test.passwd";
+  final String fileName = 'db___test.passwd';
 
   final AdvanceCryptoService advanceCryptoService =
       locator<AdvanceCryptoService>();
@@ -31,17 +31,17 @@ class SyncImpl implements SyncService {
   @override
   Future<Entries> readDatabaseLocally() async {
     try {
-      Directory directory = await pathService.getDocDir();
-      String filePath = path.join(directory.path, "$fileName");
-      File dbFile = File(filePath);
+      final directory = await pathService.getDocDir();
+      final filePath = path.join(directory.path, '$fileName');
+      final dbFile = File(filePath);
 
-      String fileContent = await dbFile.readAsString();
-      String decryptedJson = await advanceCryptoService.decryptText(
+      final fileContent = await dbFile.readAsString();
+      final decryptedJson = await advanceCryptoService.decryptText(
         fileContent,
         await authenticationService.readEncryptionKey(),
       );
 
-      Entries entries = Entries.fromJson(jsonDecode(decryptedJson));
+      final entries = Entries.fromJson(jsonDecode(decryptedJson));
       return entries;
     } catch (e) {
       print(e);
@@ -52,15 +52,15 @@ class SyncImpl implements SyncService {
   @override
   Future<bool> syncronizeDatabaseLocally(Entries entries) async {
     try {
-      String plainTextJson = jsonEncode(entries.toJson());
-      String encryptedJson = await advanceCryptoService.encryptText(
+      final plainTextJson = jsonEncode(entries.toJson());
+      final encryptedJson = await advanceCryptoService.encryptText(
         plainTextJson,
         await authenticationService.readEncryptionKey(),
       );
 
-      Directory directory = await pathService.getDocDir();
-      String filePath = path.join(directory.path, "$fileName");
-      File dbFile = File(filePath);
+      final directory = await pathService.getDocDir();
+      final filePath = path.join(directory.path, '$fileName');
+      final dbFile = File(filePath);
 
       await dbFile.writeAsString(encryptedJson);
 

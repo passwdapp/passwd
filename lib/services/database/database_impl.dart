@@ -42,7 +42,7 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future modifyEntry(Entry old, Entry changed) async {
-    int index = _entries.entries.indexWhere(
+    final index = _entries.entries.indexWhere(
       (element) => element.id == old.id,
     );
 
@@ -54,9 +54,7 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future addTag(Tag tag) async {
-    if (_entries.tags == null) {
-      _entries.tags = [];
-    }
+    _entries.tags ??= [];
 
     _entries.tags.add(tag);
     await syncAndReloadDatabase();

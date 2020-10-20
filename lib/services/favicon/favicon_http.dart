@@ -13,32 +13,31 @@ class FaviconHttp implements FaviconService {
   @override
   Future<String> getBestFavicon(String url) async {
     try {
-      Response response = await Dio().get(
-        "https://favicongrabber.com/api/grab/$url",
+      final response = await Dio().get(
+        'https://favicongrabber.com/api/grab/$url',
       ); // URL is actually a domain lol
 
       if (response.statusCode == 200) {
-        FaviconResponse faviconResponse =
-            FaviconResponse.fromJson(response.data);
+        final faviconResponse = FaviconResponse.fromJson(response.data);
 
         if (faviconResponse.icons.isEmpty) {
-          return "";
+          return '';
         } else {
-          List<Icons> filteredIcons = faviconResponse.icons
+          final filteredIcons = faviconResponse.icons
               .where(
                 (element) =>
-                    element.src.endsWith("png") ||
-                    element.src.endsWith("ico") ||
-                    (element.type != null && element.type == "image/png") ||
-                    (element.type != null && element.type == "image/x-icon"),
+                    element.src.endsWith('png') ||
+                    element.src.endsWith('ico') ||
+                    (element.type != null && element.type == 'image/png') ||
+                    (element.type != null && element.type == 'image/x-icon'),
               )
               .toList();
 
-          Icons bestIcon = filteredIcons[0];
-          int bestQuality = 0;
+          var bestIcon = filteredIcons[0];
+          var bestQuality = 0;
 
-          for (Icons element in filteredIcons) {
-            if (RegExp(r"fluid[-_]?icon").hasMatch(element.src)) {
+          for (final element in filteredIcons) {
+            if (RegExp(r'fluid[-_]?icon').hasMatch(element.src)) {
               bestIcon = element;
               bestQuality = 9999;
               break;
@@ -50,40 +49,40 @@ class FaviconHttp implements FaviconService {
           return bestIcon.src;
         }
       } else {
-        return "";
+        return '';
       }
     } catch (e) {
       print(e);
-      return "";
+      return '';
     }
   }
 
   int estimateQuality(Icons icon) {
-    int sizeRank = estimateSize(icon);
-    int relRank = estimateRel(icon.src);
-    int extRank = estimateExt(icon.src);
+    final sizeRank = estimateSize(icon);
+    final relRank = estimateRel(icon.src);
+    final extRank = estimateExt(icon.src);
 
     return ((1920 - sizeRank) << (2 + 1)) + (relRank << 1) + extRank;
   }
 
   int estimateSize(Icons icon) {
-    int rank = 1920;
+    var rank = 1920;
 
     if (icon.sizes != null) {
-      if (RegExp("any").hasMatch(icon.sizes)) {
+      if (RegExp('any').hasMatch(icon.sizes)) {
         rank = 100;
       } else {
-        RegExpMatch match = RegExp(
-          r"(\d+)x(\d+)",
+        final match = RegExp(
+          r'(\d+)x(\d+)',
           caseSensitive: false,
         ).firstMatch(icon.sizes);
 
         if (match != null) {
-          int height = 100 -
+          final height = 100 -
               int.parse(
                 icon.sizes
                     .substring(match.start, match.end)
-                    .split(RegExp("x", caseSensitive: false))[0],
+                    .split(RegExp('x', caseSensitive: false))[0],
                 onError: (str) => 10,
               );
 
@@ -91,15 +90,15 @@ class FaviconHttp implements FaviconService {
         }
       }
     } else {
-      RegExpMatch match = RegExp(
-        r"(\d+)x(\d+)",
+      final match = RegExp(
+        r'(\d+)x(\d+)',
         caseSensitive: false,
       ).firstMatch(icon.src);
 
       if (match != null) {
-        int height = int.parse(icon.sizes
+        final height = int.parse(icon.sizes
             .substring(match.start, match.end)
-            .split(RegExp("x", caseSensitive: false))[0]);
+            .split(RegExp('x', caseSensitive: false))[0]);
 
         rank = height.abs();
       }

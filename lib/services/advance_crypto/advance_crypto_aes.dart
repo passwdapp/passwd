@@ -20,12 +20,12 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
     String plainText,
     String password,
   ) async {
-    Key key = Key(await deriveKey(password));
-    Encrypter encrypter = Encrypter(AES(key));
-    IV iv = IV.fromSecureRandom(16);
-    Encrypted encrypted = encrypter.encrypt(plainText, iv: iv);
+    final key = Key(await deriveKey(password));
+    final encrypter = Encrypter(AES(key));
+    final iv = IV.fromSecureRandom(16);
+    final encrypted = encrypter.encrypt(plainText, iv: iv);
 
-    return "${encrypted.base64}|${iv.base64}";
+    return '${encrypted.base64}|${iv.base64}';
   }
 
   @override
@@ -33,10 +33,10 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
     Uint8List data,
     String password,
   ) async {
-    Key key = Key(await deriveKey(password));
-    Encrypter encrypter = Encrypter(AES(key));
-    IV iv = IV.fromSecureRandom(16);
-    Encrypted encrypted = encrypter.encryptBytes(data, iv: iv);
+    final key = Key(await deriveKey(password));
+    final encrypter = Encrypter(AES(key));
+    final iv = IV.fromSecureRandom(16);
+    final encrypted = encrypter.encryptBytes(data, iv: iv);
 
     return Uint8List.fromList([...encrypted.bytes, ...iv.bytes]);
   }
@@ -46,20 +46,20 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
     String cipherText,
     String password,
   ) async {
-    Key key = Key(await deriveKey(password));
-    Encrypter encrypter = Encrypter(AES(key));
+    final key = Key(await deriveKey(password));
+    final encrypter = Encrypter(AES(key));
 
     try {
-      List<String> encrypted = cipherText.split("|");
+      final encrypted = cipherText.split('|');
 
-      String decrypted = encrypter.decrypt(
+      final decrypted = encrypter.decrypt(
         Encrypted.from64(encrypted[0]),
         iv: IV.fromBase64(encrypted[1]),
       );
 
       return decrypted;
     } catch (e) {
-      throw Exception("There was an error decrypting the inputs");
+      throw Exception('There was an error decrypting the inputs');
     }
   }
 
@@ -68,18 +68,18 @@ class AdvanceCryptoAes implements AdvanceCryptoService {
     Uint8List data,
     String password,
   ) async {
-    Key key = Key(await deriveKey(password));
-    Encrypter encrypter = Encrypter(AES(key));
+    final key = Key(await deriveKey(password));
+    final encrypter = Encrypter(AES(key));
 
     try {
-      List<int> decrypted = encrypter.decryptBytes(
+      final decrypted = encrypter.decryptBytes(
         Encrypted(data.sublist(0, data.length - 16)),
         iv: IV(data.sublist(data.length - 16, data.length)),
       );
 
       return Uint8List.fromList(decrypted);
     } catch (e) {
-      throw Exception("There was an error decrypting the inputs");
+      throw Exception('There was an error decrypting the inputs');
     }
   }
 

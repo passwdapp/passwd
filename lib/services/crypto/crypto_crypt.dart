@@ -21,7 +21,7 @@ class CryptoCrypt implements CryptoService {
     WARNING
   */
   final Uint8List hmacKey = utf8.encode(
-    "3MPJwJw9UvN8GQEUi4v8LBJCkmLa1a0K3RvskDVhjDvdcp2hiI4D7sf4KIhI8RAT",
+    '3MPJwJw9UvN8GQEUi4v8LBJCkmLa1a0K3RvskDVhjDvdcp2hiI4D7sf4KIhI8RAT',
   );
 
   @override
@@ -31,7 +31,7 @@ class CryptoCrypt implements CryptoService {
 
   @override
   String hmac(Uint8List input) {
-    crypto.Hmac hmac = crypto.Hmac(crypto.sha512, hmacKey);
+    final hmac = crypto.Hmac(crypto.sha512, hmacKey);
     return hmac.convert(input).toString();
   }
 }

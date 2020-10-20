@@ -19,7 +19,7 @@ class BiometricsLocalAuth implements BiometricsService {
     }
 
     try {
-      bool authenticated = await authentication.authenticateWithBiometrics(
+      final authenticated = await authentication.authenticateWithBiometrics(
         localizedReason: reason,
         stickyAuth: true,
       );

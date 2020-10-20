@@ -18,13 +18,13 @@ class PasswordImpl implements PasswordService {
     bool capitalize = true,
   }) async {
     List<dynamic> dicewareList =
-        jsonDecode(await rootBundle.loadString("assets/data/diceware.json"));
+        jsonDecode(await rootBundle.loadString('assets/data/diceware.json'));
 
-    List<String> password = [];
-    int max = dicewareList.length;
+    final password = [];
+    final max = dicewareList.length;
 
-    for (int i = 0; i < words; i++) {
-      String entry = dicewareList[getPsuedoRandomNumber(max)].toString();
+    for (var i = 0; i < words; i++) {
+      final entry = dicewareList[getPsuedoRandomNumber(max)].toString();
 
       if (capitalize) {
         password.add(entry[0].toUpperCase() + entry.substring(1));
@@ -33,7 +33,7 @@ class PasswordImpl implements PasswordService {
       }
     }
 
-    return password.join(" ");
+    return password.join(' ');
   }
 
   @override
@@ -43,7 +43,7 @@ class PasswordImpl implements PasswordService {
 
   @override
   String generateRandomPassword({int length = 12}) {
-    BaseXCodec base = BaseXCodec(passwordLetters);
+    final base = BaseXCodec(passwordLetters);
 
     return base
         .encode(
@@ -54,8 +54,8 @@ class PasswordImpl implements PasswordService {
             ),
           ),
         )
-        .split("")
+        .split('')
         .sublist(0, length)
-        .join("");
+        .join('');
   }
 }
