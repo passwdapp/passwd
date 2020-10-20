@@ -1,6 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:passwd/screens/account_details/account_details_screen.dart';
 import 'package:passwd/utils/navigation_utils.dart';
@@ -16,7 +17,111 @@ import '../add_account/add_account_screen.dart';
 
 // Navigation Item, not to be navigated to
 // So not injected in auto_route
-class HomePasswordsScreen extends StatelessWidget {
+class HomePasswordsScreen extends StatefulWidget {
+  @override
+  _HomePasswordsScreenState createState() => _HomePasswordsScreenState();
+}
+
+class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
+  double x = 0;
+  double y = 0;
+
+  Future showPopupMenu(int index, Entry entry) async {
+    final size = MediaQuery.of(context).size;
+    int selected = await showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        x,
+        y,
+        size.width - x,
+        size.height - y,
+      ),
+      items: [
+        PopupMenuItem(
+          child: Text("Delete ${entry.name}"),
+          value: 0,
+        ),
+        PopupMenuItem(
+          child: Text("Copy Password for ${entry.name}"),
+          value: 1,
+        ),
+      ],
+    );
+
+    switch (selected) {
+      case 0:
+        showDeleteDialog(index);
+        break;
+
+      case 1:
+        copy(entry.password);
+        break;
+    }
+  }
+
+  void copy(String text) {
+    Clipboard.setData(
+      ClipboardData(
+        text: text,
+      ),
+    );
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          context.getString("copied_to_clipboard"),
+        ),
+      ),
+    );
+  }
+
+  void showDeleteDialog(int i) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          context.getString("deletion_dialog_title"),
+        ),
+        content: RichText(
+          text: TextSpan(
+            text: context.getString("warning"),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red[200],
+            ),
+            children: [
+              TextSpan(
+                text: context.getString("irreversible"),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          FlatButton(
+            onPressed: () async {
+              Navigator.of(context).pop();
+
+              await Provider.of<DispatchFuture>(
+                context,
+                listen: false,
+              )(RemoveEntryAction(i));
+            },
+            child: Text(
+              context.getString("yes"),
+            ),
+          ),
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              context.getString("no"),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<AppState>(context);
@@ -103,68 +208,36 @@ class HomePasswordsScreen extends StatelessWidget {
                       ),
                     ],
                   )
-                : ListView.builder(
-                    itemBuilder: (context, i) => InkWell(
-                      onLongPress: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text(
-                              context.getString("deletion_dialog_title"),
-                            ),
-                            content: RichText(
-                              text: TextSpan(
-                                text: context.getString("warning"),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red[200],
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: context.getString("irreversible"),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            actions: [
-                              FlatButton(
-                                onPressed: () async {
-                                  Navigator.of(context).pop();
-
-                                  await Provider.of<DispatchFuture>(
-                                    context,
-                                    listen: false,
-                                  )(RemoveEntryAction(i));
-                                },
-                                child: Text(
-                                  context.getString("yes"),
-                                ),
-                              ),
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text(
-                                  context.getString("no"),
-                                ),
-                              ),
-                            ],
+                : MouseRegion(
+                    onHover: (event) {
+                      x = event.position.dx;
+                      y = event.position.dy;
+                    },
+                    child: ListView.builder(
+                      itemBuilder: (context, i) => GestureDetector(
+                        onSecondaryTap: () {
+                          showPopupMenu(i, state.entries.entries[i]);
+                        },
+                        child: InkWell(
+                          onLongPress: () {
+                            showPopupMenu(i, state.entries.entries[i]);
+                          },
+                          onTap: () {
+                            navigate(
+                              context,
+                              AccountDetailsScreen(
+                                  entry: state.entries.entries[i]),
+                            );
+                          },
+                          child: HomeListItem(
+                            entry: state.entries.entries[i],
                           ),
-                        );
-                      },
-                      onTap: () {
-                        navigate(
-                          context,
-                          AccountDetailsScreen(entry: state.entries.entries[i]),
-                        );
-                      },
-                      child: HomeListItem(
-                        entry: state.entries.entries[i],
+                        ),
                       ),
-                    ),
-                    itemCount: state.entries.entries.length,
-                    physics: const AlwaysScrollableScrollPhysics(
-                      parent: const BouncingScrollPhysics(),
+                      itemCount: state.entries.entries.length,
+                      physics: const AlwaysScrollableScrollPhysics(
+                        parent: const BouncingScrollPhysics(),
+                      ),
                     ),
                   ),
           ),

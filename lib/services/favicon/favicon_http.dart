@@ -49,6 +49,7 @@ class FaviconHttp implements FaviconService {
         return "";
       }
     } catch (e) {
+      print(e);
       return "";
     }
   }
