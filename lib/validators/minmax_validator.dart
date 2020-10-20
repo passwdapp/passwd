@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../models/validator.dart';
 
 /// [MinMaxValidator] implements [Validator] interface to provide with a configurable validator
@@ -7,8 +9,8 @@ class MinMaxValidator implements Validator {
   int max;
 
   MinMaxValidator({
-    this.min,
-    this.max,
+    @required this.min,
+    @required this.max,
   })  : assert(min != null),
         assert(max != null);
 

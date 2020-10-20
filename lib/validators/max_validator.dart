@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../models/validator.dart';
 
 /// [MaxValidator] implements [Validator] interface to provide with a configurable validator
@@ -5,7 +7,7 @@ import '../models/validator.dart';
 class MaxValidator implements Validator {
   int max;
 
-  MaxValidator({this.max}) : assert(max != null);
+  MaxValidator({@required this.max}) : assert(max != null);
 
   @override
   bool validate(String input) {

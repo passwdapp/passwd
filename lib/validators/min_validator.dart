@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../models/validator.dart';
 
 /// [MinValidator] implements [Validator] interface to provide with a configurable validator
@@ -5,7 +7,7 @@ import '../models/validator.dart';
 class MinValidator implements Validator {
   int min;
 
-  MinValidator({this.min}) : assert(min != null);
+  MinValidator({@required this.min}) : assert(min != null);
 
   @override
   bool validate(String input) {
