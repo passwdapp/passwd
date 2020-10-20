@@ -6,7 +6,6 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import 'advance_crypto/advance_crypto_aes.dart';
 import 'advance_crypto/advance_crypto_service.dart';
@@ -31,7 +30,6 @@ import 'secure_kv/secure_kv_sharedprefs.dart' as passwd;
 import 'secure_kv/secure_kv.dart';
 import 'sync/sync_binary.dart';
 import 'sync/sync_service.dart';
-import 'third_party.dart';
 
 /// Environment names
 const _mobile = 'mobile';
@@ -46,15 +44,12 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
-  final thirdPartySevices = _$ThirdPartySevices();
   gh.lazySingleton<AdvanceCryptoService>(() => AdvanceCryptoAes());
   gh.lazySingleton<AuthenticationService>(() => AuthenticationImpl());
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<FaviconService>(() => FaviconHttp());
-  gh.lazySingleton<NavigationService>(
-      () => thirdPartySevices.navigationService);
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<QRService>(() => QRFlutterBarcodeScanner());
@@ -64,9 +59,4 @@ GetIt $initGetIt(
       registerFor: {_desktop});
   gh.lazySingleton<SyncService>(() => SyncImpl());
   return get;
-}
-
-class _$ThirdPartySevices extends ThirdPartySevices {
-  @override
-  NavigationService get navigationService => NavigationService();
 }

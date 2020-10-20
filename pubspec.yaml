@@ -12,7 +12,6 @@ dependencies:
   animations: ^1.1.2
   archive: ^2.0.13
   async_redux: ^4.0.2
-  auto_route: ^0.6.9
   barcode_scan: ^3.0.1
   base_x: ^1.0.1
   cached_network_image: ^2.3.3
@@ -43,7 +42,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^0.6.9
   build_runner: ^1.10.2
   flutter_launcher_icons: ^0.8.1
   functional_data_generator: ^0.3.4

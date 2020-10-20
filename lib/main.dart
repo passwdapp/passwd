@@ -3,13 +3,12 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider_for_redux/provider_for_redux.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import 'constants/colors.dart';
 import 'constants/theme.dart';
 import 'models/entries.dart';
 import 'redux/appstate.dart';
-import 'router/router.gr.dart' as router;
+import 'screens/init/init_screen.dart';
 import 'services/locator.dart';
 
 void main() {
@@ -126,9 +125,7 @@ class MyApp extends StatelessWidget {
             return child;
           },
           debugShowCheckedModeBanner: false,
-          onGenerateRoute: router.Router(),
-          initialRoute: router.Routes.initScreen,
-          navigatorKey: locator<NavigationService>().navigatorKey,
+          home: InitScreen(),
         ),
       ),
     );
