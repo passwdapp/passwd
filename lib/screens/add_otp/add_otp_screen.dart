@@ -182,4 +182,23 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    disposeTextEditingControllers();
+    disposeFocusNodes();
+
+    super.dispose();
+  }
+
+  void disposeTextEditingControllers() {
+    secretController.dispose();
+    digitsController.dispose();
+    periodController.dispose();
+  }
+
+  void disposeFocusNodes() {
+    digitsFocus.dispose();
+    periodFocus.dispose();
+  }
 }

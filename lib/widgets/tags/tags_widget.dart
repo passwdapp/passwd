@@ -1,14 +1,13 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:stacked/stacked.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
-import '../../models/device_type.dart';
 import '../../models/tag.dart';
-import '../../utils/get_device_type.dart';
-import 'tags_viewmodel.dart';
+import '../../redux/actions/tags.dart';
+import '../../redux/appstate.dart';
 
-class TagsWidget extends StatelessWidget {
+class TagsWidget extends StatefulWidget {
   final List<String> tags;
   final Function(List<String>) onChange;
   final bool showAdd;
@@ -17,8 +16,67 @@ class TagsWidget extends StatelessWidget {
     @required this.onChange,
     @required this.tags,
     this.showAdd = false,
-  })  : assert(onChange != null),
-        assert(tags != null);
+  });
+
+  @override
+  _TagsWidgetState createState() => _TagsWidgetState();
+}
+
+class _TagsWidgetState extends State<TagsWidget> {
+  TextEditingController newTagController = TextEditingController();
+
+  List<String> tags;
+  List<Tag> currentTags = [];
+  List<Tag> databaseTags = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    tags = widget.tags;
+    loadTags();
+  }
+
+  void loadTags() {
+    List<Tag> _tags = Provider.of<AppState>(context).entries.tags;
+
+    setState(() {
+      databaseTags = _tags ?? [];
+
+      currentTags = databaseTags
+          .where(
+            (element) => tags.contains(element.id),
+          )
+          .toList();
+    });
+  }
+
+  void removeFromCurrentTags(Tag tag) {
+    setState(() {
+      currentTags =
+          currentTags.where((element) => element.id != tag.id).toList();
+      tags.remove(tag.id);
+    });
+
+    postChange();
+  }
+
+  void postChange() {
+    widget.onChange(tags);
+  }
+
+  Future addTag(Tag tag) async {
+    await Provider.of<DispatchFuture>(context)(AddTagAction(tag));
+
+    loadTags();
+    postChange();
+  }
+
+  void addToCurrentTags(Tag tag) {
+    currentTags.add(tag);
+    tags.add(tag.id);
+    postChange();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +102,9 @@ class TagsWidget extends StatelessWidget {
             spacing: 8,
             runSpacing: -8,
             children: [
-              ...model.currentTags
+              ...currentTags
                   .map(
-                    (tag) => showAdd
+                    (tag) => widget.showAdd
                         ? InputChip(
                             avatar: Container(
                               height: 12,
@@ -62,7 +120,7 @@ class TagsWidget extends StatelessWidget {
                               size: 16,
                             ),
                             onDeleted: () {
-                              model.removeFromCurrentTags(tag);
+                              removeFromCurrentTags(tag);
                             },
                           )
                         : Chip(
@@ -78,15 +136,15 @@ class TagsWidget extends StatelessWidget {
                           ),
                   )
                   .toList(),
-              if (showAdd)
+              if (widget.showAdd)
                 InputChip(
                   label: Text("+"),
                   onPressed: () {
                     MediaQueryData data = MediaQuery.of(context);
-                    if (getDeviceType(data) == DeviceType.DESKTOP) {
-                      showCheckDialog(context, model);
+                    if (data.size.shortestSide > 600) {
+                      showCheckDialog();
                     } else {
-                      showCheckSheet(context, model);
+                      showCheckSheet();
                     }
                   },
                 )
@@ -97,30 +155,27 @@ class TagsWidget extends StatelessWidget {
     );
   }
 
-  void showCheckSheet(BuildContext context, TagsViewModel model) {
+  void showCheckSheet() {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (context) => getCheckSheet(context, model),
+      builder: (context) => getCheckSheet(),
     );
   }
 
-  void showCheckDialog(BuildContext context, TagsViewModel model) {
+  void showCheckDialog() {
     showDialog(
       context: context,
       builder: (context) => Center(
         child: SizedBox(
           width: 380,
-          child: getCheckSheet(context, model, true),
+          child: getCheckSheet(true),
         ),
       ),
     );
   }
 
-  Widget getCheckSheet(
-    BuildContext context,
-    List<Tag> databaseTags,
-    List<Tag> currentTags, [
+  Widget getCheckSheet([
     bool preferDialog = false,
   ]) {
     Widget sheet = Container(
@@ -162,9 +217,9 @@ class TagsWidget extends StatelessWidget {
                     setState(() => isChecked = val);
 
                     if (val) {
-                      model.addToCurrentTags(tag);
+                      addToCurrentTags(tag);
                     } else {
-                      model.removeFromCurrentTags(tag);
+                      removeFromCurrentTags(tag);
                     }
                   },
                 ),
@@ -178,14 +233,14 @@ class TagsWidget extends StatelessWidget {
               Navigator.of(context).pop();
 
               if (preferDialog) {
-                showAddDialog(context, (t) async {
-                  await model.addTag(t);
-                  showCheckDialog(context, model);
+                showAddDialog((t) async {
+                  await addTag(t);
+                  showCheckDialog();
                 });
               } else {
-                showAddSheet(context, (t) async {
-                  await model.addTag(t);
-                  showCheckSheet(context, model);
+                showAddSheet((t) async {
+                  await addTag(t);
+                  showCheckSheet();
                 });
               }
             },
@@ -213,29 +268,27 @@ class TagsWidget extends StatelessWidget {
     }
   }
 
-  void showAddSheet(BuildContext context, Future Function(Tag) callback) {
+  void showAddSheet(Future Function(Tag) callback) {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (context) => getAddSheet(context, callback),
+      builder: (context) => getAddSheet(callback),
     );
   }
 
-  void showAddDialog(BuildContext context, Future Function(Tag) callback) {
+  void showAddDialog(Future Function(Tag) callback) {
     showDialog(
       context: context,
       builder: (context) => Center(
         child: SizedBox(
           width: 380,
-          child: getAddSheet(context, callback),
+          child: getAddSheet(callback),
         ),
       ),
     );
   }
 
-  Widget getAddSheet(BuildContext context, Future Function(Tag) callback) {
-    TextEditingController newTagController = TextEditingController();
-
+  Widget getAddSheet(Future Function(Tag) callback) {
     int currentColor = 0;
 
     return Material(
@@ -329,5 +382,11 @@ class TagsWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    newTagController.dispose();
+    super.dispose();
   }
 }

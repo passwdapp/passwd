@@ -38,9 +38,7 @@ class ReloadAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() => dispatch(
-        SyncIndicatorAction(isSyncing: false),
-      );
+  void after() => dispatch(SyncIndicatorAction(isSyncing: false));
 }
 
 class AddEntryAction extends ReduxAction<AppState> {

@@ -210,4 +210,10 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    wordController.dispose();
+    super.dispose();
+  }
 }
