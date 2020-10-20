@@ -48,17 +48,17 @@ class Entry {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['c'] = this.colorId;
-    data['n'] = this.name;
-    data['u'] = this.username;
-    data['p'] = this.password;
-    data['no'] = this.note;
-    data['f'] = this.favicon;
-    data['i'] = this.id;
-    data['t'] = this.tags;
-    if (this.otp != null) {
-      data['o'] = this.otp.toJson();
+    final data = <String, dynamic>{};
+    data['c'] = colorId;
+    data['n'] = name;
+    data['u'] = username;
+    data['p'] = password;
+    data['no'] = note;
+    data['f'] = favicon;
+    data['i'] = id;
+    data['t'] = tags;
+    if (otp != null) {
+      data['o'] = otp.toJson();
     }
     return data;
   }

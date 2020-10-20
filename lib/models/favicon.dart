@@ -10,18 +10,18 @@ class FaviconResponse {
   FaviconResponse.fromJson(Map<String, dynamic> json) {
     domain = json['domain'];
     if (json['icons'] != null) {
-      icons = new List<Icons>();
+      icons = <Icons>[];
       json['icons'].forEach((v) {
-        icons.add(new Icons.fromJson(v));
+        icons.add(Icons.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['domain'] = this.domain;
-    if (this.icons != null) {
-      data['icons'] = this.icons.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{};
+    data['domain'] = domain;
+    if (icons != null) {
+      data['icons'] = icons.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -42,10 +42,10 @@ class Icons {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['src'] = this.src;
-    data['type'] = this.type;
-    data['sizes'] = this.sizes;
+    final data = <String, dynamic>{};
+    data['src'] = src;
+    data['type'] = type;
+    data['sizes'] = sizes;
     return data;
   }
 }

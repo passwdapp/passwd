@@ -17,10 +17,10 @@ class Tag {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['i'] = this.id;
-    data['n'] = this.name;
-    data['c'] = this.color;
+    final data = <String, dynamic>{};
+    data['i'] = id;
+    data['n'] = name;
+    data['c'] = color;
     return data;
   }
 }

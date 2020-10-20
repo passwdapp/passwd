@@ -6,7 +6,7 @@ class ColorInfo {
   Color color;
   String localizationTag;
 
-  ColorInfo({this.color, this.localizationTag})
+  ColorInfo({@required this.color, @required this.localizationTag})
       : assert(color != null),
         assert(localizationTag != null);
 }

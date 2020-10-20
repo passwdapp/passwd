@@ -30,14 +30,14 @@ class Otp {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['t'] = this.type;
-    data['i'] = this.issuer;
-    data['a'] = this.algorithm;
-    data['s'] = this.secret;
-    data['ac'] = this.account;
-    data['d'] = this.digits;
-    data['ti'] = this.timeout;
+    final data = <String, dynamic>{};
+    data['t'] = type;
+    data['i'] = issuer;
+    data['a'] = algorithm;
+    data['s'] = secret;
+    data['ac'] = account;
+    data['d'] = digits;
+    data['ti'] = timeout;
     return data;
   }
 }
