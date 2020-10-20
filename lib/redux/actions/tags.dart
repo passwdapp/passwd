@@ -26,5 +26,5 @@ class AddTagAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() => dispatch(SyncIndicatorAction(isSyncing: false));
+  void after() => dispatch(ReloadAction());
 }

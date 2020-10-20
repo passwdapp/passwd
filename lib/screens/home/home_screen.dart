@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:async_redux/async_redux.dart' hide ViewModelBuilder;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -60,11 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: stack,
       ),
-      desktop: Scaffold(
+      tablet: Scaffold(
         body: Row(
           children: [
             Container(
-              width: 272,
+              width: max(264, MediaQuery.of(context).size.width / 6),
               color: Colors.white.withOpacity(0.025),
               padding: const EdgeInsets.symmetric(
                 horizontal: 4,
@@ -97,36 +99,36 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      tablet: Scaffold(
-        body: Row(
-          children: [
-            NavigationRail(
-              selectedIndex: currentItem,
-              onDestinationSelected: (i) {
-                setCurrentItem(i);
-              },
-              labelType: NavigationRailLabelType.all,
-              destinations: navMenuEntries
-                  .map(
-                    (e) => NavigationRailDestination(
-                      icon: Icon(e.icon),
-                      label: Text(e.localizationTag),
-                    ),
-                  )
-                  .toList(),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 2,
-                  horizontal: 4,
-                ),
-                child: stack,
-              ),
-            ),
-          ],
-        ),
-      ),
+      // tablet: Scaffold(
+      //   body: Row(
+      //     children: [
+      //       NavigationRail(
+      //         selectedIndex: currentItem,
+      //         onDestinationSelected: (i) {
+      //           setCurrentItem(i);
+      //         },
+      //         labelType: NavigationRailLabelType.all,
+      //         destinations: navMenuEntries
+      //             .map(
+      //               (e) => NavigationRailDestination(
+      //                 icon: Icon(e.icon),
+      //                 label: Text(e.localizationTag),
+      //               ),
+      //             )
+      //             .toList(),
+      //       ),
+      //       Expanded(
+      //         child: Padding(
+      //           padding: const EdgeInsets.symmetric(
+      //             vertical: 2,
+      //             horizontal: 4,
+      //           ),
+      //           child: stack,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 

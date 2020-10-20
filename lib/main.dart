@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:async_redux/async_redux.dart';
+import 'package:crayola/crayola.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +15,14 @@ import 'screens/init/init_screen.dart';
 import 'services/locator.dart';
 
 void main() {
-  initializeLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isAndroid || Platform.isIOS) {
+    initializeLocator();
+  } else {
+    initializeLocator("desktop");
+  }
+
   runApp(MyApp());
 }
 
@@ -24,6 +34,11 @@ void runDesktop() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    if (Platform.isMacOS) {
+      Crayola.setTitleBarColor(canvasColor, true);
+      Crayola.setTitleVisibility(false);
+    }
+
     return AsyncReduxProvider<AppState>.value(
       value: Store<AppState>(
         initialState: AppState(

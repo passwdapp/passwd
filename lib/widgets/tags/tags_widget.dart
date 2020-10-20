@@ -37,7 +37,10 @@ class _TagsWidgetState extends State<TagsWidget> {
   }
 
   void loadTags() {
-    List<Tag> _tags = Provider.of<AppState>(context).entries.tags;
+    List<Tag> _tags = Provider.of<AppState>(
+      context,
+      listen: false,
+    ).entries.tags;
 
     setState(() {
       databaseTags = _tags ?? [];
