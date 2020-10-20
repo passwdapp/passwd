@@ -1,5 +1,6 @@
 import '../models/validator.dart';
 
+/// [UrlValidator] uses dart's [Uri] to parse the input and return its validity
 class URLValidator implements Validator {
   @override
   bool validate(String input) {

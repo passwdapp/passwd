@@ -1,5 +1,7 @@
 import '../models/validator.dart';
 
+/// [EmailValidator] implements the [Validator] interface to provide an email validator
+/// It uses the regex from the official RFC5322. This regex is available at https://emailregex.com/
 class EmailValidator implements Validator {
   @override
   bool validate(String input) {

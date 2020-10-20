@@ -1,5 +1,7 @@
 import '../models/validator.dart';
 
+/// [MinValidator] implements [Validator] interface to provide with a configurable validator
+/// This returns true if the min length condition is met
 class MinValidator implements Validator {
   int min;
 
