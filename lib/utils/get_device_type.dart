@@ -6,7 +6,7 @@ import '../models/device_type.dart';
 /// This is deprecated and is not used in the app
 @deprecated
 DeviceType getDeviceType(MediaQueryData data) {
-  double deviceWidth = data.size.shortestSide;
+  final deviceWidth = data.size.shortestSide;
 
   if (deviceWidth > 600 && deviceWidth <= 950) {
     return DeviceType.TABLET;
