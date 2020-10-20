@@ -1,3 +1,6 @@
+/// [FaviconResponse] holds the favicons while they are fetched and compared
+/// These are never persisted to the disk
+/// It is also used to deserialize the JSON API response
 class FaviconResponse {
   String domain;
   List<Icons> icons;
@@ -24,6 +27,7 @@ class FaviconResponse {
   }
 }
 
+/// [Icons] stores a single favicon, while [FaviconResponse] holds a list of [Icons]
 class Icons {
   String src;
   String type;

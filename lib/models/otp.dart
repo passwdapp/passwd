@@ -1,3 +1,5 @@
+/// [Otp] holds information for an OTP associated with an account (used for 2fa)
+/// [Otp] is JSON and MsgPack serializable
 class Otp {
   String type;
   String issuer;

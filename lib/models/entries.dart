@@ -1,6 +1,9 @@
 import 'entry.dart';
 import 'tag.dart';
 
+/// [Entries] class is used to store the whole DB in memory
+/// It stores a list of [Tag] and [Entry] models
+/// [Entries] is JSON and MsgPack serializable
 class Entries {
   List<Entry> entries;
   List<Tag> tags;

@@ -3,10 +3,12 @@ import 'package:supercharged/supercharged.dart';
 
 import '../models/color_info.dart';
 
+// These are the main colors of the app
 Color primaryColor = "#00ECD7".toColor();
 Color canvasColor = "#1A1A1A".toColor();
 Color primaryColorHovered = "#00AFA0".toColor();
 
+// These are used when no favicon is available
 List<Color> iconColors = [
   Color(0xff49306B),
   Color(0xff6B2D5C),
@@ -18,6 +20,7 @@ List<Color> iconColors = [
   Color(0xffB24592),
 ];
 
+// These are used for tags
 List<ColorInfo> tagColors = [
   ColorInfo(
     color: "#F44336".toColor(),

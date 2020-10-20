@@ -1,5 +1,15 @@
 import 'otp.dart';
 
+/// [Entry] contains the single DB entry for an account
+/// [colorId] is generated while saving, and used to create a fallback icon when the [favicon] is unavailable
+/// [name] stores the account name
+/// [username] stores the username, while [password] stores the password
+/// [note] stores the note
+/// [favicon] stores the favicon URL (or null in case the favicon is not available)
+/// [id] is a 24-length randomly generated ID
+/// [tags] stores a [List] of [String], which correspond to [Tag] [id]s
+/// [otp] store the [Otp] model (if a 2fa entry is setup)
+/// [Entry] and its children are JSON and MsgPack serializable
 class Entry {
   int colorId;
   String name;
