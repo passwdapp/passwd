@@ -108,24 +108,24 @@ class FaviconHttp implements FaviconService {
   }
 
   int estimateRel(String url) {
-    int rank = 0;
+    var rank = 0;
 
     if (RegExp(
-      r"fluid[-_]?icon",
+      r'fluid[-_]?icon',
       caseSensitive: false,
     ).hasMatch(
       url,
     )) {
       rank = 3;
     } else if (RegExp(
-      r"apple[-_]+(?:touch[-_]+)?icon",
+      r'apple[-_]+(?:touch[-_]+)?icon',
       caseSensitive: false,
     ).hasMatch(
       url,
     )) {
       rank = 2;
     } else if (RegExp(
-      r"mask[-_]?icon",
+      r'mask[-_]?icon',
       caseSensitive: false,
     ).hasMatch(
       url,
@@ -137,13 +137,13 @@ class FaviconHttp implements FaviconService {
   }
 
   int estimateExt(String url) {
-    int rank = 0;
+    var rank = 0;
 
     switch (getExtension(url)) {
-      case ".png":
+      case '.png':
         rank = 2;
         break;
-      case ".svg":
+      case '.svg':
         rank = 1;
         break;
       default:
@@ -154,7 +154,7 @@ class FaviconHttp implements FaviconService {
   }
 
   String getExtension(String url) {
-    RegExpMatch match = RegExp(r"\.(\w+)$").firstMatch(url);
+    final match = RegExp(r'\.(\w+)$').firstMatch(url);
     return match == null ? '' : url.substring(match.start, match.end);
   }
 }

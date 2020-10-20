@@ -5,10 +5,10 @@ import 'package:passwd/services/password/password_service.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group("PasswordService Test -", () {
-    group("PasswordImpl Test -", () {
+  group('PasswordService Test -', () {
+    group('PasswordImpl Test -', () {
       test(
-        "Test the generation of a diceware password with 5 words and capitalizition on",
+        'Test the generation of a diceware password with 5 words and capitalizition on',
         () async {
           PasswordService service = PasswordImpl();
 
@@ -17,11 +17,11 @@ void main() {
             capitalize: true,
           );
 
-          expect(password.split(" ").length, 5);
+          expect(password.split(' ').length, 5);
 
-          List<String> words = password.split(" ");
+          final words = password.split(' ');
 
-          for (int i = 0; i < words.length; i++) {
+          for (var i = 0; i < words.length; i++) {
             expect(
               words.elementAt(i)[0].toUpperCase() == words.elementAt(i)[0],
               true,
@@ -31,11 +31,10 @@ void main() {
       );
 
       test(
-        "Test the generation of a random password with a length of 16",
+        'Test the generation of a random password with a length of 16',
         () {
           PasswordService service = PasswordImpl();
-
-          String password = service.generateRandomPassword(
+          final password = service.generateRandomPassword(
             length: 16,
           );
 
@@ -44,12 +43,12 @@ void main() {
       );
 
       test(
-        "Test the PRNG",
+        'Test the PRNG',
         () {
           PasswordService service = PasswordImpl();
 
-          int rand1 = service.getPsuedoRandomNumber(255);
-          int rand2 = service.getPsuedoRandomNumber(255);
+          final rand1 = service.getPsuedoRandomNumber(255);
+          final rand2 = service.getPsuedoRandomNumber(255);
 
           expect(rand1 == rand2, false);
         },
