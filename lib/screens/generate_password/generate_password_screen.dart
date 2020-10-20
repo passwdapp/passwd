@@ -15,10 +15,10 @@ class GeneratePasswordScreen extends StatefulWidget {
 
 class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
   TextEditingController wordController = TextEditingController.fromValue(
-    TextEditingValue(text: "5"),
+    TextEditingValue(text: '5'),
   );
 
-  String password = "";
+  String password = '';
   int words = 5;
   bool capitalize = true;
   bool diceware = true;
@@ -28,7 +28,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
     bool capitalize = true,
   }) async {
     if (diceware) {
-      String generatedPassword =
+      final generatedPassword =
           await locator<PasswordService>().generateDicewarePassword(
         words: length,
         capitalize: capitalize,
@@ -37,7 +37,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
         password = generatedPassword;
       });
     } else {
-      String generatedPassword =
+      final generatedPassword =
           locator<PasswordService>().generateRandomPassword(
         length: length,
       );
@@ -69,7 +69,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          context.getString("password"),
+          context.getString('password'),
           style: TextStyle(
             letterSpacing: 1.25,
             fontSize: 18,
@@ -79,7 +79,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          tooltip: context.getString("back_tooltip"),
+          tooltip: context.getString('back_tooltip'),
           icon: Icon(Feather.x_circle),
         ),
         actions: [
@@ -87,14 +87,14 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
             onPressed: () {
               Navigator.of(context).pop(password);
             },
-            tooltip: context.getString("done_tooltip"),
+            tooltip: context.getString('done_tooltip'),
             icon: Icon(Feather.check_circle),
           ),
         ],
       ),
       body: ListView(
         physics: const AlwaysScrollableScrollPhysics(
-          parent: const BouncingScrollPhysics(),
+          parent: BouncingScrollPhysics(),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -124,10 +124,10 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
 
                 if (val) {
                   words = 5;
-                  wordController.text = "5";
+                  wordController.text = '5';
                 } else {
                   words = 16;
-                  wordController.text = "16";
+                  wordController.text = '16';
                 }
               });
 
@@ -137,7 +137,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
               );
             },
             title: Text(
-              context.getString("memorizable"),
+              context.getString('memorizable'),
             ),
           ),
           SizedBox(
@@ -147,8 +147,8 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
             controller: wordController,
             decoration: InputDecoration(
               labelText: diceware
-                  ? context.getString("no_words").toUpperCase()
-                  : context.getString("length").toUpperCase(),
+                  ? context.getString('no_words').toUpperCase()
+                  : context.getString('length').toUpperCase(),
             ),
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
@@ -183,7 +183,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
                         );
                       },
                       title: Text(
-                        context.getString("capitalize"),
+                        context.getString('capitalize'),
                       ),
                     ),
                     SizedBox(
@@ -194,7 +194,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
               : Container(),
           Button(
             child: Text(
-              context.getString("regenrate_password"),
+              context.getString('regenrate_password'),
             ),
             onClick: () {
               getPassword(

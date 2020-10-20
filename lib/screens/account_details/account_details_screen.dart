@@ -39,7 +39,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          tooltip: context.getString("back_tooltip"),
+          tooltip: context.getString('back_tooltip'),
           icon: Icon(Feather.x_circle),
         ),
         actions: [
@@ -49,12 +49,12 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      context.getString("under_construction"),
+                      context.getString('under_construction'),
                     ),
                   ),
                 );
               },
-              tooltip: context.getString("edit_tooltip"),
+              tooltip: context.getString('edit_tooltip'),
               icon: Icon(Feather.edit),
             ),
           ),
@@ -62,7 +62,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
       ),
       body: ListView(
         physics: const AlwaysScrollableScrollPhysics(
-          parent: const BouncingScrollPhysics(),
+          parent: BouncingScrollPhysics(),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -73,12 +73,12 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           ),
           if (widget.entry.name.isNotEmpty)
             getRow(
-                context.getString("name_url").toUpperCase(), widget.entry.name),
-          getRow(context.getString("username_email").toUpperCase(),
+                context.getString('name_url').toUpperCase(), widget.entry.name),
+          getRow(context.getString('username_email').toUpperCase(),
               widget.entry.username),
           getRow(
-            context.getString("password").toUpperCase(),
-            isPasswordVisible ? widget.entry.password : "•••••••••••••••",
+            context.getString('password').toUpperCase(),
+            isPasswordVisible ? widget.entry.password : '•••••••••••••••',
             false,
           ),
           SizedBox(
@@ -95,8 +95,8 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                   },
                   child: Text(
                     isPasswordVisible
-                        ? context.getString("hide_password")
-                        : context.getString("show_password"),
+                        ? context.getString('hide_password')
+                        : context.getString('show_password'),
                   ),
                 ),
               ),
@@ -112,13 +112,13 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                       Scaffold.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            context.getString("copied_to_clipboard"),
+                            context.getString('copied_to_clipboard'),
                           ),
                         ),
                       );
                     },
                     child: Text(
-                      context.getString("copy_password"),
+                      context.getString('copy_password'),
                     ),
                   ),
                 ),
@@ -129,13 +129,13 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             height: 12,
           ),
           if (widget.entry.note.isNotEmpty)
-            getRow(context.getString("notes").toUpperCase(), widget.entry.note),
+            getRow(context.getString('notes').toUpperCase(), widget.entry.note),
           if (widget.entry.otp != null) OtpWidget(otp: widget.entry.otp),
-          if (widget.entry.tags.length != 0)
+          if (widget.entry.tags.isNotEmpty)
             SizedBox(
               height: 16,
             ),
-          if (widget.entry.tags.length != 0)
+          if (widget.entry.tags.isNotEmpty)
             TagsWidget(
               onChange: (_) {},
               tags: widget.entry.tags,

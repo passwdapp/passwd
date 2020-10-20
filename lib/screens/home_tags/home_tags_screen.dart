@@ -19,7 +19,7 @@ class _HomeTagsScreenState extends State<HomeTagsScreen> {
   Widget build(BuildContext context) {
     final state = Provider.of<AppState>(context);
 
-    if (state.entries.entries.length != 0) {
+    if (state.entries.entries.isNotEmpty) {
       return ListView.builder(
         itemCount: state.entries.tags.length,
         itemBuilder: (context, i) => ExpansionTile(
@@ -41,7 +41,7 @@ class _HomeTagsScreenState extends State<HomeTagsScreen> {
           ),
           children: state.entries.entries
               .where((entry) {
-                return entry.tags.indexOf(state.entries.tags[i].id) != -1;
+                return entry.tags.contains(state.entries.tags[i].id);
               })
               .map(
                 (e) => InkWell(
@@ -65,7 +65,7 @@ class _HomeTagsScreenState extends State<HomeTagsScreen> {
     } else {
       return Center(
         child: Text(
-          "no_tags",
+          'no_tags',
           style: Theme.of(context).textTheme.headline5.copyWith(
                 color: Colors.white.withOpacity(0.6),
               ),

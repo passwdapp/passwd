@@ -15,7 +15,7 @@ class VerifyPinScreen extends StatefulWidget {
 }
 
 class _VerifyPinScreenState extends State<VerifyPinScreen> {
-  String error = "";
+  String error = '';
 
   Future<bool> biometricsAvailable() async {
     if (await locator<AuthenticationService>().allowBiometrics() &&
@@ -28,8 +28,9 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
 
   Future tryBiometrics() async {
     if (await biometricsAvailable()) {
-      BiometricsResult result = await locator<BiometricsService>()
-          .authenticate("To unlock your vault.");
+      // TODO: Localize the reason
+      final result = await locator<BiometricsService>()
+          .authenticate('To unlock your vault.');
 
       if (result == BiometricsResult.AUTHENTICATED) {
         replace();
@@ -38,13 +39,13 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
   }
 
   Future verifyPin(int pin) async {
-    bool valid = await locator<AuthenticationService>().comparePin(pin);
+    var valid = await locator<AuthenticationService>().comparePin(pin);
 
     if (valid) {
       replace();
     } else {
       setState(() {
-        error = "Invalid pin entered";
+        error = 'Invalid pin entered';
       });
     }
   }
@@ -73,7 +74,7 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            error.isEmpty ? context.getString("enter_pin") : error,
+            error.isEmpty ? context.getString('enter_pin') : error,
             style: Theme.of(context).textTheme.headline5.copyWith(
                   fontWeight: FontWeight.w900,
                   color: error.isEmpty
@@ -106,7 +107,7 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
                         ),
                         contentPadding: const EdgeInsets.all(0),
                         trailing: Text(
-                          context.getString("biometrics_retry"),
+                          context.getString('biometrics_retry'),
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                         onTap: () {

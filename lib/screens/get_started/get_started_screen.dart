@@ -26,9 +26,9 @@ class GetStartedScreen extends StatelessWidget {
               );
             },
             child: Text(
-              context.getString("get_started"),
+              context.getString('get_started'),
               style: TextStyle(
-                color: "#121212".toColor(),
+                color: '#121212'.toColor(),
               ),
             ),
           ),

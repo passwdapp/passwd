@@ -43,9 +43,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 
   List<String> tags = [];
 
-  String name = "";
+  String name = '';
 
-  String username = "";
+  String username = '';
   void setUsername(String val) {
     setState(() {
       username = val;
@@ -60,7 +60,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     });
   }
 
-  String password = "";
+  String password = '';
   void setPassword(String val) {
     setState(() {
       password = val;
@@ -76,7 +76,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     });
   }
 
-  String notes = "";
+  String notes = '';
 
   @override
   void initState() {
@@ -110,13 +110,13 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   Future requestOtp({bool scan = false}) async {
     if (scan) {
       try {
-        Otp otp = await locator<QRService>().scanQRForOtp();
+        final otp = await locator<QRService>().scanQRForOtp();
         processAddOtp(otp);
       } catch (_) {
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              context.getString("failed_qr"),
+              context.getString('failed_qr'),
             ),
           ),
         );
@@ -142,8 +142,8 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   }
 
   void add() {
-    Entry data = Entry(
-      favicon: "",
+    var data = Entry(
+      favicon: '',
       name: name,
       note: notes,
       password: password,
@@ -168,7 +168,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          context.getString("add_account"),
+          context.getString('add_account'),
           style: TextStyle(
             letterSpacing: 1.25,
             fontSize: 18,
@@ -178,7 +178,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          tooltip: context.getString("back_tooltip"),
+          tooltip: context.getString('back_tooltip'),
           icon: Icon(Feather.x_circle),
         ),
         actions: [
@@ -188,7 +188,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                     add();
                   }
                 : null,
-            tooltip: context.getString("done_tooltip"),
+            tooltip: context.getString('done_tooltip'),
             icon: Icon(Feather.check_circle),
           ),
         ],
@@ -196,7 +196,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       body: SafeArea(
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(
-            parent: const BouncingScrollPhysics(),
+            parent: BouncingScrollPhysics(),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -205,7 +205,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             TextFormField(
               controller: nameController,
               decoration: InputDecoration(
-                labelText: context.getString("name_url").toUpperCase(),
+                labelText: context.getString('name_url').toUpperCase(),
               ),
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (val) {
@@ -218,9 +218,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             TextFormField(
               controller: usernameController,
               decoration: InputDecoration(
-                labelText: context.getString("username_email").toUpperCase(),
+                labelText: context.getString('username_email').toUpperCase(),
                 errorText: !isUsernameValid
-                    ? context.getString("empty_username")
+                    ? context.getString('empty_username')
                     : null,
               ),
               focusNode: usernameFocus,
@@ -236,9 +236,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             TextFormField(
               controller: passwordController,
               decoration: InputDecoration(
-                labelText: context.getString("password").toUpperCase(),
+                labelText: context.getString('password').toUpperCase(),
                 errorText: !isPasswordValid
-                    ? context.getString("empty_password")
+                    ? context.getString('empty_password')
                     : null,
               ),
               focusNode: passwordFocus,
@@ -253,7 +253,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             ),
             Button(
               child: Text(
-                context.getString("generate_password"),
+                context.getString('generate_password'),
               ),
               onClick: () async {
                 String generatedPassword = await navigate(
@@ -269,7 +269,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             TextFormField(
               controller: notesController,
               decoration: InputDecoration(
-                labelText: context.getString("notes").toUpperCase(),
+                labelText: context.getString('notes').toUpperCase(),
               ),
               textInputAction: TextInputAction.done,
               focusNode: notesFocus,
@@ -283,13 +283,13 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             Builder(
               builder: (context) => Button(
                 child: Text(
-                  context.getString("two_factor_authentication"),
+                  context.getString('two_factor_authentication'),
                 ),
                 onClick: () async {
                   if (!Platform.isAndroid && !Platform.isIOS) {
-                    requestOtp();
+                    await requestOtp();
                   } else {
-                    showModalBottomSheet(
+                    await showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(
                         child: Wrap(
@@ -297,17 +297,17 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                             ListTile(
                               leading: Icon(Feather.camera),
                               title: Text(
-                                context.getString("scan_qr"),
+                                context.getString('scan_qr'),
                               ),
                               onTap: () async {
                                 Navigator.of(context).pop();
-                                requestOtp(scan: true);
+                                await requestOtp(scan: true);
                               },
                             ),
                             ListTile(
                               leading: Icon(Icons.keyboard),
                               title: Text(
-                                context.getString("enter_manually"),
+                                context.getString('enter_manually'),
                               ),
                               onTap: () {
                                 Navigator.of(context).pop();
@@ -317,7 +317,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                             ListTile(
                               leading: Icon(Feather.x),
                               title: Text(
-                                context.getString("cancel"),
+                                context.getString('cancel'),
                               ),
                               onTap: () {
                                 Navigator.of(context).pop();

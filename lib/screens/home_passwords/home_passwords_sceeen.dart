@@ -28,7 +28,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
 
   Future showPopupMenu(int index, Entry entry) async {
     final size = MediaQuery.of(context).size;
-    int selected = await showMenu(
+    final selected = await showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
         x,
@@ -38,11 +38,11 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
       ),
       items: [
         PopupMenuItem(
-          child: Text("Delete ${entry.name}"),
+          child: Text('Delete ${entry.name}'),
           value: 0,
         ),
         PopupMenuItem(
-          child: Text("Copy Password for ${entry.name}"),
+          child: Text('Copy Password for ${entry.name}'),
           value: 1,
         ),
       ],
@@ -68,7 +68,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          context.getString("copied_to_clipboard"),
+          context.getString('copied_to_clipboard'),
         ),
       ),
     );
@@ -79,18 +79,18 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          context.getString("deletion_dialog_title"),
+          context.getString('deletion_dialog_title'),
         ),
         content: RichText(
           text: TextSpan(
-            text: context.getString("warning"),
+            text: context.getString('warning'),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.red[200],
             ),
             children: [
               TextSpan(
-                text: context.getString("irreversible"),
+                text: context.getString('irreversible'),
               ),
             ],
           ),
@@ -106,7 +106,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               )(RemoveEntryAction(i));
             },
             child: Text(
-              context.getString("yes"),
+              context.getString('yes'),
             ),
           ),
           FlatButton(
@@ -114,7 +114,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               Navigator.of(context).pop();
             },
             child: Text(
-              context.getString("no"),
+              context.getString('no'),
             ),
           ),
         ],
@@ -135,12 +135,12 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    context.getString("under_construction"),
+                    context.getString('under_construction'),
                   ),
                 ),
               );
             },
-            tooltip: context.getString("settings_tooltip"),
+            tooltip: context.getString('settings_tooltip'),
           ),
         ),
         centerTitle: true,
@@ -160,20 +160,20 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                 )(AddEntryAction(entry));
               }
             },
-            tooltip: context.getString("add_account"),
+            tooltip: context.getString('add_account'),
           ),
         ],
       ),
       body: Column(
         children: [
           Expanded(
-            child: state.entries.entries.length == 0
+            child: state.entries.entries.isEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        context.getString("no_accounts"),
+                        context.getString('no_accounts'),
                         style: Theme.of(context).textTheme.headline5.copyWith(
                               color: Colors.white.withOpacity(0.6),
                             ),
@@ -186,7 +186,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            context.getString("use_the"),
+                            context.getString('use_the'),
                             style:
                                 Theme.of(context).textTheme.bodyText1.copyWith(
                                       color: Colors.white.withOpacity(0.6),
@@ -198,7 +198,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                             size: 20,
                           ),
                           Text(
-                            context.getString("icon_to_add"),
+                            context.getString('icon_to_add'),
                             style:
                                 Theme.of(context).textTheme.bodyText1.copyWith(
                                       color: Colors.white.withOpacity(0.6),
@@ -236,7 +236,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                       ),
                       itemCount: state.entries.entries.length,
                       physics: const AlwaysScrollableScrollPhysics(
-                        parent: const BouncingScrollPhysics(),
+                        parent: BouncingScrollPhysics(),
                       ),
                     ),
                   ),
@@ -262,7 +262,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                         width: 16,
                       ),
                       Text(
-                        context.getString("syncing"),
+                        context.getString('syncing'),
                       ),
                     ],
                   ),

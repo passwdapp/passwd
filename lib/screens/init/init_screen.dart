@@ -14,7 +14,7 @@ class InitScreen extends StatefulWidget {
 class _InitScreenState extends State<InitScreen> {
   Future<bool> isAuthenticated() async {
     await locator.allReady();
-    String key = await locator<AuthenticationService>().readEncryptionKey();
+    var key = await locator<AuthenticationService>().readEncryptionKey();
 
     return key != null;
   }
@@ -22,14 +22,14 @@ class _InitScreenState extends State<InitScreen> {
   Future navigate() async {
     if (await isAuthenticated()) {
       await Future.delayed(Duration(milliseconds: 750));
-      Navigator.of(context).push(
+      await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => VerifyPinScreen(),
         ),
       );
     } else {
       await Future.delayed(Duration(milliseconds: 1500));
-      Navigator.of(context).push(
+      await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => GetStartedScreen(),
         ),

@@ -15,7 +15,7 @@ class AddOtpScreen extends StatefulWidget {
 }
 
 class _AddOtpScreenState extends State<AddOtpScreen> {
-  String secret = "";
+  String secret = '';
   int digits = 6;
   int period = 30;
 
@@ -24,8 +24,8 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
   bool isPeriodValid = true;
 
   TextEditingController secretController = TextEditingController();
-  TextEditingController digitsController = TextEditingController(text: "6");
-  TextEditingController periodController = TextEditingController(text: "30");
+  TextEditingController digitsController = TextEditingController(text: '6');
+  TextEditingController periodController = TextEditingController(text: '30');
 
   FocusNode digitsFocus = FocusNode();
   FocusNode periodFocus = FocusNode();
@@ -78,7 +78,7 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          context.getString("enter_manually"),
+          context.getString('enter_manually'),
           style: TextStyle(
             letterSpacing: 1.25,
             fontSize: 18,
@@ -88,27 +88,27 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          tooltip: context.getString("back_tooltip"),
+          tooltip: context.getString('back_tooltip'),
           icon: Icon(Feather.x_circle),
         ),
         actions: [
           IconButton(
             onPressed: isSecretValid && isDigitsValid && isPeriodValid
                 ? () {
-                    Otp otp = Otp(
-                      account: "ih", // ih stands for inherit (from parent)
-                      algorithm: "SHA1",
+                    final otp = Otp(
+                      account: 'ih', // ih stands for inherit (from parent)
+                      algorithm: 'SHA1',
                       digits: digits,
-                      issuer: "ih",
+                      issuer: 'ih',
                       secret: secret,
                       timeout: period,
-                      type: "t", // T is TOTP
+                      type: 't', // T is TOTP
                     );
 
                     Navigator.of(context).pop(otp);
                   }
                 : null,
-            tooltip: context.getString("done_tooltip"),
+            tooltip: context.getString('done_tooltip'),
             icon: Icon(Feather.check_circle),
           ),
         ],
@@ -116,7 +116,7 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
       body: SafeArea(
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(
-            parent: const BouncingScrollPhysics(),
+            parent: BouncingScrollPhysics(),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -125,10 +125,10 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
             TextFormField(
               controller: secretController,
               decoration: InputDecoration(
-                labelText: context.getString("otp_secret").toUpperCase(),
+                labelText: context.getString('otp_secret').toUpperCase(),
                 errorText: isSecretValid
                     ? null
-                    : context.getString("otp_secret_invalid"),
+                    : context.getString('otp_secret_invalid'),
               ),
               inputFormatters: [
                 CapitalizationFormatter(),
@@ -145,9 +145,9 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
             TextFormField(
               controller: digitsController,
               decoration: InputDecoration(
-                labelText: context.getString("digits").toUpperCase(),
+                labelText: context.getString('digits').toUpperCase(),
                 errorText:
-                    isDigitsValid ? null : context.getString("digits_invalid"),
+                    isDigitsValid ? null : context.getString('digits_invalid'),
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -165,10 +165,10 @@ class _AddOtpScreenState extends State<AddOtpScreen> {
             TextFormField(
               controller: periodController,
               decoration: InputDecoration(
-                labelText: context.getString("otp_period").toUpperCase(),
+                labelText: context.getString('otp_period').toUpperCase(),
                 errorText: isPeriodValid
                     ? null
-                    : context.getString("otp_period_invalid"),
+                    : context.getString('otp_period_invalid'),
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,

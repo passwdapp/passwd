@@ -21,8 +21,9 @@ class _SetPinScreenState extends State<SetPinScreen> {
 
   Future<void> setBiometrics(bool value) async {
     if (value) {
-      BiometricsResult result = await locator<BiometricsService>()
-          .authenticate("Initialize biometrics");
+      // TODO: Localize the reason
+      final result = await locator<BiometricsService>()
+          .authenticate('Initialize biometrics');
 
       if (result == BiometricsResult.AUTHENTICATED) {
         biometrics = true;
@@ -44,7 +45,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
 
   Future next() async {
     await locator<AuthenticationService>().writePin(pin);
-    Navigator.of(context).pushAndRemoveUntil(
+    await Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (_) => HomeScreen(),
       ),
@@ -60,7 +61,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            context.getString("set_pin"),
+            context.getString('set_pin'),
             style: Theme.of(context).textTheme.headline5.copyWith(
                   fontWeight: FontWeight.w900,
                 ),
@@ -93,7 +94,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
                         ),
                         contentPadding: const EdgeInsets.all(0),
                         title: Text(
-                          context.getString("enable_biometrics"),
+                          context.getString('enable_biometrics'),
                         ),
                         trailing: Switch(
                           value: biometrics,
@@ -119,7 +120,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
               }
             : null,
         label: Text(
-          context.getString("next"),
+          context.getString('next'),
         ),
         icon: Icon(Icons.chevron_right),
         disabledElevation: 0.0,
