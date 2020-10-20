@@ -13,7 +13,7 @@ class BiometricsLocalAuth implements BiometricsService {
 
   @override
   Future<BiometricsResult> authenticate(String reason) async {
-    if (!Platform.isAndroid || !Platform.isIOS) {
+    if (!Platform.isAndroid && !Platform.isIOS) {
       return BiometricsResult.UNAVAILABLE;
     }
 
@@ -28,14 +28,15 @@ class BiometricsLocalAuth implements BiometricsService {
       } else {
         return BiometricsResult.REJECTED;
       }
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return BiometricsResult.UNAVAILABLE;
     }
   }
 
   @override
   Future<bool> biometricsAvailable() async {
-    if (!Platform.isAndroid || !Platform.isIOS) {
+    if (!Platform.isAndroid && !Platform.isIOS) {
       return false;
     }
 
