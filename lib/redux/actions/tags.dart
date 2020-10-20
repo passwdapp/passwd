@@ -7,6 +7,8 @@ import '../../services/locator.dart';
 import '../appstate.dart';
 import 'entries.dart';
 
+/// [AddTagAction] uses the [DatabaseService] to add a [Tag] to the database
+/// Accepts a [Tag] as an input
 class AddTagAction extends ReduxAction<AppState> {
   final Tag tag;
   AddTagAction(this.tag);

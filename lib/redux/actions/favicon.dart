@@ -8,6 +8,9 @@ import '../../utils/validate.dart';
 import '../../validators/url_validator.dart';
 import '../appstate.dart';
 
+/// [AddFaviconAction] uses the [FaviconService] to retrieve a favicon, and dispatches a [ModifyEntryAction] to add the favicon to the entry
+/// This is usually dispatched after [AddEntryAction]
+/// It accepts an [Entry] as the argument
 class AddFaviconAction extends ReduxAction<AppState> {
   final Entry entry;
   AddFaviconAction(this.entry);
