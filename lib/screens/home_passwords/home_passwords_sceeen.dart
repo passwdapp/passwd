@@ -27,7 +27,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   double y = 0;
 
   Future showPopupMenu(int index, Entry entry) async {
-    final size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     final selected = await showMenu(
       context: context,
       position: RelativeRect.fromLTRB(

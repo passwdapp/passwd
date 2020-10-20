@@ -19,7 +19,7 @@ class OtpWidget extends StatefulWidget {
 
 class _OtpWidgetState extends State<OtpWidget> {
   double percentage = 0.0;
-  String currentOtp = "";
+  String currentOtp = '';
 
   TOTP totp;
   Timer timer;
@@ -67,7 +67,7 @@ class _OtpWidgetState extends State<OtpWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  context.getString("current_otp").toUpperCase(),
+                  context.getString('current_otp').toUpperCase(),
                   style: TextStyle(
                     fontSize: 13,
                     letterSpacing: 1.5,

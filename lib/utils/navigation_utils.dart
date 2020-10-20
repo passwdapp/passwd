@@ -9,7 +9,7 @@ Future<dynamic> navigate(
   double width = 500,
   double height = 840,
 }) async {
-  final data = MediaQuery.of(context);
+  var data = MediaQuery.of(context);
   if (data.size.shortestSide > 600) {
     return await showDialog(
       context: context,

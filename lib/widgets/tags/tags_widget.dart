@@ -37,7 +37,7 @@ class _TagsWidgetState extends State<TagsWidget> {
   }
 
   void loadTags() {
-    List<Tag> _tags = Provider.of<AppState>(
+    final _tags = Provider.of<AppState>(
       context,
       listen: false,
     ).entries.tags;
@@ -94,7 +94,7 @@ class _TagsWidgetState extends State<TagsWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Tags".toUpperCase(),
+            'Tags'.toUpperCase(),
             style: TextStyle(
               fontSize: 13,
               letterSpacing: 1.5,
@@ -144,9 +144,9 @@ class _TagsWidgetState extends State<TagsWidget> {
                   .toList(),
               if (widget.showAdd)
                 InputChip(
-                  label: Text("+"),
+                  label: Text('+'),
                   onPressed: () {
-                    MediaQueryData data = MediaQuery.of(context);
+                    var data = MediaQuery.of(context);
                     if (data.size.shortestSide > 600) {
                       showCheckDialog();
                     } else {
@@ -193,7 +193,7 @@ class _TagsWidgetState extends State<TagsWidget> {
         children: [
           ...databaseTags.map(
             (tag) {
-              bool isChecked = currentTags.indexWhere(
+              var isChecked = currentTags.indexWhere(
                     (element) => element.id == tag.id,
                   ) !=
                   -1;
@@ -234,7 +234,7 @@ class _TagsWidgetState extends State<TagsWidget> {
           ).toList(),
           ListTile(
             leading: Icon(Icons.add),
-            title: Text("Add a tag"),
+            title: Text('Add a tag'),
             onTap: () {
               Navigator.of(context).pop();
 
@@ -257,7 +257,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                 Navigator.of(context).pop();
               },
               child: Text(
-                "Done".toUpperCase(),
+                'Done'.toUpperCase(),
               ),
             ),
           ),
@@ -295,7 +295,7 @@ class _TagsWidgetState extends State<TagsWidget> {
   }
 
   Widget getAddSheet(Future Function(Tag) callback) {
-    int currentColor = 0;
+    var currentColor = 0;
 
     return Material(
       child: StatefulBuilder(
@@ -308,7 +308,7 @@ class _TagsWidgetState extends State<TagsWidget> {
               ListTile(
                 title: TextFormField(
                   decoration: InputDecoration(
-                    labelText: "Name".toUpperCase(),
+                    labelText: 'Name'.toUpperCase(),
                   ),
                   controller: newTagController,
                 ),
@@ -360,7 +360,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                         newTagController.clear();
                       },
                       child: Text(
-                        "Cancel".toUpperCase(),
+                        'Cancel'.toUpperCase(),
                       ),
                     ),
                     FlatButton(
@@ -378,7 +378,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                         }
                       },
                       child: Text(
-                        "Save".toUpperCase(),
+                        'Save'.toUpperCase(),
                       ),
                     ),
                   ],
