@@ -10,9 +10,15 @@ import '../locator.dart';
 import '../path/path_service.dart';
 import 'sync_service.dart';
 
-// Newer binary implementation is *not* compatible with this JSON based implementation
-// This one is deprecated, but is still here, coz just in case...
-// Using the binary implementation is strongly recommended
+/// [SyncBinary] implements the [SyncService]
+/// It consumes services like [AdvanceCryptoService], [AuthenticationService] and [PathService]
+/// It provides an abstraction over the serialization, compression, encryption and storage of the DB
+/// It uses encrypted JSON to store the DB on disk
+///
+/// Newer binary implementation is *not* compatible with this JSON based implementation
+/// This one is deprecated, but is still here, coz just in case...
+/// Using the binary implementation is strongly recommended
+/// This is not injected currently
 class SyncImpl implements SyncService {
   final String fileName = "db___test.passwd";
 

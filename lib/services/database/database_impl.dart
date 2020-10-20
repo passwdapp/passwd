@@ -7,6 +7,8 @@ import '../locator.dart';
 import '../sync/sync_service.dart';
 import 'database_service.dart';
 
+/// [DatabaseImpl] implements the database API exposed by the [DatabaseService]
+/// It consumes [SyncService] to provide an abstraction over the raw sync API
 @LazySingleton(as: DatabaseService)
 class DatabaseImpl implements DatabaseService {
   Entries _entries = Entries(entries: []);

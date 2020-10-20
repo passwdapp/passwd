@@ -4,6 +4,10 @@ import 'package:injectable/injectable.dart';
 import '../../models/favicon.dart';
 import 'favicon_service.dart';
 
+/// [FaviconHttp] uses "https://favicongrabber.com/api" to extract favicons for a domain
+/// It implements the [FaviconService]
+///
+/// This code is derived from https://github.com/antongunov/favicongrabber.com/blob/master/assets/js/controllers/modules/better-icon.js
 @LazySingleton(as: FaviconService)
 class FaviconHttp implements FaviconService {
   @override

@@ -6,14 +6,18 @@ import 'package:injectable/injectable.dart';
 
 import 'crypto_service.dart';
 
+/// [CryptoCrypt] uses the "crypto" package to expose abstractions over functions like sha512 and hmac_sha512
+/// It implements the [CryptoService]
 @LazySingleton(as: CryptoService)
 class CryptoCrypt implements CryptoService {
   /*
     WARNING
+
     DO *NOT* CHANGE THIS KEY, ELSE THE DATABASES AND SYNCED BACKUPS WILL *NOT* BE DECRYPTABLE 
     THE KEY IS A CONSTANT, ONLY USED TO PREVENT RAINBOW TABLE PASSWORD ATTACKS
     THE KEY IS PUBLIC, BUT DO *NOT* REUSE THIS ACCROSS OTHER APPLICATIONS EXCEPT PASSWD
     I REPEAT, DO *NOT* CHANGE THIS KEY
+
     WARNING
   */
   final Uint8List hmacKey = utf8.encode(

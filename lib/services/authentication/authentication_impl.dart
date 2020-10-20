@@ -6,6 +6,7 @@ import '../locator.dart';
 import '../secure_kv/secure_kv.dart';
 import 'authentication_service.dart';
 
+/// [AuthenticationImpl] implements the [AuthenticationService] to provide an implementation for the authentication used in app
 @LazySingleton(as: AuthenticationService)
 class AuthenticationImpl implements AuthenticationService {
   final String key = "ENCRYPTION_KEY";

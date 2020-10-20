@@ -7,6 +7,7 @@ import 'package:local_auth/local_auth.dart';
 import '../../models/biometrics_result.dart';
 import 'biometrics_service.dart';
 
+/// [BiometricsLocalAuth] uses "local_auth" to provide a concrete implementation for [BiometricsService]
 @LazySingleton(as: BiometricsService)
 class BiometricsLocalAuth implements BiometricsService {
   final LocalAuthentication authentication = LocalAuthentication();

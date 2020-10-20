@@ -9,6 +9,8 @@ import '../crypto/crypto_service.dart';
 import '../locator.dart';
 import 'advance_crypto_service.dart';
 
+/// [AdvanceCryptAes] implements the [AdvanceCryptService] to provide a concrete implementation of the same.
+/// It uses the dart libraries "encrypt" and "cryptography" to derive a key and encrypt an object with it
 @LazySingleton(as: AdvanceCryptoService)
 class AdvanceCryptoAes implements AdvanceCryptoService {
   final CryptoService cryptoService = locator<CryptoService>();

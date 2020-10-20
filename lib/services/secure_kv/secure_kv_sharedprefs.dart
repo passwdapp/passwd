@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'secure_kv.dart';
 
+/// [SecureKVSecureStorage] implements the [SecureKVService] using "shared_preferences"
+/// As "flutter_secure_storage" is not avilable on desktop platforms, this implementation is only injected on a desktop environment
 @Environment("desktop")
 @LazySingleton(as: SecureKVService)
 class SecureKVSecureStorage implements SecureKVService {

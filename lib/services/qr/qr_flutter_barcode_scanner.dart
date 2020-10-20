@@ -5,9 +5,10 @@ import 'package:supercharged/supercharged.dart';
 import '../../models/otp.dart';
 import 'qr_service.dart';
 
+/// [QRFlutterBarcodeScanner] uses the "barcode_scan" package to implement [QRService]
 @LazySingleton(as: QRService)
 class QRFlutterBarcodeScanner implements QRService {
-  String errorText = "The QR code does not correspond to a QTP";
+  String errorText = "The QR code does not correspond to a OTP";
 
   @override
   Future<Otp> scanQRForOtp() async {

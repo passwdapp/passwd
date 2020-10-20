@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import '../../constants/config.dart';
 import 'password_service.dart';
 
+/// [PasswordImpl] implements the [PasswordService] to expose password generation and RNG operations
 @LazySingleton(as: PasswordService)
 class PasswordImpl implements PasswordService {
   @override
