@@ -47,6 +47,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.8.1
   functional_data_generator: ^0.3.4
   injectable_generator: ^1.0.5
+  pedantic: ^1.9.2
 
 flutter:
   uses-material-design: true
