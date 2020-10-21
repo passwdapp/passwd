@@ -164,34 +164,33 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
           SizedBox(
             height: 12,
           ),
-          diceware
-              ? Column(
-                  children: [
-                    SwitchListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 0,
-                      ),
-                      value: capitalize,
-                      onChanged: (val) {
-                        setState(() {
-                          capitalize = val;
-                        });
+          if (diceware)
+            Column(
+              children: [
+                SwitchListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 0,
+                  ),
+                  value: capitalize,
+                  onChanged: (val) {
+                    setState(() {
+                      capitalize = val;
+                    });
 
-                        getPassword(
-                          length: words,
-                          capitalize: capitalize,
-                        );
-                      },
-                      title: Text(
-                        context.getString('capitalize'),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                  ],
-                )
-              : Container(),
+                    getPassword(
+                      length: words,
+                      capitalize: capitalize,
+                    );
+                  },
+                  title: Text(
+                    context.getString('capitalize'),
+                  ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+              ],
+            ),
           Button(
             child: Text(
               context.getString('regenrate_password'),

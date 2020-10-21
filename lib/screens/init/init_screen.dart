@@ -14,8 +14,7 @@ class InitScreen extends StatefulWidget {
 class _InitScreenState extends State<InitScreen> {
   Future<bool> isAuthenticated() async {
     await locator.allReady();
-    var key = await locator<AuthenticationService>().readEncryptionKey();
-
+    final key = await locator<AuthenticationService>().readEncryptionKey();
     return key != null;
   }
 
@@ -40,7 +39,6 @@ class _InitScreenState extends State<InitScreen> {
   @override
   void initState() {
     super.initState();
-
     navigate();
   }
 

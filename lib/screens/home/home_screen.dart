@@ -41,28 +41,42 @@ class _HomeScreenState extends State<HomeScreen> {
     )(ReloadAction(reloadFromDisk: true));
 
     return ScreenTypeLayout(
-      mobile: Scaffold(
-        bottomNavigationBar: Builder(
-          builder: (context) {
-            return BottomNavigationBar(
-              onTap: (i) {
-                setCurrentItem(i);
-              },
-              currentIndex: currentItem,
-              items: navMenuEntries
-                  .map(
-                    (e) => BottomNavigationBarItem(
-                      icon: Icon(e.icon),
-                      label: e.localizationTag,
-                    ),
-                  )
-                  .toList(),
-            );
-          },
-        ),
-        body: stack,
-      ),
-      tablet: Scaffold(
+      mobile: mobileLayout,
+      tablet: tabletLayout,
+      // tablet: Scaffold(
+      //   body: Row(
+      //     children: [
+      //       NavigationRail(
+      //         selectedIndex: currentItem,
+      //         onDestinationSelected: (i) {
+      //           setCurrentItem(i);
+      //         },
+      //         labelType: NavigationRailLabelType.all,
+      //         destinations: navMenuEntries
+      //             .map(
+      //               (e) => NavigationRailDestination(
+      //                 icon: Icon(e.icon),
+      //                 label: Text(e.localizationTag),
+      //               ),
+      //             )
+      //             .toList(),
+      //       ),
+      //       Expanded(
+      //         child: Padding(
+      //           padding: const EdgeInsets.symmetric(
+      //             vertical: 2,
+      //             horizontal: 4,
+      //           ),
+      //           child: stack,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+    );
+  }
+
+  Widget get tabletLayout => Scaffold(
         body: Row(
           children: [
             Container(
@@ -98,39 +112,29 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
-      // tablet: Scaffold(
-      //   body: Row(
-      //     children: [
-      //       NavigationRail(
-      //         selectedIndex: currentItem,
-      //         onDestinationSelected: (i) {
-      //           setCurrentItem(i);
-      //         },
-      //         labelType: NavigationRailLabelType.all,
-      //         destinations: navMenuEntries
-      //             .map(
-      //               (e) => NavigationRailDestination(
-      //                 icon: Icon(e.icon),
-      //                 label: Text(e.localizationTag),
-      //               ),
-      //             )
-      //             .toList(),
-      //       ),
-      //       Expanded(
-      //         child: Padding(
-      //           padding: const EdgeInsets.symmetric(
-      //             vertical: 2,
-      //             horizontal: 4,
-      //           ),
-      //           child: stack,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-    );
-  }
+      );
+
+  Widget get mobileLayout => Scaffold(
+        bottomNavigationBar: Builder(
+          builder: (context) {
+            return BottomNavigationBar(
+              onTap: (i) {
+                setCurrentItem(i);
+              },
+              currentIndex: currentItem,
+              items: navMenuEntries
+                  .map(
+                    (e) => BottomNavigationBarItem(
+                      icon: Icon(e.icon),
+                      label: e.localizationTag,
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        ),
+        body: stack,
+      );
 
   Widget get stack => IndexedStack(
         children: items,

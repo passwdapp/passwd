@@ -65,6 +65,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         text: text,
       ),
     );
+
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -168,46 +169,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         children: [
           Expanded(
             child: state.entries.entries.isEmpty
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        context.getString('no_accounts'),
-                        style: Theme.of(context).textTheme.headline5.copyWith(
-                              color: Colors.white.withOpacity(0.6),
-                            ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            context.getString('use_the'),
-                            style:
-                                Theme.of(context).textTheme.bodyText1.copyWith(
-                                      color: Colors.white.withOpacity(0.6),
-                                    ),
-                          ),
-                          Icon(
-                            Icons.add,
-                            color: Colors.white.withOpacity(0.6),
-                            size: 20,
-                          ),
-                          Text(
-                            context.getString('icon_to_add'),
-                            style:
-                                Theme.of(context).textTheme.bodyText1.copyWith(
-                                      color: Colors.white.withOpacity(0.6),
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
+                ? noEntriesLayout
                 : MouseRegion(
                     onHover: (event) {
                       x = event.position.dx;
@@ -241,35 +203,73 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                     ),
                   ),
           ),
-          state.isSyncing
-              ? SizedBox(
-                  width: double.infinity,
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(primaryColor),
-                          strokeWidth: 3.0,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Text(
-                        context.getString('syncing'),
-                      ),
-                    ],
-                  ),
-                )
-              : Container(),
+          if (state.isSyncing) syncingIndicator,
         ],
       ),
     );
   }
+
+  Widget get noEntriesLayout => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            context.getString('no_accounts'),
+            style: Theme.of(context).textTheme.headline5.copyWith(
+                  color: Colors.white.withOpacity(0.6),
+                ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                context.getString('use_the'),
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      color: Colors.white.withOpacity(0.6),
+                    ),
+              ),
+              Icon(
+                Icons.add,
+                color: Colors.white.withOpacity(0.6),
+                size: 20,
+              ),
+              Text(
+                context.getString('icon_to_add'),
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      color: Colors.white.withOpacity(0.6),
+                    ),
+              ),
+            ],
+          ),
+        ],
+      );
+
+  Widget get syncingIndicator => SizedBox(
+        width: double.infinity,
+        height: 40,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                strokeWidth: 3.0,
+              ),
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            Text(
+              context.getString('syncing'),
+            ),
+          ],
+        ),
+      );
 }

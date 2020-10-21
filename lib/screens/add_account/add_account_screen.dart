@@ -287,8 +287,10 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 ),
                 onClick: () async {
                   if (!Platform.isAndroid && !Platform.isIOS) {
+                    // Directly request OTP parameters as user input on desktop platforms
                     await requestOtp();
                   } else {
+                    // Show a bottom sheet with the options to scan or enter manually on mobile platforms
                     await showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(
