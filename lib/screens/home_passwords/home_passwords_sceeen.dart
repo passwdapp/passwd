@@ -31,6 +31,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   Future showPopupMenu(Entry entry) async {
     var size = MediaQuery.of(context).size;
     final selected = await showMenu(
+      color: Color(0xff1a1a1a),
       context: context,
       position: RelativeRect.fromLTRB(
         x,
@@ -248,6 +249,9 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                       y = event.position.dy;
                     },
                     child: ListView.builder(
+                      padding: const EdgeInsets.only(
+                        bottom: 16,
+                      ),
                       itemBuilder: (context, i) => GestureDetector(
                         onSecondaryTap: () {
                           showPopupMenu(filteredEntries[i]);
