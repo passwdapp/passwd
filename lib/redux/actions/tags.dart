@@ -1,9 +1,9 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:passwd/services/password/password_service.dart';
 
 import '../../models/tag.dart';
 import '../../services/database/database_service.dart';
 import '../../services/locator.dart';
+import '../../services/password/password_service.dart';
 import '../appstate.dart';
 import 'entries.dart';
 

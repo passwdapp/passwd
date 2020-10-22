@@ -17,7 +17,7 @@ import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
 import 'database/database_impl.dart';
 import 'database/database_service.dart';
-import 'favicon/favicon_http.dart';
+import 'favicon/favicon_new.dart';
 import 'favicon/favicon_service.dart';
 import 'password/password_impl.dart';
 import 'password/password_service.dart';
@@ -25,15 +25,15 @@ import 'path/path_path_provider.dart';
 import 'path/path_service.dart';
 import 'qr/qr_flutter_barcode_scanner.dart';
 import 'qr/qr_service.dart';
-import 'secure_kv/secure_kv_securestorage.dart';
-import 'secure_kv/secure_kv_sharedprefs.dart' as passwd;
+import 'secure_kv/secure_kv_sharedprefs.dart';
+import 'secure_kv/secure_kv_securestorage.dart' as passwd;
 import 'secure_kv/secure_kv.dart';
 import 'sync/sync_binary.dart';
 import 'sync/sync_service.dart';
 
 /// Environment names
-const _mobile = 'mobile';
 const _desktop = 'desktop';
+const _mobile = 'mobile';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -49,14 +49,14 @@ GetIt $initGetIt(
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
-  gh.lazySingleton<FaviconService>(() => FaviconHttp());
+  gh.lazySingleton<FaviconService>(() => FaviconNew());
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<QRService>(() => QRFlutterBarcodeScanner());
   gh.lazySingleton<SecureKVService>(() => SecureKVSecureStorage(),
-      registerFor: {_mobile});
-  gh.lazySingleton<SecureKVService>(() => passwd.SecureKVSecureStorage(),
       registerFor: {_desktop});
+  gh.lazySingleton<SecureKVService>(() => passwd.SecureKVSecureStorage(),
+      registerFor: {_mobile});
   gh.lazySingleton<SyncService>(() => SyncImpl());
   return get;
 }

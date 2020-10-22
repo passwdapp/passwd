@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../models/favicon.dart';
 import 'favicon_service.dart';
@@ -8,7 +7,9 @@ import 'favicon_service.dart';
 /// It implements the [FaviconService]
 ///
 /// This code is derived from https://github.com/antongunov/favicongrabber.com/blob/master/assets/js/controllers/modules/better-icon.js
-@LazySingleton(as: FaviconService)
+///
+/// Seems like the service used here is now broken, so the implementation is switched to favicon_new
+/// This is no longer injected
 class FaviconHttp implements FaviconService {
   @override
   Future<String> getBestFavicon(String url) async {

@@ -3,16 +3,16 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/screens/account_details/account_details_screen.dart';
-import 'package:passwd/utils/navigation_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
 import '../../models/entry.dart';
 import '../../redux/actions/entries.dart';
 import '../../redux/appstate.dart';
+import '../../utils/navigation_utils.dart';
 import '../../widgets/home_list_item.dart';
 import '../../widgets/title.dart';
+import '../account_details/account_details_screen.dart';
 import '../add_account/add_account_screen.dart';
 
 // Navigation Item, not to be navigated to

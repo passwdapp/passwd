@@ -1,5 +1,4 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:passwd/redux/actions/entries.dart';
 
 import '../../models/entry.dart';
 import '../../services/favicon/favicon_service.dart';
@@ -7,6 +6,7 @@ import '../../services/locator.dart';
 import '../../utils/validate.dart';
 import '../../validators/url_validator.dart';
 import '../appstate.dart';
+import 'entries.dart';
 
 /// [AddFaviconAction] uses the [FaviconService] to retrieve a favicon, and dispatches a [ModifyEntryAction] to add the favicon to the entry
 /// This is usually dispatched after [AddEntryAction]
