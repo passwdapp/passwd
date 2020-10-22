@@ -7,10 +7,11 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
 - Fully encrypted using AES-256-CTR (including the database stored on-device)
 - Support for TOTP
 - Secure Password Generation (Diceware and Random)
-- A really nice UI
+- A beautiful UI
 - Really compact database, allowing for efficient disk operations (Thanks to MsgPack)
-- Desktop Support (Beta)
-- Responsive UI (Beta) (Desktop and mobile UIs, tablet needs to be re-written)
+- Desktop Support (Linux is still untested, any contibutions on the same are welcome)
+  - TouchBar support (Beta)
+- Responsive UI (Kinda)
 
 ## Screenshots
 
@@ -27,6 +28,8 @@ Nothing is complete without screenshots :P
   <img src="./screenshots/secure.png" width="232px" />
   <img src="./screenshots/hindi.png" width="232px" />
 </p>
+
+PS: Screenshots need to be updated
 
 ## Building
 
@@ -47,7 +50,8 @@ Nothing is complete without screenshots :P
 
 ### Desktop
 
-- See hover's build instructions [here](https://github.com/go-flutter-desktop/hover)
+- Enable flutter desktop support (https://flutter.dev/desktop)
+- `flutter run`
 
 ## Contributors
 
