@@ -29,8 +29,8 @@ class HomeListItem extends StatelessWidget {
                       color: Colors.white,
                       child: CachedNetworkImage(
                         imageUrl: entry.favicon,
-                        width: 52,
-                        height: 52,
+                        width: 48,
+                        height: 48,
                         placeholder: (context, url) =>
                             getContainer(entry, context),
                         errorWidget: (context, url, error) =>

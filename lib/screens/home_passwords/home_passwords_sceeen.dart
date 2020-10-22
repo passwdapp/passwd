@@ -180,7 +180,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
       ),
       body: Column(
         children: [
-          if (state.entries.tags.isNotEmpty)
+          if (state.entries.tags != null && state.entries.tags.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(
                 left: 12,
