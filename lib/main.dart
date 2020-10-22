@@ -6,6 +6,8 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider_for_redux/provider_for_redux.dart';
+import 'package:touch_bar/touch_bar.dart';
+import 'package:touch_bar_macos/touch_bar_macos.dart';
 
 import 'constants/colors.dart';
 import 'constants/theme.dart';
@@ -32,6 +34,18 @@ class MyApp extends StatelessWidget {
     if (Platform.isMacOS) {
       Crayola.setTitleBarColor(canvasColor, true);
       Crayola.setTitleVisibility(false);
+
+      TouchBarPlugin.registerWith();
+      setTouchBar(
+        TouchBar(
+          children: [
+            TouchBarLabel(
+              'Passwd.',
+              textColor: primaryColor,
+            ),
+          ],
+        ),
+      );
     }
 
     return AsyncReduxProvider<AppState>.value(

@@ -880,6 +880,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
+  touch_bar:
+    dependency: "direct main"
+    description:
+      name: touch_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1-alpha.1"
+  touch_bar_macos:
+    dependency: "direct main"
+    description:
+      name: touch_bar_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1-alpha.1"
+  touch_bar_platform_interface:
+    dependency: transitive
+    description:
+      name: touch_bar_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1-alpha"
   typed_data:
     dependency: transitive
     description:

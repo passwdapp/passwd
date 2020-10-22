@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:touch_bar/touch_bar.dart';
 
 import '../../constants/colors.dart';
 import '../../models/entry.dart';
@@ -126,6 +129,39 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     );
   }
 
+  Future initTouchBar(List<Entry> entries) async {
+    if (entries.isNotEmpty) {
+      await setTouchBar(
+        TouchBar(
+          children: [
+            TouchBarScrubber(
+              mode: ScrubberMode.free,
+              isContinuous: false,
+              onSelect: (i) async {
+                await navigate(
+                  context,
+                  AccountDetailsScreen(
+                    entry: entries[i],
+                  ),
+                );
+
+                return await initTouchBar(entries);
+              },
+              children: entries
+                  .map(
+                    (e) => TouchBarScrubberLabel(
+                      e.name,
+                      textColor: Colors.white,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<AppState>(context);
@@ -140,6 +176,10 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               ),
             )
             .toList();
+
+    if (Platform.isMacOS) {
+      initTouchBar(filteredEntries);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -260,13 +300,15 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                           onLongPress: () {
                             showPopupMenu(filteredEntries[i]);
                           },
-                          onTap: () {
-                            navigate(
+                          onTap: () async {
+                            await navigate(
                               context,
                               AccountDetailsScreen(
                                 entry: filteredEntries[i],
                               ),
                             );
+
+                            await initTouchBar(filteredEntries);
                           },
                           child: HomeListItem(
                             entry: filteredEntries[i],

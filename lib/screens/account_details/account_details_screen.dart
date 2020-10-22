@@ -2,6 +2,7 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:touch_bar/touch_bar.dart';
 
 import '../../models/entry.dart';
 import '../../widgets/otp/otp_widget.dart';
@@ -18,6 +19,32 @@ class AccountDetailsScreen extends StatefulWidget {
 
 class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
   bool isPasswordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initTouchBar();
+  }
+
+  Future initTouchBar() async {
+    await setTouchBar(
+      TouchBar(
+        children: [
+          TouchBarLabel(
+            widget.entry.username,
+            textColor: Colors.white,
+          ),
+          if (widget.entry.name != null) TouchBarSpace.flexible(),
+          if (widget.entry.name != null)
+            TouchBarLabel(
+              widget.entry.name,
+              textColor: Colors.white,
+            ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

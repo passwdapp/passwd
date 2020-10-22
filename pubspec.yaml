@@ -39,6 +39,8 @@ dependencies:
   responsive_builder: ^0.3.0
   shared_preferences: ^0.5.12+2
   supercharged: ^1.10.0
+  touch_bar: ^0.0.1-alpha.1
+  touch_bar_macos: ^0.0.1-alpha.1
 
 dev_dependencies:
   flutter_test:
