@@ -5,7 +5,7 @@ import '../models/color_info.dart';
 
 // These are the main colors of the app
 final primaryColor = '#00ECD7'.toColor();
-final canvasColor = '#1A1A1A'.toColor();
+final canvasColor = '#121212'.toColor();
 final primaryColorHovered = '#00AFA0'.toColor();
 
 // These are used when no favicon is available

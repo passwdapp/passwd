@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
               color: ThemeData.dark().iconTheme.color,
             ),
             textTheme: textTheme,
-            // visualDensity: VisualDensity.adaptivePlatformDensity,
+            visualDensity: VisualDensity.standard,
             pageTransitionsTheme: pageTransitionsTheme,
             floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: primaryColor,

@@ -46,7 +46,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           Builder(
             builder: (context) => IconButton(
               onPressed: () {
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
                       context.getString('under_construction'),
@@ -109,7 +109,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                           text: widget.entry.password,
                         ),
                       );
-                      Scaffold.of(context).showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
                             context.getString('copied_to_clipboard'),

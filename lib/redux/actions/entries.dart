@@ -93,14 +93,15 @@ class ModifyEntryAction extends ReduxAction<AppState> {
 /// [RemoveEntryAction] removes an entry from the DB using the [DatabaseService]
 /// It accepts an itemId (not [Entry.id])
 class RemoveEntryAction extends ReduxAction<AppState> {
-  final int itemId;
-  RemoveEntryAction(this.itemId);
+  final Entry item;
+  RemoveEntryAction(this.item);
 
   @override
   void before() => dispatch(SyncIndicatorAction(isSyncing: true));
 
   @override
   Future<AppState> reduce() async {
+    final itemId = state.entries.entries.indexOf(item);
     await locator<DatabaseService>().removeEntryAt(itemId);
     return null;
   }

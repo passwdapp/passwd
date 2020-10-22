@@ -125,6 +125,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                               Icons.clear,
                               size: 16,
                             ),
+                            backgroundColor: Colors.white.withOpacity(0.076),
                             onDeleted: () {
                               removeFromCurrentTags(tag);
                             },
@@ -138,6 +139,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                                 color: tagColors[tag.color].color,
                               ),
                             ),
+                            backgroundColor: Colors.white.withOpacity(0.076),
                             label: Text(tag.name),
                           ),
                   )
@@ -145,6 +147,7 @@ class _TagsWidgetState extends State<TagsWidget> {
               if (widget.showAdd)
                 InputChip(
                   label: Text('+'),
+                  backgroundColor: Colors.white.withOpacity(0.076),
                   onPressed: () {
                     var data = MediaQuery.of(context);
                     if (data.size.shortestSide > 600) {

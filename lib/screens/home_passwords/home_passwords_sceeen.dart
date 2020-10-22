@@ -26,7 +26,9 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   double x = 0;
   double y = 0;
 
-  Future showPopupMenu(int index, Entry entry) async {
+  List<String> selectedTags = [];
+
+  Future showPopupMenu(Entry entry) async {
     var size = MediaQuery.of(context).size;
     final selected = await showMenu(
       context: context,
@@ -50,7 +52,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
 
     switch (selected) {
       case 0:
-        showDeleteDialog(index);
+        showDeleteDialog(entry);
         break;
 
       case 1:
@@ -66,7 +68,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
       ),
     );
 
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           context.getString('copied_to_clipboard'),
@@ -75,7 +77,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     );
   }
 
-  void showDeleteDialog(int i) {
+  void showDeleteDialog(Entry entry) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -104,7 +106,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               await Provider.of<DispatchFuture>(
                 context,
                 listen: false,
-              )(RemoveEntryAction(i));
+              )(RemoveEntryAction(entry));
             },
             child: Text(
               context.getString('yes'),
@@ -127,13 +129,24 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   Widget build(BuildContext context) {
     final state = Provider.of<AppState>(context);
 
+    var filteredEntries = selectedTags.isEmpty
+        ? state.entries.entries
+        : state.entries.entries
+            .where(
+              (e) => e.tags.fold(
+                false,
+                (value, tag) => value || selectedTags.contains(tag),
+              ),
+            )
+            .toList();
+
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
           builder: (context) => IconButton(
             icon: Icon(Feather.settings),
             onPressed: () {
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
                     context.getString('under_construction'),
@@ -167,8 +180,67 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
       ),
       body: Column(
         children: [
+          if (state.entries.tags.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+                bottom: 4,
+              ),
+              child: SizedBox(
+                height: 36,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.entries.tags.length,
+                  itemBuilder: (context, i) {
+                    var isSelected =
+                        selectedTags.contains(state.entries.tags[i].id);
+
+                    return Container(
+                      padding: const EdgeInsets.only(
+                        right: 8,
+                      ),
+                      child: ChoiceChip(
+                        shape: StadiumBorder(
+                          side: BorderSide(
+                            color:
+                                isSelected ? primaryColor : Colors.transparent,
+                          ),
+                        ),
+                        selected: isSelected,
+                        selectedColor: primaryColor.withOpacity(0.084),
+                        onSelected: (e) {
+                          setState(() {
+                            if (e) {
+                              selectedTags.add(state.entries.tags[i].id);
+                            } else {
+                              selectedTags.remove(state.entries.tags[i].id);
+                            }
+                          });
+                        },
+                        avatar: Container(
+                          height: 12,
+                          width: 12,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: tagColors[state.entries.tags[i].color].color,
+                          ),
+                        ),
+                        label: Text(
+                          state.entries.tags[i].name,
+                          style: TextStyle(
+                            color: Colors.grey[200],
+                          ),
+                        ),
+                        backgroundColor: Colors.white.withOpacity(0.076),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           Expanded(
-            child: state.entries.entries.isEmpty
+            child: filteredEntries.isEmpty
                 ? noEntriesLayout
                 : MouseRegion(
                     onHover: (event) {
@@ -178,25 +250,26 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                     child: ListView.builder(
                       itemBuilder: (context, i) => GestureDetector(
                         onSecondaryTap: () {
-                          showPopupMenu(i, state.entries.entries[i]);
+                          showPopupMenu(filteredEntries[i]);
                         },
                         child: InkWell(
                           onLongPress: () {
-                            showPopupMenu(i, state.entries.entries[i]);
+                            showPopupMenu(filteredEntries[i]);
                           },
                           onTap: () {
                             navigate(
                               context,
                               AccountDetailsScreen(
-                                  entry: state.entries.entries[i]),
+                                entry: filteredEntries[i],
+                              ),
                             );
                           },
                           child: HomeListItem(
-                            entry: state.entries.entries[i],
+                            entry: filteredEntries[i],
                           ),
                         ),
                       ),
-                      itemCount: state.entries.entries.length,
+                      itemCount: filteredEntries.length,
                       physics: const AlwaysScrollableScrollPhysics(
                         parent: BouncingScrollPhysics(),
                       ),

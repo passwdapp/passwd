@@ -113,7 +113,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
         final otp = await locator<QRService>().scanQRForOtp();
         processAddOtp(otp);
       } catch (_) {
-        Scaffold.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
               context.getString('failed_qr'),

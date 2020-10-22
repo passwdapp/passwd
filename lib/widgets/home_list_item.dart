@@ -19,7 +19,7 @@ class HomeListItem extends StatelessWidget {
       ),
       child: Container(
         width: double.infinity,
-        height: 52,
+        height: 48,
         child: Row(
           children: [
             ClipRRect(
@@ -74,13 +74,14 @@ class HomeListItem extends StatelessWidget {
 
   Widget getContainer(Entry entry, BuildContext context) {
     return Container(
-      width: 52,
+      width: 48,
       color: iconColors[entry.colorId],
       child: Center(
         child: Text(
           getFirstLetter(entry),
           style: Theme.of(context).textTheme.headline4.copyWith(
                 fontWeight: FontWeight.bold,
+                fontSize: 28,
               ),
         ),
       ),
