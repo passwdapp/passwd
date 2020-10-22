@@ -194,7 +194,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               sigmaY: 15,
             ),
             child: Container(
-              color: canvasColor.withOpacity(0.895),
+              color: canvasColor.withOpacity(0.84),
               padding: const EdgeInsets.only(
                 top: 16,
               ),
