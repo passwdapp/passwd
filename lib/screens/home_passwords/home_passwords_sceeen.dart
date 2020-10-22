@@ -310,9 +310,9 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                         y = event.position.dy;
                       },
                       child: ListView.builder(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                           bottom: 16,
-                          top: 112,
+                          top: Platform.isMacOS ? 112 : 96,
                         ),
                         itemBuilder: (context, i) => GestureDetector(
                           onSecondaryTap: () {
