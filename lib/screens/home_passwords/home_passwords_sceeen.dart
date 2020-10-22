@@ -185,6 +185,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        // toolbarHeight: 112,
         elevation: 0,
         flexibleSpace: ClipRRect(
           child: BackdropFilter(
@@ -194,6 +195,9 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             ),
             child: Container(
               color: canvasColor.withOpacity(0.895),
+              padding: const EdgeInsets.only(
+                top: 16,
+              ),
             ),
           ),
         ),
@@ -308,7 +312,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                       child: ListView.builder(
                         padding: const EdgeInsets.only(
                           bottom: 16,
-                          top: 88,
+                          top: 112,
                         ),
                         itemBuilder: (context, i) => GestureDetector(
                           onSecondaryTap: () {

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:crayola/crayola.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,9 +31,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isMacOS) {
-      Crayola.setTitleBarColor(canvasColor, true);
-      Crayola.setTitleVisibility(false);
-
       TouchBarPlugin.registerWith();
       setTouchBar(
         TouchBar(
@@ -145,6 +141,23 @@ class MyApp extends StatelessWidget {
                 statusBarColor: Colors.transparent,
               ),
             );
+
+            if (Platform.isMacOS) {
+              final mediaQueryData = MediaQueryData.fromWindow(
+                WidgetsBinding.instance.window,
+              );
+
+              final paddedMediaQueryData = mediaQueryData.copyWith(
+                padding: mediaQueryData.padding.copyWith(
+                  top: 16,
+                ),
+              );
+
+              return MediaQuery(
+                data: paddedMediaQueryData,
+                child: child,
+              );
+            }
 
             return child;
           },
