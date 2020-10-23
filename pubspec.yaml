@@ -29,6 +29,8 @@ dependencies:
   google_fonts: ^1.1.1
   injectable: ^1.0.5
   local_auth: ^0.6.3+3
+  logging: ^0.11.4
+  logging_appenders: ^0.4.3
   msgpack_dart: ^0.0.7
   path: ^1.7.0
   path_provider: ^1.6.21

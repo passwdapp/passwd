@@ -14,9 +14,12 @@ import 'models/entries.dart';
 import 'redux/appstate.dart';
 import 'screens/init/init_screen.dart';
 import 'services/locator.dart';
+import 'utils/loggers.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  setupLogging();
 
   if (Platform.isAndroid || Platform.isIOS) {
     initializeLocator();

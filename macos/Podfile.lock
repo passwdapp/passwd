@@ -1,6 +1,4 @@
 PODS:
-  - crayola (0.0.1):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -19,7 +17,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - crayola (from `Flutter/ephemeral/.symlinks/plugins/crayola/macos`)
   - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64`)
   - path_provider (from `Flutter/ephemeral/.symlinks/plugins/path_provider/macos`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
@@ -34,8 +31,6 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
-  crayola:
-    :path: Flutter/ephemeral/.symlinks/plugins/crayola/macos
   FlutterMacOS:
     :path: Flutter/ephemeral/.symlinks/flutter/darwin-x64
   path_provider:
@@ -54,7 +49,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/touch_bar_macos/macos
 
 SPEC CHECKSUMS:
-  crayola: 24527d1859aa605e6d41c349db1c1a30d127f523
   FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: e0848572d1d38b9a7dd099e79cf83f5b7e2cde9f
