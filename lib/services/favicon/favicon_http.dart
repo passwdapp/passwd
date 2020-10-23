@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../models/favicon.dart';
+import '../locator.dart';
 import 'favicon_service.dart';
 
 /// [FaviconHttp] uses "https://favicongrabber.com/api" to extract favicons for a domain
@@ -11,10 +12,12 @@ import 'favicon_service.dart';
 /// Seems like the service used here is now broken, so the implementation is switched to favicon_new
 /// This is no longer injected
 class FaviconHttp implements FaviconService {
+  final dio = locator<Dio>();
+
   @override
   Future<String> getBestFavicon(String url) async {
     try {
-      final response = await Dio().get(
+      final response = await dio.get(
         'https://favicongrabber.com/api/grab/$url',
       ); // URL is actually a domain lol
 

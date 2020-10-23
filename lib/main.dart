@@ -20,6 +20,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   setupLogging();
+  Loggers.mainLogger.info('Passwd initialized');
 
   if (Platform.isAndroid || Platform.isIOS) {
     initializeLocator();

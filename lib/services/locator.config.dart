@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,6 +18,7 @@ import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
 import 'database/database_impl.dart';
 import 'database/database_service.dart';
+import 'dio.dart';
 import 'favicon/favicon_new.dart';
 import 'favicon/favicon_service.dart';
 import 'password/password_impl.dart';
@@ -44,11 +46,13 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
+  final dioModule = _$DioModule();
   gh.lazySingleton<AdvanceCryptoService>(() => AdvanceCryptoAes());
   gh.lazySingleton<AuthenticationService>(() => AuthenticationImpl());
   gh.lazySingleton<BiometricsService>(() => BiometricsLocalAuth());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
+  gh.lazySingleton<Dio>(() => dioModule.dio);
   gh.lazySingleton<FaviconService>(() => FaviconNew());
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
@@ -60,3 +64,5 @@ GetIt $initGetIt(
   gh.lazySingleton<SyncService>(() => SyncImpl());
   return get;
 }
+
+class _$DioModule extends DioModule {}
