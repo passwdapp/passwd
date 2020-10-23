@@ -57,6 +57,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  autofill_service:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "089a61b7e292f9cba58664a2135ebc6e88eb9d08"
+      url: "https://github.com/gargakshit/autofill_service"
+    source: git
+    version: "0.0.1"
   barcode_scan:
     dependency: "direct main"
     description:
@@ -280,7 +289,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0-nullsafety.2"
+    version: "6.0.0-nullsafety.3"
   fixnum:
     dependency: transitive
     description:
@@ -636,7 +645,7 @@ packages:
       name: platform
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0-nullsafety.2"
+    version: "3.0.0-nullsafety.3"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -664,7 +673,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0-nullsafety.2"
+    version: "4.0.0-nullsafety.3"
   protobuf:
     dependency: transitive
     description:
@@ -802,7 +811,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.1+1"
+    version: "1.3.1+2"
   sqflite_common:
     dependency: transitive
     description:

@@ -18,6 +18,7 @@ import '../../widgets/home_list_item.dart';
 import '../../widgets/title.dart';
 import '../account_details/account_details_screen.dart';
 import '../add_account/add_account_screen.dart';
+import '../settings/settings_screen.dart';
 
 // Navigation Item, not to be navigated to
 // So not injected in auto_route
@@ -221,13 +222,17 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           builder: (context) => IconButton(
             icon: Icon(Feather.settings),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    context.getString('under_construction'),
-                  ),
-                ),
+              navigate(
+                context,
+                SettingsScreen(),
               );
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   SnackBar(
+              //     content: Text(
+              //       context.getString('under_construction'),
+              //     ),
+              //   ),
+              // );
             },
             tooltip: context.getString('settings_tooltip'),
           ),

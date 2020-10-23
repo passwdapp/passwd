@@ -167,6 +167,10 @@ class MyApp extends StatelessWidget {
           },
           debugShowCheckedModeBanner: false,
           home: InitScreen(),
+          routes: {
+            '/': (context) => InitScreen(),
+            '/autofill': (context) => InitScreen(),
+          },
         ),
       ),
     );

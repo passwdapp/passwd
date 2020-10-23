@@ -43,6 +43,9 @@ dependencies:
   touch_bar: ^0.0.1-alpha.1
   touch_bar_macos: ^0.0.1-alpha.1
 
+  autofill_service:
+    git: https://github.com/gargakshit/autofill_service
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
