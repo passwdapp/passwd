@@ -271,13 +271,12 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                 preferredSize: const Size.fromHeight(40.0),
                 child: Container(
                   padding: const EdgeInsets.only(
-                    left: 12,
-                    right: 12,
                     bottom: 8,
                   ),
                   child: SizedBox(
                     height: 36,
                     child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       scrollDirection: Axis.horizontal,
                       itemCount: state.entries.tags != null
                           ? state.entries.tags.length
