@@ -226,8 +226,8 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         flexibleSpace: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 16,
-              sigmaY: 16,
+              sigmaX: 20,
+              sigmaY: 20,
             ),
             child: Container(
               color: canvasColor.withOpacity(0.8),
