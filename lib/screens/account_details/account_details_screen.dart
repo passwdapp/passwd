@@ -27,6 +27,21 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     initTouchBar();
   }
 
+  void copyPassword() {
+    Clipboard.setData(
+      ClipboardData(
+        text: widget.entry.password,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          context.getString('copied_to_clipboard'),
+        ),
+      ),
+    );
+  }
+
   Future initTouchBar() async {
     await setTouchBar(
       TouchBar(
@@ -34,6 +49,13 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           TouchBarLabel(
             widget.entry.username,
             textColor: Colors.white,
+          ),
+          TouchBarSpace.small(),
+          TouchBarButton(
+            label: 'Copy Password', // TODO: localize this
+            onClick: () {
+              copyPassword();
+            },
           ),
           if (widget.entry.name != null) TouchBarSpace.flexible(),
           if (widget.entry.name != null)
@@ -131,18 +153,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                 child: Builder(
                   builder: (context) => FlatButton(
                     onPressed: () {
-                      Clipboard.setData(
-                        ClipboardData(
-                          text: widget.entry.password,
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            context.getString('copied_to_clipboard'),
-                          ),
-                        ),
-                      );
+                      copyPassword();
                     },
                     child: Text(
                       context.getString('copy_password'),

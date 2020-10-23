@@ -130,11 +130,28 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     );
   }
 
+  Future addAccount() async {
+    Entry entry = await navigate(context, AddAccountScreen());
+
+    if (entry != null) {
+      await Provider.of<DispatchFuture>(
+        context,
+        listen: false,
+      )(AddEntryAction(entry));
+    }
+  }
+
   Future initTouchBar(List<Entry> entries) async {
     if (entries.isNotEmpty) {
       await setTouchBar(
         TouchBar(
           children: [
+            TouchBarButton(
+              label: 'Add an account', // TODO: localize this
+              onClick: () {
+                addAccount();
+              },
+            ),
             TouchBarScrubber(
               mode: ScrubberMode.free,
               isContinuous: false,
@@ -185,16 +202,15 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        // toolbarHeight: 112,
         elevation: 0,
         flexibleSpace: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 15,
-              sigmaY: 15,
+              sigmaX: 16,
+              sigmaY: 16,
             ),
             child: Container(
-              color: canvasColor.withOpacity(0.84),
+              color: canvasColor.withOpacity(0.8),
               padding: const EdgeInsets.only(
                 top: 16,
               ),
@@ -224,129 +240,126 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           IconButton(
             icon: Icon(Feather.plus_circle),
             onPressed: () async {
-              Entry entry = await navigate(context, AddAccountScreen());
-
-              if (entry != null) {
-                await Provider.of<DispatchFuture>(
-                  context,
-                  listen: false,
-                )(AddEntryAction(entry));
-              }
+              await addAccount();
             },
             tooltip: context.getString('add_account'),
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(40.0),
-          child: Container(
-            padding: const EdgeInsets.only(
-              left: 12,
-              right: 12,
-              bottom: 8,
-            ),
-            child: SizedBox(
-              height: 36,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount:
-                    state.entries.tags != null ? state.entries.tags.length : 0,
-                itemBuilder: (context, i) {
-                  var isSelected =
-                      selectedTags.contains(state.entries.tags[i].id);
+        bottom: (state.entries.tags != null && state.entries.tags.isNotEmpty)
+            ? PreferredSize(
+                preferredSize: const Size.fromHeight(40.0),
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    left: 12,
+                    right: 12,
+                    bottom: 8,
+                  ),
+                  child: SizedBox(
+                    height: 36,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.entries.tags != null
+                          ? state.entries.tags.length
+                          : 0,
+                      itemBuilder: (context, i) {
+                        var isSelected =
+                            selectedTags.contains(state.entries.tags[i].id);
 
-                  return Container(
-                    padding: const EdgeInsets.only(
-                      right: 8,
-                    ),
-                    child: ChoiceChip(
-                      shape: StadiumBorder(
-                        side: BorderSide(
-                          color: isSelected ? primaryColor : Colors.transparent,
-                        ),
-                      ),
-                      selected: isSelected,
-                      selectedColor: primaryColor.withOpacity(0.084),
-                      onSelected: (e) {
-                        setState(() {
-                          if (e) {
-                            selectedTags.add(state.entries.tags[i].id);
-                          } else {
-                            selectedTags.remove(state.entries.tags[i].id);
-                          }
-                        });
+                        return Container(
+                          padding: const EdgeInsets.only(
+                            right: 8,
+                          ),
+                          child: ChoiceChip(
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                color: isSelected
+                                    ? primaryColor
+                                    : Colors.transparent,
+                              ),
+                            ),
+                            selected: isSelected,
+                            selectedColor: primaryColor.withOpacity(0.084),
+                            onSelected: (e) {
+                              setState(() {
+                                if (e) {
+                                  selectedTags.add(state.entries.tags[i].id);
+                                } else {
+                                  selectedTags.remove(state.entries.tags[i].id);
+                                }
+                              });
+                            },
+                            avatar: Container(
+                              height: 12,
+                              width: 12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(32),
+                                color: tagColors[state.entries.tags[i].color]
+                                    .color,
+                              ),
+                            ),
+                            label: Text(
+                              state.entries.tags[i].name,
+                              style: TextStyle(
+                                color: Colors.grey[200],
+                              ),
+                            ),
+                            backgroundColor: Colors.white.withOpacity(0.076),
+                          ),
+                        );
                       },
-                      avatar: Container(
-                        height: 12,
-                        width: 12,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(32),
-                          color: tagColors[state.entries.tags[i].color].color,
-                        ),
-                      ),
-                      label: Text(
-                        state.entries.tags[i].name,
-                        style: TextStyle(
-                          color: Colors.grey[200],
-                        ),
-                      ),
-                      backgroundColor: Colors.white.withOpacity(0.076),
                     ),
-                  );
-                },
+                  ),
+                ),
+              )
+            : null,
+      ),
+      body: filteredEntries.isEmpty
+          ? noEntriesLayout
+          : MouseRegion(
+              onHover: (event) {
+                x = event.position.dx;
+                y = event.position.dy;
+              },
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                  bottom: 16,
+                  // top: Platform.isMacOS ? 112 : 96,
+                  top: MediaQuery.of(context).padding.top +
+                      kToolbarHeight +
+                      ((state.entries.tags != null &&
+                              state.entries.tags.isNotEmpty)
+                          ? 40
+                          : 0),
+                ),
+                itemBuilder: (context, i) => GestureDetector(
+                  onSecondaryTap: () {
+                    showPopupMenu(filteredEntries[i]);
+                  },
+                  child: InkWell(
+                    onLongPress: () {
+                      showPopupMenu(filteredEntries[i]);
+                    },
+                    onTap: () async {
+                      await navigate(
+                        context,
+                        AccountDetailsScreen(
+                          entry: filteredEntries[i],
+                        ),
+                      );
+
+                      await initTouchBar(filteredEntries);
+                    },
+                    child: HomeListItem(
+                      entry: filteredEntries[i],
+                    ),
+                  ),
+                ),
+                itemCount: filteredEntries.length,
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          if (state.entries.tags != null && state.entries.tags.isNotEmpty)
-            Expanded(
-              child: filteredEntries.isEmpty
-                  ? noEntriesLayout
-                  : MouseRegion(
-                      onHover: (event) {
-                        x = event.position.dx;
-                        y = event.position.dy;
-                      },
-                      child: ListView.builder(
-                        padding: EdgeInsets.only(
-                          bottom: 16,
-                          top: Platform.isMacOS ? 112 : 96,
-                        ),
-                        itemBuilder: (context, i) => GestureDetector(
-                          onSecondaryTap: () {
-                            showPopupMenu(filteredEntries[i]);
-                          },
-                          child: InkWell(
-                            onLongPress: () {
-                              showPopupMenu(filteredEntries[i]);
-                            },
-                            onTap: () async {
-                              await navigate(
-                                context,
-                                AccountDetailsScreen(
-                                  entry: filteredEntries[i],
-                                ),
-                              );
-
-                              await initTouchBar(filteredEntries);
-                            },
-                            child: HomeListItem(
-                              entry: filteredEntries[i],
-                            ),
-                          ),
-                        ),
-                        itemCount: filteredEntries.length,
-                        physics: const AlwaysScrollableScrollPhysics(
-                          parent: BouncingScrollPhysics(),
-                        ),
-                      ),
-                    ),
-            ),
-          if (state.isSyncing) syncingIndicator,
-        ],
-      ),
     );
   }
 
@@ -389,6 +402,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         ],
       );
 
+  // Not used as of now
   Widget get syncingIndicator => SizedBox(
         width: double.infinity,
         height: 40,
