@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:autofill_service/autofill_service.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ import '../../constants/colors.dart';
 import '../../models/entry.dart';
 import '../../redux/actions/entries.dart';
 import '../../redux/appstate.dart';
+import '../../utils/loggers.dart';
 import '../../utils/navigation_utils.dart';
 import '../../widgets/home_list_item.dart';
 import '../../widgets/title.dart';
@@ -143,7 +145,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   }
 
   Future initTouchBar(List<Entry> entries) async {
-    if (entries.isNotEmpty) {
+    if (entries.isNotEmpty && Platform.isMacOS) {
       await setTouchBar(
         TouchBar(
           children: [
@@ -181,6 +183,25 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
     }
   }
 
+  Future handleItemClick(Entry entry, bool autofill) async {
+    if (!autofill) {
+      await navigate(
+        context,
+        AccountDetailsScreen(
+          entry: entry,
+        ),
+      );
+    } else {
+      final response = await AutofillService().resultWithDataset(
+        label: entry.name ?? entry.username,
+        username: entry.username,
+        password: entry.password,
+      );
+
+      Loggers.mainLogger.info('autofill $response');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<AppState>(context);
@@ -196,9 +217,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             )
             .toList();
 
-    if (Platform.isMacOS) {
-      initTouchBar(filteredEntries);
-    }
+    initTouchBar(filteredEntries);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -218,38 +237,35 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             ),
           ),
         ),
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Feather.settings),
-            onPressed: () {
-              navigate(
-                context,
-                SettingsScreen(),
-              );
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     content: Text(
-              //       context.getString('under_construction'),
-              //     ),
-              //   ),
-              // );
-            },
-            tooltip: context.getString('settings_tooltip'),
-          ),
-        ),
+        leading: state.autofillLaunch
+            ? null
+            : Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(Feather.settings),
+                  onPressed: () {
+                    navigate(
+                      context,
+                      SettingsScreen(),
+                    );
+                  },
+                  tooltip: context.getString('settings_tooltip'),
+                ),
+              ),
         centerTitle: true,
         title: TitleWidget(
           textSize: 24,
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Feather.plus_circle),
-            onPressed: () async {
-              await addAccount();
-            },
-            tooltip: context.getString('add_account'),
-          ),
-        ],
+        actions: state.autofillLaunch
+            ? null
+            : [
+                IconButton(
+                  icon: Icon(Feather.plus_circle),
+                  onPressed: () async {
+                    await addAccount();
+                  },
+                  tooltip: context.getString('add_account'),
+                ),
+              ],
         bottom: (state.entries.tags != null && state.entries.tags.isNotEmpty)
             ? PreferredSize(
                 preferredSize: const Size.fromHeight(40.0),
@@ -328,7 +344,6 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   bottom: 16,
-                  // top: Platform.isMacOS ? 112 : 96,
                   top: MediaQuery.of(context).padding.top +
                       kToolbarHeight +
                       ((state.entries.tags != null &&
@@ -337,19 +352,21 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                           : 0),
                 ),
                 itemBuilder: (context, i) => GestureDetector(
-                  onSecondaryTap: () {
-                    showPopupMenu(filteredEntries[i]);
-                  },
+                  onSecondaryTap: state.autofillLaunch
+                      ? null
+                      : () {
+                          showPopupMenu(filteredEntries[i]);
+                        },
                   child: InkWell(
-                    onLongPress: () {
-                      showPopupMenu(filteredEntries[i]);
-                    },
+                    onLongPress: state.autofillLaunch
+                        ? null
+                        : () {
+                            showPopupMenu(filteredEntries[i]);
+                          },
                     onTap: () async {
-                      await navigate(
-                        context,
-                        AccountDetailsScreen(
-                          entry: filteredEntries[i],
-                        ),
+                      await handleItemClick(
+                        filteredEntries[i],
+                        state.autofillLaunch,
                       );
 
                       await initTouchBar(filteredEntries);

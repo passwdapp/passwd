@@ -12,6 +12,7 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
 - Desktop Support (Linux is still untested, any contibutions on the same are welcome)
   - TouchBar support (Beta)
 - Responsive UI (Kinda)
+- Support for autofill on android (Beta)
 
 ## Screenshots
 

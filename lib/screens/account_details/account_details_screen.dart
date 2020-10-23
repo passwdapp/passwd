@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,29 +45,31 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
   }
 
   Future initTouchBar() async {
-    await setTouchBar(
-      TouchBar(
-        children: [
-          TouchBarLabel(
-            widget.entry.username,
-            textColor: Colors.white,
-          ),
-          TouchBarSpace.small(),
-          TouchBarButton(
-            label: 'Copy Password', // TODO: localize this
-            onClick: () {
-              copyPassword();
-            },
-          ),
-          if (widget.entry.name != null) TouchBarSpace.flexible(),
-          if (widget.entry.name != null)
+    if (Platform.isMacOS) {
+      await setTouchBar(
+        TouchBar(
+          children: [
             TouchBarLabel(
-              widget.entry.name,
+              widget.entry.username,
               textColor: Colors.white,
             ),
-        ],
-      ),
-    );
+            TouchBarSpace.small(),
+            TouchBarButton(
+              label: 'Copy Password', // TODO: localize this
+              onClick: () {
+                copyPassword();
+              },
+            ),
+            if (widget.entry.name != null) TouchBarSpace.flexible(),
+            if (widget.entry.name != null)
+              TouchBarLabel(
+                widget.entry.name,
+                textColor: Colors.white,
+              ),
+          ],
+        ),
+      );
+    }
   }
 
   @override

@@ -18,8 +18,12 @@ class AppState extends $AppState {
   @override
   final bool isSyncing;
 
+  @override
+  final bool autofillLaunch;
+
   AppState({
     this.entries,
     this.isSyncing,
+    this.autofillLaunch,
   });
 }

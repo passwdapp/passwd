@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
         initialState: AppState(
           entries: Entries(entries: []),
           isSyncing: false,
+          autofillLaunch: false,
         ),
       ),
       child: EzLocalizationBuilder(
@@ -166,10 +167,12 @@ class MyApp extends StatelessWidget {
             return child;
           },
           debugShowCheckedModeBanner: false,
-          home: InitScreen(),
+          // home: InitScreen(),
           routes: {
             '/': (context) => InitScreen(),
-            '/autofill': (context) => InitScreen(),
+            '/autofill': (context) => InitScreen(
+              dispatchAutofill: true,
+            ),
           },
         ),
       ),
