@@ -8,6 +8,10 @@ import '../../models/entry.dart';
 import '../../redux/appstate.dart';
 
 class SearchScreen extends StatefulWidget {
+  final bool autofillLaunch;
+
+  SearchScreen({@required this.autofillLaunch});
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -74,8 +78,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 ))
               : ListView.builder(
                   itemCount: filteredEntries.length,
-                  itemBuilder: (context, i) =>
-                      HomeListItem(entry: filteredEntries[i]),
+                  itemBuilder: (context, i) => HomeListItem(
+                    entry: filteredEntries[i],
+                    autofillLaunch: widget.autofillLaunch,
+                    onReturnFromDetails: () {},
+                  ),
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
                 ),
     );
   }

@@ -18,16 +18,12 @@ class HomeListItem extends StatefulWidget {
   final Entry entry;
   final double size;
   final VoidCallback onReturnFromDetails;
-  final double focusX;
-  final double focusY;
   final bool autofillLaunch;
 
   HomeListItem({
     @required this.entry,
     this.size = 40,
     @required this.onReturnFromDetails,
-    @required this.focusX,
-    @required this.focusY,
     @required this.autofillLaunch,
   }) : assert(entry != null);
 
@@ -36,26 +32,26 @@ class HomeListItem extends StatefulWidget {
 }
 
 class _HomeListItemState extends State<HomeListItem> {
-  Future showPopupMenu() async {
+  Future showPopupMenu(Offset globalPosition) async {
     final entry = widget.entry;
 
     var size = MediaQuery.of(context).size;
     final selected = await showMenu(
-      color: Color(0xff212121),
+      color: Color(0xff242424),
       context: context,
       position: RelativeRect.fromLTRB(
-        widget.focusX,
-        widget.focusY,
-        size.width - widget.focusX,
-        size.height - widget.focusY,
+        globalPosition.dx,
+        globalPosition.dy,
+        size.width - globalPosition.dx,
+        size.height - globalPosition.dy,
       ),
       items: [
         PopupMenuItem(
-          child: Text('Delete ${entry.name}'),
+          child: Text('Delete ${entry.name}'), // TODO: localize
           value: 0,
         ),
         PopupMenuItem(
-          child: Text('Copy Password for ${entry.name}'),
+          child: Text('Copy Password for ${entry.name}'), // TODO: localize
           value: 1,
         ),
       ],
@@ -70,6 +66,32 @@ class _HomeListItemState extends State<HomeListItem> {
         copy(entry.password);
         break;
     }
+  }
+
+  void showOptionsSheet() {
+    final entry = widget.entry;
+
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Wrap(
+        children: [
+          ListTile(
+            title: Text('Delete ${entry.name}'), // TODO: localize
+            onTap: () {
+              Navigator.of(context).pop();
+              showDeleteDialog();
+            },
+          ),
+          ListTile(
+            title: Text('Copy Password for ${entry.name}'), // TODO: localize
+            onTap: () {
+              Navigator.of(context).pop();
+              copy(entry.password);
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   void copy(String text) {
@@ -160,16 +182,16 @@ class _HomeListItemState extends State<HomeListItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onSecondaryTap: widget.autofillLaunch
+      onSecondaryTapDown: widget.autofillLaunch
           ? null
-          : () {
-              showPopupMenu();
+          : (details) {
+              showPopupMenu(details.globalPosition);
             },
       child: InkWell(
         onLongPress: widget.autofillLaunch
             ? null
             : () {
-                showPopupMenu();
+                showOptionsSheet();
               },
         onTap: () async {
           await handleItemClick(widget.entry, widget.autofillLaunch);

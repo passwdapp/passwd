@@ -28,9 +28,6 @@ class HomePasswordsScreen extends StatefulWidget {
 }
 
 class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
-  double x = 0;
-  double y = 0;
-
   List<String> selectedTags = [];
 
   Future addAccount() async {
@@ -141,7 +138,10 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           IconButton(
             icon: Icon(Feather.search),
             onPressed: () async {
-              await navigate(context, SearchScreen());
+              await navigate(
+                context,
+                SearchScreen(autofillLaunch: state.autofillLaunch),
+              );
             },
             tooltip: 'Search', // TODO: localize search
           ),
@@ -157,6 +157,9 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                     height: 36,
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics(),
+                      ),
                       scrollDirection: Axis.horizontal,
                       itemCount: state.entries.tags != null
                           ? state.entries.tags.length
@@ -224,34 +227,26 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             ),
       body: filteredEntries.isEmpty
           ? noEntriesLayout
-          : MouseRegion(
-              onHover: (event) {
-                x = event.position.dx;
-                y = event.position.dy;
-              },
-              child: ListView.builder(
-                padding: EdgeInsets.only(
-                  bottom: 16,
-                  top: MediaQuery.of(context).padding.top +
-                      kToolbarHeight +
-                      ((state.entries.tags != null &&
-                              state.entries.tags.isNotEmpty)
-                          ? 40
-                          : 0),
-                ),
-                itemBuilder: (context, i) => HomeListItem(
-                  entry: filteredEntries[i],
-                  focusX: x,
-                  focusY: y,
-                  autofillLaunch: state.autofillLaunch,
-                  onReturnFromDetails: () {
-                    initTouchBar(filteredEntries);
-                  },
-                ),
-                itemCount: filteredEntries.length,
-                physics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
+          : ListView.builder(
+              padding: EdgeInsets.only(
+                bottom: 16,
+                top: MediaQuery.of(context).padding.top +
+                    kToolbarHeight +
+                    ((state.entries.tags != null &&
+                            state.entries.tags.isNotEmpty)
+                        ? 40
+                        : 0),
+              ),
+              itemBuilder: (context, i) => HomeListItem(
+                entry: filteredEntries[i],
+                autofillLaunch: state.autofillLaunch,
+                onReturnFromDetails: () {
+                  initTouchBar(filteredEntries);
+                },
+              ),
+              itemCount: filteredEntries.length,
+              physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
               ),
             ),
     );
