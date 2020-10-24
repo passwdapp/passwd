@@ -2,10 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:autofill_service/autofill_service.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:touch_bar/touch_bar.dart';
@@ -14,12 +12,12 @@ import '../../constants/colors.dart';
 import '../../models/entry.dart';
 import '../../redux/actions/entries.dart';
 import '../../redux/appstate.dart';
-import '../../utils/loggers.dart';
 import '../../utils/navigation_utils.dart';
 import '../../widgets/home_list_item.dart';
 import '../../widgets/title.dart';
 import '../account_details/account_details_screen.dart';
 import '../add_account/add_account_screen.dart';
+import '../search/search_screen.dart';
 import '../settings/settings_screen.dart';
 
 // Navigation Item, not to be navigated to
@@ -34,104 +32,6 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
   double y = 0;
 
   List<String> selectedTags = [];
-
-  Future showPopupMenu(Entry entry) async {
-    var size = MediaQuery.of(context).size;
-    final selected = await showMenu(
-      color: Color(0xff212121),
-      context: context,
-      position: RelativeRect.fromLTRB(
-        x,
-        y,
-        size.width - x,
-        size.height - y,
-      ),
-      items: [
-        PopupMenuItem(
-          child: Text('Delete ${entry.name}'),
-          value: 0,
-        ),
-        PopupMenuItem(
-          child: Text('Copy Password for ${entry.name}'),
-          value: 1,
-        ),
-      ],
-    );
-
-    switch (selected) {
-      case 0:
-        showDeleteDialog(entry);
-        break;
-
-      case 1:
-        copy(entry.password);
-        break;
-    }
-  }
-
-  void copy(String text) {
-    Clipboard.setData(
-      ClipboardData(
-        text: text,
-      ),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          context.getString('copied_to_clipboard'),
-        ),
-      ),
-    );
-  }
-
-  void showDeleteDialog(Entry entry) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          context.getString('deletion_dialog_title'),
-        ),
-        content: RichText(
-          text: TextSpan(
-            text: context.getString('warning'),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.red[200],
-            ),
-            children: [
-              TextSpan(
-                text: context.getString('irreversible'),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          FlatButton(
-            onPressed: () async {
-              Navigator.of(context).pop();
-
-              await Provider.of<DispatchFuture>(
-                context,
-                listen: false,
-              )(RemoveEntryAction(entry));
-            },
-            child: Text(
-              context.getString('yes'),
-            ),
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              context.getString('no'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Future addAccount() async {
     Entry entry = await navigate(context, AddAccountScreen());
@@ -180,25 +80,6 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           ],
         ),
       );
-    }
-  }
-
-  Future handleItemClick(Entry entry, bool autofill) async {
-    if (!autofill) {
-      await navigate(
-        context,
-        AccountDetailsScreen(
-          entry: entry,
-        ),
-      );
-    } else {
-      final response = await AutofillService().resultWithDataset(
-        label: entry.name ?? entry.username,
-        username: entry.username,
-        password: entry.password,
-      );
-
-      Loggers.mainLogger.info('autofill $response');
     }
   }
 
@@ -260,7 +141,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           IconButton(
             icon: Icon(Feather.search),
             onPressed: () async {
-              // await addAccount();
+              await navigate(context, SearchScreen());
             },
             tooltip: 'Search', // TODO: localize search
           ),
@@ -358,30 +239,14 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                           ? 40
                           : 0),
                 ),
-                itemBuilder: (context, i) => GestureDetector(
-                  onSecondaryTap: state.autofillLaunch
-                      ? null
-                      : () {
-                          showPopupMenu(filteredEntries[i]);
-                        },
-                  child: InkWell(
-                    onLongPress: state.autofillLaunch
-                        ? null
-                        : () {
-                            showPopupMenu(filteredEntries[i]);
-                          },
-                    onTap: () async {
-                      await handleItemClick(
-                        filteredEntries[i],
-                        state.autofillLaunch,
-                      );
-
-                      await initTouchBar(filteredEntries);
-                    },
-                    child: HomeListItem(
-                      entry: filteredEntries[i],
-                    ),
-                  ),
+                itemBuilder: (context, i) => HomeListItem(
+                  entry: filteredEntries[i],
+                  focusX: x,
+                  focusY: y,
+                  autofillLaunch: state.autofillLaunch,
+                  onReturnFromDetails: () {
+                    initTouchBar(filteredEntries);
+                  },
                 ),
                 itemCount: filteredEntries.length,
                 physics: const AlwaysScrollableScrollPhysics(
