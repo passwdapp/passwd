@@ -226,8 +226,8 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         flexibleSpace: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 20,
-              sigmaY: 20,
+              sigmaX: 18,
+              sigmaY: 18,
             ),
             child: Container(
               color: canvasColor.withOpacity(0.8),
@@ -237,6 +237,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             ),
           ),
         ),
+        automaticallyImplyLeading: false,
         leading: state.autofillLaunch
             ? null
             : Builder(
@@ -255,17 +256,15 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         title: TitleWidget(
           textSize: 24,
         ),
-        actions: state.autofillLaunch
-            ? null
-            : [
-                IconButton(
-                  icon: Icon(Feather.plus_circle),
-                  onPressed: () async {
-                    await addAccount();
-                  },
-                  tooltip: context.getString('add_account'),
-                ),
-              ],
+        actions: [
+          IconButton(
+            icon: Icon(Feather.search),
+            onPressed: () async {
+              // await addAccount();
+            },
+            tooltip: 'Search', // TODO: localize search
+          ),
+        ],
         bottom: (state.entries.tags != null && state.entries.tags.isNotEmpty)
             ? PreferredSize(
                 preferredSize: const Size.fromHeight(40.0),
@@ -333,6 +332,15 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
               )
             : null,
       ),
+      floatingActionButton: state.autofillLaunch
+          ? null
+          : FloatingActionButton(
+              onPressed: () async {
+                await addAccount();
+              },
+              tooltip: context.getString('add_account'),
+              child: Icon(Feather.plus),
+            ),
       body: filteredEntries.isEmpty
           ? noEntriesLayout
           : MouseRegion(

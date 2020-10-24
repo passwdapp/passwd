@@ -171,8 +171,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => InitScreen(),
             '/autofill': (context) => InitScreen(
-              dispatchAutofill: true,
-            ),
+                  dispatchAutofill: true,
+                ),
           },
         ),
       ),

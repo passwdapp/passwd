@@ -7,8 +7,12 @@ import '../utils/get_first_letter.dart';
 
 class HomeListItem extends StatelessWidget {
   final Entry entry;
+  final double size;
 
-  HomeListItem({@required this.entry}) : assert(entry != null);
+  HomeListItem({
+    @required this.entry,
+    this.size = 40,
+  }) : assert(entry != null);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class HomeListItem extends StatelessWidget {
       ),
       child: Container(
         width: double.infinity,
-        height: 48,
+        height: size,
         child: Row(
           children: [
             ClipRRect(
@@ -29,8 +33,8 @@ class HomeListItem extends StatelessWidget {
                       color: Colors.white,
                       child: CachedNetworkImage(
                         imageUrl: entry.favicon,
-                        width: 48,
-                        height: 48,
+                        width: size,
+                        height: size,
                         placeholder: (context, url) =>
                             getContainer(entry, context),
                         errorWidget: (context, url, error) =>
@@ -49,7 +53,9 @@ class HomeListItem extends StatelessWidget {
                 children: [
                   Text(
                     entry.name.isEmpty ? entry.username : entry.name,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 16,
+                        ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -59,7 +65,8 @@ class HomeListItem extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withOpacity(0.76),
+                            fontSize: 13,
                           ),
                         )
                       : Container(),
@@ -74,7 +81,7 @@ class HomeListItem extends StatelessWidget {
 
   Widget getContainer(Entry entry, BuildContext context) {
     return Container(
-      width: 48,
+      width: size,
       color: iconColors[entry.colorId],
       child: Center(
         child: Text(
