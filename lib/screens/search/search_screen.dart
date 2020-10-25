@@ -60,8 +60,8 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         title: TextFormField(
           controller: searchController,
+          autofocus: true,
           decoration: InputDecoration(
-            border: InputBorder.none,
             hintText: 'Search', //TODO: localize
           ),
         ),
