@@ -14,9 +14,10 @@ import 'models/entries.dart';
 import 'redux/appstate.dart';
 import 'screens/init/init_screen.dart';
 import 'services/locator.dart';
+import 'utils/desktop_window.dart';
 import 'utils/loggers.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   setupLogging();
@@ -25,6 +26,7 @@ void main() {
   if (Platform.isAndroid || Platform.isIOS) {
     initializeLocator();
   } else {
+    await setupDesktopWindow();
     initializeLocator('desktop');
   }
 
