@@ -8,6 +8,7 @@ import '../../models/biometrics_result.dart';
 import 'biometrics_service.dart';
 
 /// [BiometricsLocalAuth] uses "local_auth" to provide a concrete implementation for [BiometricsService]
+/// This implementation, due to being insecure, is no longer injected. [BiometricsBiometricStorage] is used instead
 class BiometricsLocalAuth implements BiometricsService {
   final LocalAuthentication authentication = LocalAuthentication();
 

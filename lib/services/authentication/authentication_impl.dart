@@ -7,6 +7,7 @@ import '../secure_kv/secure_kv.dart';
 import 'authentication_service.dart';
 
 /// [AuthenticationImpl] implements the [AuthenticationService] to provide an implementation for the authentication used in app
+/// This implementation, due to being insecure, is no longer injected. [AuthenticationBiometricStorage] is used instead
 class AuthenticationImpl implements AuthenticationService {
   final String key = 'ENCRYPTION_KEY';
   final String biometricsKey = 'ALLOW_BIOMETRICS';
@@ -44,8 +45,7 @@ class AuthenticationImpl implements AuthenticationService {
   }
 
   @override
-  Future<bool> isAppSetup() {
-    // TODO: implement isAppSetup
+  Future<bool> isAppSetup() async {
     throw UnimplementedError();
   }
 }

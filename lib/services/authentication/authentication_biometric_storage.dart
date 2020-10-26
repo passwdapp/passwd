@@ -7,6 +7,7 @@ import '../locator.dart';
 import '../secure_kv/secure_kv.dart';
 import 'authentication_service.dart';
 
+/// [AuthenticationBiometricStorage] implements the [AuthenticationService] to provide an implementation for the authentication used in app
 @LazySingleton(as: AuthenticationService)
 class AuthenticationBiometricStorage implements AuthenticationService {
   final key = 'ENCRYPTION_KEY';
@@ -50,9 +51,10 @@ class AuthenticationBiometricStorage implements AuthenticationService {
 
       if (storedKey == s512) {
         encryptionKey = storedKey;
+        return true;
       }
 
-      return storedKey == s512;
+      return false;
     }
   }
 
