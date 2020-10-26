@@ -1,4 +1,4 @@
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../crypto/crypto_service.dart';
@@ -7,7 +7,6 @@ import '../secure_kv/secure_kv.dart';
 import 'authentication_service.dart';
 
 /// [AuthenticationImpl] implements the [AuthenticationService] to provide an implementation for the authentication used in app
-@LazySingleton(as: AuthenticationService)
 class AuthenticationImpl implements AuthenticationService {
   final String key = 'ENCRYPTION_KEY';
   final String biometricsKey = 'ALLOW_BIOMETRICS';
@@ -29,7 +28,7 @@ class AuthenticationImpl implements AuthenticationService {
   }
 
   @override
-  Future writePin(int pin) async {
+  Future writePin(int pin, bool _) async {
     final encryptionKey = crypto.sha512(pin.toString());
     await kv.putValue(key, encryptionKey);
   }
@@ -42,5 +41,11 @@ class AuthenticationImpl implements AuthenticationService {
   @override
   Future writeBiometrics(bool allow) async {
     await kv.putValue(biometricsKey, allow ? '1' : '0');
+  }
+
+  @override
+  Future<bool> isAppSetup() {
+    // TODO: implement isAppSetup
+    throw UnimplementedError();
   }
 }

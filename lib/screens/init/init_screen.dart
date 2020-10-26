@@ -21,8 +21,7 @@ class InitScreen extends StatefulWidget {
 class _InitScreenState extends State<InitScreen> {
   Future<bool> get isAuthenticated async {
     await locator.allReady();
-    final key = await locator<AuthenticationService>().readEncryptionKey();
-    return key != null;
+    return await locator<AuthenticationService>().isAppSetup();
   }
 
   Future navigate() async {

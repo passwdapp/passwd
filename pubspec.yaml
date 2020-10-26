@@ -16,6 +16,7 @@ dependencies:
   async_redux: ^4.0.2
   barcode_scan: ^3.0.1
   base_x: ^1.0.1
+  biometric_storage: ^1.1.0+1
   cached_network_image: ^2.3.3
   crypto: ^2.1.5
   cryptography: ^1.4.1

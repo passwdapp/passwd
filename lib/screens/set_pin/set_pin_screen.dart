@@ -44,7 +44,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
   }
 
   Future next() async {
-    await locator<AuthenticationService>().writePin(pin);
+    await locator<AuthenticationService>().writePin(pin, biometrics);
     await Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (_) => HomeScreen(),

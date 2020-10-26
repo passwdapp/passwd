@@ -87,6 +87,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  biometric_storage:
+    dependency: "direct main"
+    description:
+      name: biometric_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0+1"
   boolean_selector:
     dependency: transitive
     description:

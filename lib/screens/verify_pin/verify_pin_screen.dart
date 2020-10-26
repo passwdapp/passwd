@@ -29,11 +29,18 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
   Future tryBiometrics() async {
     if (await biometricsAvailable()) {
       // TODO: Localize the reason
-      final result = await locator<BiometricsService>()
-          .authenticate('To unlock your vault.');
+      // final result = await locator<BiometricsService>()
+      //     .authenticate('To unlock your vault.');
 
-      if (result == BiometricsResult.AUTHENTICATED) {
+      // if (result == BiometricsResult.AUTHENTICATED) {
+      //   replace();
+      // }
+
+      try {
+        await locator<AuthenticationService>().comparePin(null);
         replace();
+      } catch (e) {
+        print(e);
       }
     }
   }
