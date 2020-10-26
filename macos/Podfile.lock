@@ -1,4 +1,8 @@
 PODS:
+  - biometric_storage (0.0.1):
+    - FlutterMacOS
+  - desktop_window (0.0.1):
+    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -17,6 +21,8 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - biometric_storage (from `Flutter/ephemeral/.symlinks/plugins/biometric_storage/macos`)
+  - desktop_window (from `Flutter/ephemeral/.symlinks/plugins/desktop_window/macos`)
   - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64`)
   - path_provider (from `Flutter/ephemeral/.symlinks/plugins/path_provider/macos`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
@@ -31,6 +37,10 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
+  biometric_storage:
+    :path: Flutter/ephemeral/.symlinks/plugins/biometric_storage/macos
+  desktop_window:
+    :path: Flutter/ephemeral/.symlinks/plugins/desktop_window/macos
   FlutterMacOS:
     :path: Flutter/ephemeral/.symlinks/flutter/darwin-x64
   path_provider:
@@ -49,6 +59,8 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/touch_bar_macos/macos
 
 SPEC CHECKSUMS:
+  biometric_storage: 43caa6e7ef00e8e19c074216e7e1786dacda9e76
+  desktop_window: fb7c4f12c1129f947ac482296b6f14059d57a3c3
   FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: e0848572d1d38b9a7dd099e79cf83f5b7e2cde9f
@@ -61,4 +73,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 91a45292e3c63eb73c6e52036eeb01a52e7ae4df
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0

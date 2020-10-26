@@ -37,23 +37,30 @@ class AuthenticationBiometricStorage implements AuthenticationService {
 
   @override
   Future<bool> comparePin(int pin) async {
-    if (pin == null) {
-      final storage = await getStorage(useBiometrics: true);
-      final storedKey = await storage.read();
-      print(storedKey);
-      encryptionKey = storedKey;
+    try {
+      if (pin == null) {
+        final storage = await getStorage(useBiometrics: true);
+        final storedKey = await storage.read();
+        if (storedKey == null || storage == null) {
+          return false;
+        }
 
-      return true;
-    } else {
-      final storage = await getStorage(useBiometrics: false);
-      final storedKey = await storage.read();
-      final s512 = crypto.sha512(pin.toString());
-
-      if (storedKey == s512) {
         encryptionKey = storedKey;
         return true;
-      }
+      } else {
+        final storage = await getStorage(useBiometrics: false);
+        final storedKey = await storage.read();
+        final s512 = crypto.sha512(pin.toString());
 
+        if (storedKey == s512) {
+          encryptionKey = storedKey;
+          return true;
+        }
+
+        return false;
+      }
+    } catch (e) {
+      print(e);
       return false;
     }
   }
