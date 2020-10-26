@@ -1,8 +1,12 @@
 PODS:
+  - autofill_service (0.0.1):
+    - Flutter
   - barcode_scan (0.0.1):
     - Flutter
     - MTBBarcodeScanner
     - SwiftProtobuf
+  - biometric_storage (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_secure_storage (3.3.1):
     - Flutter
@@ -22,7 +26,9 @@ PODS:
   - SwiftProtobuf (1.12.0)
 
 DEPENDENCIES:
+  - autofill_service (from `.symlinks/plugins/autofill_service/ios`)
   - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
+  - biometric_storage (from `.symlinks/plugins/biometric_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
@@ -37,8 +43,12 @@ SPEC REPOS:
     - SwiftProtobuf
 
 EXTERNAL SOURCES:
+  autofill_service:
+    :path: ".symlinks/plugins/autofill_service/ios"
   barcode_scan:
     :path: ".symlinks/plugins/barcode_scan/ios"
+  biometric_storage:
+    :path: ".symlinks/plugins/biometric_storage/ios"
   Flutter:
     :path: Flutter
   flutter_secure_storage:
@@ -53,7 +63,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  autofill_service: b59be6e0dc0e56a49f809512240bf8f93623e6bf
   barcode_scan: a5c27959edfafaa0c771905bad0b29d6d39e4479
+  biometric_storage: 1400f1382af3a4cc2bf05340e13c3d8de873ceb9
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -66,4 +78,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0

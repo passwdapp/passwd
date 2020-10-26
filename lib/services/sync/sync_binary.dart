@@ -35,10 +35,6 @@ class SyncImpl implements SyncService {
       final directory = await pathService.getDocDir();
       final filePath = path.join(directory.path, '$fileName');
 
-      if (!(await directory.exists())) {
-        await directory.create(recursive: true);
-      }
-
       final dbFile = File(filePath);
 
       final fileContent = await dbFile.readAsBytes();
@@ -76,11 +72,11 @@ class SyncImpl implements SyncService {
       final directory = await pathService.getDocDir();
       final filePath = path.join(directory.path, '$fileName');
 
-      if (!(await directory.exists())) {
-        await directory.create(recursive: true);
-      }
-
       final dbFile = File(filePath);
+
+      if (!(await dbFile.exists())) {
+        await dbFile.createSync(recursive: true);
+      }
 
       await dbFile.writeAsBytes(encryptedJson);
 

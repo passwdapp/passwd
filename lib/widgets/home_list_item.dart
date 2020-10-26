@@ -47,11 +47,15 @@ class _HomeListItemState extends State<HomeListItem> {
       ),
       items: [
         PopupMenuItem(
-          child: Text('Delete ${entry.name}'), // TODO: localize
+          child: Text(
+            'Delete ${entry.name ?? entry.username}',
+          ), // TODO: localize
           value: 0,
         ),
         PopupMenuItem(
-          child: Text('Copy Password for ${entry.name}'), // TODO: localize
+          child: Text(
+            'Copy Password for ${entry.name ?? entry.username}',
+          ), // TODO: localize
           value: 1,
         ),
       ],
@@ -76,14 +80,18 @@ class _HomeListItemState extends State<HomeListItem> {
       builder: (context) => Wrap(
         children: [
           ListTile(
-            title: Text('Delete ${entry.name}'), // TODO: localize
+            title: Text(
+              'Delete ${entry.name ?? entry.username}',
+            ), // TODO: localize
             onTap: () {
               Navigator.of(context).pop();
               showDeleteDialog();
             },
           ),
           ListTile(
-            title: Text('Copy Password for ${entry.name}'), // TODO: localize
+            title: Text(
+              'Copy Password for ${entry.name ?? entry.username}',
+            ), // TODO: localize
             onTap: () {
               Navigator.of(context).pop();
               copy(entry.password);

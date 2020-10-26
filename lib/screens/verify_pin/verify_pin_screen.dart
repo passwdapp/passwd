@@ -2,7 +2,6 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 
-import '../../models/biometrics_result.dart';
 import '../../services/authentication/authentication_service.dart';
 import '../../services/biometrics/biometrics_service.dart';
 import '../../services/locator.dart';
