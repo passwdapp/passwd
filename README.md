@@ -19,18 +19,14 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
 Nothing is complete without screenshots :P
 
 <p align="left">
-  <img src="./screenshots/splash.png" width="232px" />
-  <img src="./screenshots/home.png" width="232px" />
-  <img src="./screenshots/gmail_details.png" width="232px" />
-  <img src="./screenshots/stackoverflow.png" width="232px" />
-  <img src="./screenshots/password_gen_0.png" width="232px" />
-  <img src="./screenshots/password_gen_1.png" width="232px" />
-  <img src="./screenshots/deletion_notice.png" width="232px" />
-  <img src="./screenshots/secure.png" width="232px" />
-  <img src="./screenshots/hindi.png" width="232px" />
+  <img src="./screenshots/splash_new.png" height="440px" />
+  <img src="./screenshots/pin_new.png" height="440px" />
+  <img src="./screenshots/home_new.png" height="440px" />
+  <img src="./screenshots/details.png" height="440px" />
+  <img src="./screenshots/diceware.png" height="440px" />
+  <img src="./screenshots/random.png" height="440px" />
+  <img src="./screenshots/deletion_notice_new.png" height="440px" />
 </p>
-
-PS: Screenshots need to be updated
 
 ## Building
 
