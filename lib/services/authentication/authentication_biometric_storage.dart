@@ -94,6 +94,7 @@ class AuthenticationBiometricStorage implements AuthenticationService {
     }
 
     await kv.putValue(appSetupKey, '1');
+    this.encryptionKey = encryptionKey;
   }
 
   @override
