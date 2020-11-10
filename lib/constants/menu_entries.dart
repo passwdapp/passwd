@@ -2,7 +2,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 import '../models/menu_entry.dart';
 
-// TODO: Add navMenuEntries to localization data
 @deprecated
 final navMenuEntries = <MenuEntry>[
   MenuEntry(

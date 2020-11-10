@@ -87,6 +87,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  bech32:
+    dependency: transitive
+    description:
+      name: bech32
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   biometric_storage:
     dependency: "direct main"
     description:
@@ -646,6 +653,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  pinenacl:
+    dependency: "direct main"
+    description:
+      name: pinenacl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
   plain_optional:
     dependency: transitive
     description:
