@@ -57,6 +57,9 @@ dev_dependencies:
   injectable_generator: ^1.0.5
   pedantic: ^1.9.2
 
+dependency_overrides:
+  intl: 0.17.0-nullsafety.2
+
 flutter:
   uses-material-design: true
   assets:
