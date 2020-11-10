@@ -44,6 +44,7 @@ class SyncDBv1 implements SyncService {
   @override
   Future<Entries> readDatabaseLocally() async {
     try {
+      await setCurrentDbVersion(version);
       await checkBox();
 
       final directory = await pathService.getDocDir();
