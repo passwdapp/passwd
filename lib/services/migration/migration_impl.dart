@@ -1,3 +1,4 @@
+import 'package:passwd/services/authentication/authentication_service.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../locator.dart';
@@ -25,7 +26,9 @@ import 'migration_service.dart';
 class MigrationImpl implements MigrationService {
   static const versionKey = 'CURRENT_DB_VERSION';
   static const latestVersion = 1;
+
   final kvService = locator<SecureKVService>();
+  final authenticationService = locator<AuthenticationService>();
 
   @override
   Future migrate() async {
