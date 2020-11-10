@@ -5,6 +5,7 @@ import 'package:supercharged/supercharged.dart';
 import '../../services/authentication/authentication_service.dart';
 import '../../services/biometrics/biometrics_service.dart';
 import '../../services/locator.dart';
+import '../../services/migration/migration_service.dart';
 import '../../widgets/pin_input.dart';
 import '../home/home_screen.dart';
 
@@ -29,7 +30,7 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
     if (await biometricsAvailable()) {
       try {
         if (await locator<AuthenticationService>().comparePin(null)) {
-          replace();
+          await next();
         }
       } catch (e) {
         print(e);
@@ -47,6 +48,16 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
         error = 'Invalid pin entered';
       });
     }
+  }
+
+  Future next() async {
+    final migrationService = locator<MigrationService>();
+
+    if (await migrationService.needsMigration()) {
+      await migrationService.migrate();
+    }
+
+    replace();
   }
 
   void replace() {
