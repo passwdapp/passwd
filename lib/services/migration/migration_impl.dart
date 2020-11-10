@@ -5,7 +5,7 @@ import '../authentication/authentication_service.dart';
 import '../locator.dart';
 import '../secure_kv/secure_kv.dart';
 import '../sync/sync_binary.dart';
-import '../sync/sync_dbv2.dart';
+import '../sync/sync_dbv1.dart';
 import 'migration_service.dart';
 
 /// [MigrationImpl] implements the [MigrationService].
@@ -35,7 +35,7 @@ class MigrationImpl implements MigrationService {
   final authenticationService = locator<AuthenticationService>();
 
   final dbv0 = SyncImpl();
-  final dbv1 = SyncDBv2();
+  final dbv1 = SyncDBv1();
 
   @override
   Future migrate() async {

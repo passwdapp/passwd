@@ -32,7 +32,7 @@ import 'qr/qr_service.dart';
 import 'secure_kv/secure_kv_securestorage.dart';
 import 'secure_kv/secure_kv_sharedprefs.dart' as passwd;
 import 'secure_kv/secure_kv.dart';
-import 'sync/sync_binary.dart';
+import 'sync/sync_dbv1.dart';
 import 'sync/sync_service.dart';
 
 /// Environment names
@@ -65,7 +65,7 @@ GetIt $initGetIt(
       registerFor: {_mobile});
   gh.lazySingleton<SecureKVService>(() => passwd.SecureKVSecureStorage(),
       registerFor: {_desktop});
-  gh.lazySingleton<SyncService>(() => SyncImpl());
+  gh.lazySingleton<SyncService>(() => SyncDBv1());
   return get;
 }
 

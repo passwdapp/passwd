@@ -19,6 +19,7 @@ import 'sync_service.dart';
 /// This one is deprecated, but is still here, coz just in case...
 /// Using the binary implementation is strongly recommended
 /// This is not injected currently
+@deprecated
 class SyncImpl implements SyncService {
   final String fileName = 'db___test.passwd';
 

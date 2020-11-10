@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:injectable/injectable.dart';
 import 'package:msgpack_dart/msgpack_dart.dart';
 import 'package:path/path.dart' as path;
 import 'package:pinenacl/secret.dart';
@@ -11,7 +12,13 @@ import '../locator.dart';
 import '../path/path_service.dart';
 import 'sync_service.dart';
 
-class SyncDBv2 implements SyncService {
+/// [SyncDBv1] implements the [SyncService]
+///
+/// DBv1 is the 3rd implementation of the local database.
+/// This uses XSalsa20-Poly1305 (NaCl secretbox) for encryption.
+/// Cloud sync is not yet implemented
+@LazySingleton(as: SyncService)
+class SyncDBv1 implements SyncService {
   static const fileName = 'db1.passwd1';
 
   final advanceCryptoService = locator<AdvanceCryptoService>();

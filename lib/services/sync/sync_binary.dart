@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:archive/archive.dart';
-import 'package:injectable/injectable.dart';
 import 'package:msgpack_dart/msgpack_dart.dart';
 import 'package:path/path.dart' as path;
 
@@ -13,12 +12,16 @@ import '../locator.dart';
 import '../path/path_service.dart';
 import 'sync_service.dart';
 
-/// [SyncBinary] implements the [SyncService]
-/// It consumes services like [AdvanceCryptoService], [AuthenticationService] and [PathService]
+/// [SyncBinary] implements the [SyncService].
+/// It consumes services like [AdvanceCryptoService], [AuthenticationService] and [PathService].
 /// It provides an abstraction over the serialization, compression, encryption and storage of the DB
-/// This implementation uses gzip, msgpack and AES-256-CTR for the on-device DB
-/// Cloud sync is not yet implemented
-@LazySingleton(as: SyncService)
+///
+/// This implementation uses gzip, msgpack and AES-256-CTR for the on-device DB.
+/// Cloud sync is not yet implemented.
+///
+/// Phased out in the favour of dbv1.
+/// Here just for migration purposes.
+/// This is no longer injected.
 class SyncImpl implements SyncService {
   final String fileName = 'db0.passwd';
 
