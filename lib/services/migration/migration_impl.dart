@@ -1,8 +1,10 @@
-import 'package:passwd/services/authentication/authentication_service.dart';
 import 'package:supercharged/supercharged.dart';
 
+import '../authentication/authentication_service.dart';
 import '../locator.dart';
 import '../secure_kv/secure_kv.dart';
+import '../sync/sync_binary.dart';
+import '../sync/sync_dbv2.dart';
 import 'migration_service.dart';
 
 /// [MigrationImpl] implements the [MigrationService].
@@ -30,6 +32,9 @@ class MigrationImpl implements MigrationService {
   final kvService = locator<SecureKVService>();
   final authenticationService = locator<AuthenticationService>();
 
+  final dbv0 = SyncImpl();
+  final dbv1 = SyncDBv2();
+
   @override
   Future migrate() async {
     final currentVersion = await currentDbVersion;
@@ -40,6 +45,10 @@ class MigrationImpl implements MigrationService {
 
     switch (currentVersion) {
       case 0:
+        final entries = await dbv0.readDatabaseLocally();
+        await dbv1.syncronizeDatabaseLocally(entries);
+
+        await setCurrentDbVersion(1);
         return;
 
       default:
