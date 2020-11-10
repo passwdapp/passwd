@@ -42,7 +42,7 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
     var valid = await locator<AuthenticationService>().comparePin(pin);
 
     if (valid) {
-      replace();
+      await next();
     } else {
       setState(() {
         error = 'Invalid pin entered';

@@ -71,7 +71,7 @@ class MigrationImpl implements MigrationService {
 
   @override
   Future<bool> needsMigration() async {
-    if (await currentDbVersion < 1) {
+    if ((await currentDbVersion) < 1) {
       return true;
     }
 

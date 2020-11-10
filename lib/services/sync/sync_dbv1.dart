@@ -85,7 +85,7 @@ class SyncDBv1 implements SyncService {
       await setCurrentDbVersion(version);
       await checkBox();
 
-      final unencryptedData = serialize(entries);
+      final unencryptedData = serialize(entries.toJson());
       final encryptedData = box.encrypt(unencryptedData);
 
       final directory = await pathService.getDocDir();
