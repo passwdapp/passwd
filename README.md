@@ -4,7 +4,7 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
 
 ## Features
 
-- Fully encrypted using AES-256-CTR (including the database stored on-device)
+- Fully encrypted using XSalsa20-Poly1305 (including the database stored on-device)
 - Support for TOTP
 - Secure Password Generation (Diceware and Random)
 - A beautiful UI
