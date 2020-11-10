@@ -10,12 +10,12 @@ import 'favicon_service.dart';
 @LazySingleton(as: FaviconService)
 class FaviconNew implements FaviconService {
   final dio = locator<Dio>();
-  
+
   @override
   Future<String> getBestFavicon(String url) async {
     try {
       final response = await dio.get(
-        'https://besticon-demo.herokuapp.com/allicons.json?url=$url&formats=png,ico,gif',
+        'https://i.olsh.me/allicons.json?url=$url&formats=png,ico,gif',
       );
 
       if (response.statusCode != 200) {
