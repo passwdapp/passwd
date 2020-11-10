@@ -10,6 +10,7 @@ import '../advance_crypto/advance_crypto_service.dart';
 import '../authentication/authentication_service.dart';
 import '../locator.dart';
 import '../path/path_service.dart';
+import '../secure_kv/secure_kv.dart';
 import 'sync_service.dart';
 
 /// [SyncDBv1] implements the [SyncService]
@@ -20,10 +21,13 @@ import 'sync_service.dart';
 @LazySingleton(as: SyncService)
 class SyncDBv1 implements SyncService {
   static const fileName = 'db1.passwd1';
+  static const versionKey = 'CURRENT_DB_VERSION';
+  static const version = 1;
 
   final advanceCryptoService = locator<AdvanceCryptoService>();
   final authenticationService = locator<AuthenticationService>();
   final pathService = locator<PathService>();
+  final kvService = locator<SecureKVService>();
 
   SecretBox box;
 
@@ -70,10 +74,15 @@ class SyncDBv1 implements SyncService {
     }
   }
 
+  Future setCurrentDbVersion(int version) async {
+    await kvService.putValue(versionKey, version.toString());
+  }
+
   @override
   Future<bool> syncronizeDatabaseLocally(Entries entries) async {
     try {
-      entries.version = 1;
+      entries.version = version;
+      await setCurrentDbVersion(version);
       await checkBox();
 
       final unencryptedData = serialize(entries);
