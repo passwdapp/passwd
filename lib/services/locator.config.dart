@@ -21,6 +21,8 @@ import 'database/database_service.dart';
 import 'dio.dart';
 import 'favicon/favicon_new.dart';
 import 'favicon/favicon_service.dart';
+import 'migration/migration_impl.dart';
+import 'migration/migration_service.dart';
 import 'password/password_impl.dart';
 import 'password/password_service.dart';
 import 'path/path_path_provider.dart';
@@ -55,6 +57,7 @@ GetIt $initGetIt(
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<Dio>(() => dioModule.dio);
   gh.lazySingleton<FaviconService>(() => FaviconNew());
+  gh.lazySingleton<MigrationService>(() => MigrationImpl());
   gh.lazySingleton<PasswordService>(() => PasswordImpl());
   gh.lazySingleton<PathService>(() => PathPathProvider());
   gh.lazySingleton<QRService>(() => QRFlutterBarcodeScanner());

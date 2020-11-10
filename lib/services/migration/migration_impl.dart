@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../authentication/authentication_service.dart';
@@ -25,6 +26,7 @@ import 'migration_service.dart';
 ///   - Initial DB
 /// - v1:
 ///   - Move from **AES-256-CTR** to **XSalsa20-Poly1305** (NaCl secretbox)
+@LazySingleton(as: MigrationService)
 class MigrationImpl implements MigrationService {
   static const versionKey = 'CURRENT_DB_VERSION';
   static const latestVersion = 1;
