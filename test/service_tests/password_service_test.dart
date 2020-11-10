@@ -12,7 +12,7 @@ void main() {
         () async {
           PasswordService service = PasswordImpl();
 
-          String password = await service.generateDicewarePassword(
+          final password = await service.generateDicewarePassword(
             words: 5,
             capitalize: true,
           );
