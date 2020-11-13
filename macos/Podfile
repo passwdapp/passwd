@@ -80,3 +80,12 @@ end
 
 # Prevent Cocoapods from embedding a second Flutter framework and causing an error with the new Xcode build system.
 install! 'cocoapods', :disable_input_output_paths => true
+
+# Temporary workaround to prevent arm64 (macOS-arm64 / Apple Silicon) builds until google adds arm64 support to flutter macos desktop
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
+    end
+  end
+end
