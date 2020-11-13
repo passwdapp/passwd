@@ -32,7 +32,6 @@ dependencies:
   get_it: ^5.0.1
   google_fonts: ^1.1.1
   injectable: ^1.0.5
-  local_auth: ^0.6.3+4
   logging: ^0.11.4
   logging_appenders: ^0.4.3
   msgpack_dart: ^0.0.7
@@ -56,9 +55,6 @@ dev_dependencies:
   functional_data_generator: ^0.3.4
   injectable_generator: ^1.0.5
   pedantic: ^1.9.2
-
-dependency_overrides:
-  intl: 0.16.1
 
 flutter:
   uses-material-design: true
