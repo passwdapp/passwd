@@ -1,0 +1,1 @@
+const supportedApiVersion = 'v1';
