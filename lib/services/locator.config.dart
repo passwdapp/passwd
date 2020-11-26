@@ -14,6 +14,14 @@ import 'authentication/authentication_biometric_storage.dart';
 import 'authentication/authentication_service.dart';
 import 'biometrics/biometrics_biometric_storage.dart';
 import 'biometrics/biometrics_service.dart';
+import 'cloud_encryption/cloud_encryption_impl.dart';
+import 'cloud_encryption/cloud_encryption_service.dart';
+import 'cloud_hash/cloud_hash_impl.dart';
+import 'cloud_hash/cloud_hash_service.dart';
+import 'cloud_sync/cloud_sync_impl.dart';
+import 'cloud_sync/cloud_sync_service.dart';
+import 'cloud_users/cloud_users_impl.dart';
+import 'cloud_users/cloud_users_service.dart';
 import 'crypto/crypto_crypt.dart';
 import 'crypto/crypto_service.dart';
 import 'database/database_impl.dart';
@@ -53,6 +61,10 @@ GetIt $initGetIt(
   gh.lazySingleton<AuthenticationService>(
       () => AuthenticationBiometricStorage());
   gh.lazySingleton<BiometricsService>(() => BiometricsBiometricStorage());
+  gh.lazySingleton<CloudEncryptionService>(() => CloudEncryptionImpl());
+  gh.lazySingleton<CloudHashService>(() => CloudHashImpl());
+  gh.lazySingleton<CloudSyncService>(() => CloudSyncImpl());
+  gh.lazySingleton<CloudUsersService>(() => CloudUsersImpl());
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<Dio>(() => dioModule.dio);

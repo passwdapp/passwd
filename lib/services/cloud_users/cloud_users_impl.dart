@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../constants/api.dart';
@@ -9,6 +10,7 @@ import '../cloud_hash/cloud_hash_service.dart';
 import '../locator.dart';
 import 'cloud_users_service.dart';
 
+@LazySingleton(as: CloudUsersService)
 class CloudUsersImpl implements CloudUsersService {
   final dio = locator<Dio>();
 

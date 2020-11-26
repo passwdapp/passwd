@@ -2,9 +2,11 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:cryptography/cryptography.dart';
+import 'package:injectable/injectable.dart';
 
 import 'cloud_hash_service.dart';
 
+@LazySingleton(as: CloudHashService)
 class CloudHashImpl implements CloudHashService {
   @override
   Future<Uint8List> deriveSyncEncryptionPassword(

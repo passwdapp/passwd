@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:injectable/injectable.dart';
 import 'package:msgpack_dart/msgpack_dart.dart';
 import 'package:pinenacl/secret.dart';
 
@@ -8,6 +9,7 @@ import '../cloud_hash/cloud_hash_service.dart';
 import '../locator.dart';
 import 'cloud_encryption_service.dart';
 
+@LazySingleton(as: CloudEncryptionService)
 class CloudEncryptionImpl implements CloudEncryptionService {
   final cloudHashService = locator<CloudHashService>();
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:passwd/constants/api.dart';
 
 import '../../models/entries.dart';
@@ -6,6 +7,7 @@ import '../cloud_encryption/cloud_encryption_service.dart';
 import '../locator.dart';
 import 'cloud_sync_service.dart';
 
+@LazySingleton(as: CloudSyncService)
 class CloudSyncImpl implements CloudSyncService {
   final dio = locator<Dio>();
   final cloudEncryptionService = locator<CloudEncryptionService>();
