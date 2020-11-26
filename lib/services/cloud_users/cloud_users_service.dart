@@ -19,4 +19,10 @@ abstract class CloudUsersService {
     String secretKey,
     Uri endpoint,
   );
+
+  Future<Tuple2<bool, String>> refresh(
+    String refreshToken,
+    String secretKey,
+    Uri endpoint,
+  );
 }

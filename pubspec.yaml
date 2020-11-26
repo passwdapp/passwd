@@ -46,6 +46,7 @@ dependencies:
   supercharged: ^1.11.1
   touch_bar: ^0.0.1-alpha.1
   touch_bar_macos: ^0.0.1-alpha.1
+  tuple: ^1.0.3
 
 dev_dependencies:
   flutter_test:

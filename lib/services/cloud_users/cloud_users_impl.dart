@@ -18,10 +18,13 @@ class CloudUsersImpl implements CloudUsersService {
 
   static const loginSuffix = '/signin';
   static const registerSuffix = '/signup';
+  static const refreshSuffix = '/refresh';
 
   static const loginEndpoint = '$supportedApiVersion$usersSuffix$loginSuffix';
   static const registerEndpoint =
       '$supportedApiVersion$usersSuffix$registerSuffix';
+  static const refreshEndpoint =
+      '$supportedApiVersion$usersSuffix$refreshSuffix';
 
   @override
   Future<void> ping(
@@ -118,6 +121,38 @@ class CloudUsersImpl implements CloudUsersService {
       Loggers.networkLogger.warning('Resister failed with the error $e');
 
       return false;
+    }
+  }
+
+  @override
+  Future<Tuple2<bool, String>> refresh(
+    String refreshToken,
+    String secretKey,
+    Uri endpoint,
+  ) async {
+    final apiEndpoint =
+        '${endpoint.scheme}://${endpoint.authority}/$refreshEndpoint';
+
+    try {
+      await ping(secretKey, endpoint);
+      final response = await dio.post(
+        apiEndpoint,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Secret-Key': secretKey,
+          },
+        ),
+        data: json.encode({
+          'refresh_token': refreshToken,
+        }),
+      );
+
+      return Tuple2(true, response.data['access_token'].toString());
+    } catch (e) {
+      Loggers.networkLogger.warning('Token refresh failed with the error $e');
+
+      return Tuple2(false, '');
     }
   }
 }
