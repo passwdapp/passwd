@@ -1,11 +1,11 @@
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/widgets/home_list_item.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/entry.dart';
 import '../../redux/appstate.dart';
+import '../../widgets/home_list_item.dart';
 
 class SearchScreen extends StatefulWidget {
   final bool autofillLaunch;

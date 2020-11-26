@@ -17,7 +17,7 @@ class CloudHashImpl implements CloudHashService {
     final hmac = crypto.Hmac(crypto.sha512, usernameBytes);
     var digest = hmac.convert(passwordBytes);
 
-    for (var i = 0; i < 1024; i++) {
+    for (var i = 0; i < 256; i++) {
       digest = hmac.convert(digest.bytes);
     }
 
@@ -36,7 +36,7 @@ class CloudHashImpl implements CloudHashService {
     final hmac = crypto.Hmac(crypto.sha512, usernameBytes);
     var digest = hmac.convert(passwordBytes);
 
-    for (var i = 0; i < 512; i++) {
+    for (var i = 0; i < 1024; i++) {
       digest = hmac.convert(digest.bytes);
     }
 
