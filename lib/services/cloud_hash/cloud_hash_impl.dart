@@ -1,12 +1,13 @@
-import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:cryptography/cryptography.dart';
-import 'package:passwd/services/cloud_hash/cloud_hash_service.dart';
+
+import 'cloud_hash_service.dart';
 
 class CloudHashImpl implements CloudHashService {
   @override
-  Future<String> deriveSyncEncryptionPassword(
+  Future<Uint8List> deriveSyncEncryptionPassword(
     String username,
     String password,
   ) async {
@@ -24,7 +25,7 @@ class CloudHashImpl implements CloudHashService {
     final input = SecretKey(digest.toString().codeUnits);
     final output = await hkdf.deriveKey(input, outputLength: 32);
 
-    return base64.encode(await output.extract());
+    return (await output.extract());
   }
 
   @override
