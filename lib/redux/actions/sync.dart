@@ -108,3 +108,16 @@ class PushEntriesAction extends ReduxAction<AppState> {
     dispatch(SyncIndicatorAction(isSyncing: false));
   }
 }
+
+class LoginStateAction extends ReduxAction<AppState> {
+  final bool isLoggedIn;
+
+  LoginStateAction(this.isLoggedIn);
+
+  @override
+  AppState reduce() {
+    return state.copyWith(
+      isLoggedIn: isLoggedIn,
+    );
+  }
+}

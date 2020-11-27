@@ -1,6 +1,9 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:passwd/redux/actions/sync.dart';
+import 'package:provider/provider.dart';
 
 class SyncAuthScreen extends StatefulWidget {
   final bool register;
@@ -86,7 +89,68 @@ class _SyncAuthScreenState extends State<SyncAuthScreen> {
                     isUrlValid &&
                     isUsernameValid &&
                     isPasswordValid
-                ? () {}
+                ? () async {
+                    // ignore: unawaited_futures
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (_) => AlertDialog(
+                        title: Text('Please Wait'),
+                        content: LinearProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+                    );
+
+                    try {
+                      final uri = Uri.parse(urlController.text);
+                      final secret = secretController.text;
+                      final username = usernameController.text;
+                      final password = passwordController.text;
+
+                      // TODO: handle erros
+
+                      if (widget.register) {
+                        await Provider.of<DispatchFuture>(context,
+                            listen: false)(
+                          RegisterAction(uri, secret, username, password),
+                        );
+                      }
+
+                      await Provider.of<DispatchFuture>(context, listen: false)(
+                        LoginAction(uri, secret, username, password),
+                      );
+
+                      await Provider.of<DispatchFuture>(context, listen: false)(
+                        PushEntriesAction(),
+                      );
+
+                      Provider.of<Dispatch>(context, listen: false)(
+                        LoginStateAction(true),
+                      );
+
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    } catch (e) {
+                      Navigator.of(context).pop();
+
+                      showDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (_) => AlertDialog(
+                          title: Text(widget.register
+                              ? 'Registration failed'
+                              : 'Login falied'),
+                        ),
+                      );
+
+                      print(e);
+                    }
+                  }
                 : null,
             tooltip: context.getString('done_tooltip'),
             icon: Icon(Feather.check_circle),

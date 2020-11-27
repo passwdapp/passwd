@@ -21,7 +21,7 @@ class CloudSyncImpl implements CloudSyncService {
   final secureKVService = locator<SecureKVService>();
   final cloudUsersService = locator<CloudUsersService>();
 
-  static const uploadsSuffix = '/uploads';
+  static const uploadsSuffix = '/protected/uploads';
 
   static const nonceSuffix = '/nonce';
   static const downloadSuffix = '/get';
@@ -94,22 +94,21 @@ class CloudSyncImpl implements CloudSyncService {
     final nonceTuple = await fetchNonce(endpoint, secretKey, accessToken);
     if (!nonceTuple.item1) {
       Loggers.syncLogger.severe('Remote nonce fetch failed');
-      throw Exception('Unable to fetch remote nonce');
-    }
+    } else {
+      final nonce = nonceTuple.item2;
+      final storedNonce = await secureKVService.getValue(NONCE_KEY);
 
-    final nonce = nonceTuple.item2;
-    final storedNonce = await secureKVService.getValue(NONCE_KEY);
+      if (nonce == storedNonce) {
+        Loggers.syncLogger.info(
+            'Remote nonce nonce same as local nonce, cancelling merge and push...');
 
-    if (nonce == storedNonce) {
-      Loggers.syncLogger.info(
-          'Remote nonce nonce same as local nonce, cancelling merge and push...');
-
-      return Tuple4(
-        localEntries,
-        true,
-        true,
-        false,
-      );
+        return Tuple4(
+          localEntries,
+          true,
+          true,
+          false,
+        );
+      }
     }
 
     try {

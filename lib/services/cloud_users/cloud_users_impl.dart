@@ -100,7 +100,7 @@ class CloudUsersImpl implements CloudUsersService {
       );
 
       await secureKVService.putValue(USERNAME_KEY, username);
-      await secureKVService.putValue(HASH_KEY, utf8.decode(passwordHash));
+      await secureKVService.putValue(HASH_KEY, base64.encode(passwordHash));
 
       return Tuple3(true, accessToken, refreshToken);
     } catch (e) {

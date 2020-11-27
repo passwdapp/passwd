@@ -53,7 +53,7 @@ class CloudEncryptionImpl implements CloudEncryptionService {
   Future<Uint8List> encrypt(Entries entries) async {
     await checkBox();
 
-    final serializedEntries = serialize(entries);
+    final serializedEntries = serialize(entries.toJson());
     final encryptedEntries = box.encrypt(serializedEntries);
 
     return Uint8List.fromList([
