@@ -83,7 +83,6 @@ class SyncDBv1 implements SyncService {
   Future<bool> syncronizeDatabaseLocally(Entries entries) async {
     try {
       entries.version = version;
-      entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
 
       await setCurrentDbVersion(version);
       await checkBox();

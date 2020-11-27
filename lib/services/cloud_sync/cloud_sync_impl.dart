@@ -127,6 +127,7 @@ class CloudSyncImpl implements CloudSyncService {
       if (localEntries.lastUpdated == null ||
           localEntries.lastUpdated < decryptedData.lastUpdated) {
         Loggers.syncLogger.info('Merge successful, cancelling push');
+        await databaseService.setEntries(decryptedData);
         return Tuple4(decryptedData, false, true, false);
       }
 

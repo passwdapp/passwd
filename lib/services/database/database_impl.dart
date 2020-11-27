@@ -30,18 +30,21 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future addEntry(Entry entry) async {
+    _entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
     _entries.entries.add(entry);
     await syncAndReloadDatabase();
   }
 
   @override
   Future removeEntryAt(int index) async {
+    _entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
     _entries.entries.removeAt(index);
     await syncAndReloadDatabase();
   }
 
   @override
   Future modifyEntry(Entry old, Entry changed) async {
+    _entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
     final index = _entries.entries.indexWhere(
       (element) => element.id == old.id,
     );
@@ -54,6 +57,7 @@ class DatabaseImpl implements DatabaseService {
 
   @override
   Future addTag(Tag tag) async {
+    _entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
     _entries.tags ??= [];
 
     _entries.tags.add(tag);
