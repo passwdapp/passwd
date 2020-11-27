@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../redux/actions/autofill.dart';
+import '../../redux/actions/sync.dart';
 import '../../services/authentication/authentication_service.dart';
 import '../../services/locator.dart';
 import '../../widgets/title.dart';
@@ -58,6 +59,11 @@ class _InitScreenState extends State<InitScreen> {
         listen: false,
       )(AutoFillLaunchTypeAction());
     }
+
+    Provider.of<DispatchFuture>(
+      context,
+      listen: false,
+    )(CheckLoginAction());
 
     return Scaffold(
       body: Center(

@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
           entries: Entries(entries: []),
           isSyncing: false,
           autofillLaunch: false,
+          isLoggedIn: false,
         ),
       ),
       child: EzLocalizationBuilder(

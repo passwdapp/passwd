@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import '../../utils/loggers.dart';
+import '../../widgets/sync/settings_sync_widget.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -24,6 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           );
         },
       ),
+    SettingsSyncWidget(),
   ];
 
   @override

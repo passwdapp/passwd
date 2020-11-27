@@ -15,26 +15,34 @@ abstract class $AppState {
   Entries get entries;
   bool get isSyncing;
   bool get autofillLaunch;
-  AppState copyWith({Entries entries, bool isSyncing, bool autofillLaunch}) =>
+  bool get isLoggedIn;
+  AppState copyWith(
+          {Entries entries,
+          bool isSyncing,
+          bool autofillLaunch,
+          bool isLoggedIn}) =>
       AppState(
           entries: entries ?? this.entries,
           isSyncing: isSyncing ?? this.isSyncing,
-          autofillLaunch: autofillLaunch ?? this.autofillLaunch);
+          autofillLaunch: autofillLaunch ?? this.autofillLaunch,
+          isLoggedIn: isLoggedIn ?? this.isLoggedIn);
   @override
   String toString() =>
-      "AppState(entries: $entries, isSyncing: $isSyncing, autofillLaunch: $autofillLaunch)";
+      "AppState(entries: $entries, isSyncing: $isSyncing, autofillLaunch: $autofillLaunch, isLoggedIn: $isLoggedIn)";
   @override
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType &&
       entries == other.entries &&
       isSyncing == other.isSyncing &&
-      autofillLaunch == other.autofillLaunch;
+      autofillLaunch == other.autofillLaunch &&
+      isLoggedIn == other.isLoggedIn;
   @override
   int get hashCode {
     var result = 17;
     result = 37 * result + entries.hashCode;
     result = 37 * result + isSyncing.hashCode;
     result = 37 * result + autofillLaunch.hashCode;
+    result = 37 * result + isLoggedIn.hashCode;
     return result;
   }
 }
@@ -46,4 +54,6 @@ class AppState$ {
       (s_, isSyncing) => s_.copyWith(isSyncing: isSyncing));
   static final autofillLaunch = Lens<AppState, bool>((s_) => s_.autofillLaunch,
       (s_, autofillLaunch) => s_.copyWith(autofillLaunch: autofillLaunch));
+  static final isLoggedIn = Lens<AppState, bool>((s_) => s_.isLoggedIn,
+      (s_, isLoggedIn) => s_.copyWith(isLoggedIn: isLoggedIn));
 }

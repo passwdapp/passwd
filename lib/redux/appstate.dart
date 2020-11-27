@@ -21,9 +21,13 @@ class AppState extends $AppState {
   @override
   final bool autofillLaunch;
 
+  @override
+  final bool isLoggedIn;
+
   AppState({
     this.entries,
     this.isSyncing,
     this.autofillLaunch,
+    this.isLoggedIn,
   });
 }
