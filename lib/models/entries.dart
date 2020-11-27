@@ -7,7 +7,9 @@ import 'tag.dart';
 class Entries {
   List<Entry> entries;
   List<Tag> tags;
+
   int version;
+  int lastUpdated;
 
   Entries({
     this.entries,
@@ -16,6 +18,7 @@ class Entries {
 
   Entries.fromJson(Map<String, dynamic> json) {
     version = json['v'];
+    lastUpdated = json['u'];
     if (json['e'] != null) {
       entries = <Entry>[];
       json['e'].forEach((v) {
@@ -39,6 +42,7 @@ class Entries {
       data['t'] = tags.map((v) => v.toJson()).toList();
     }
     data['v'] = version;
+    data['u'] = lastUpdated;
     return data;
   }
 }

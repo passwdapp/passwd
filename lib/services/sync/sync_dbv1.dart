@@ -83,6 +83,8 @@ class SyncDBv1 implements SyncService {
   Future<bool> syncronizeDatabaseLocally(Entries entries) async {
     try {
       entries.version = version;
+      entries.lastUpdated = DateTime.now().millisecondsSinceEpoch;
+
       await setCurrentDbVersion(version);
       await checkBox();
 
@@ -98,9 +100,10 @@ class SyncDBv1 implements SyncService {
         await dbFile.createSync(recursive: true);
       }
 
-      await dbFile.writeAsBytes(
-        [...encryptedData.nonce, ...encryptedData.cipherText],
-      );
+      await dbFile.writeAsBytes([
+        ...encryptedData.nonce,
+        ...encryptedData.cipherText,
+      ]);
 
       return true;
     } catch (e) {
