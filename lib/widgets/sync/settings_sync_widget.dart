@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class SettingsSyncWidget extends StatefulWidget {
-  @override
-  SettingsSyncWidgetState createState() => SettingsSyncWidgetState();
-}
+import '../../redux/appstate.dart';
+import '../../screens/setup_sync/setup_sync_screen.dart';
 
-class SettingsSyncWidgetState extends State<SettingsSyncWidget> {
+class SettingsSyncWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(
+    final state = Provider.of<AppState>(context);
+
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 2,
-        ),
-        leading: Icon(Icons.sync_disabled_outlined),
-        title: Text('Setup Sync'), // TODO: localize
+      leading: Icon(
+        state.isLoggedIn ? Icons.sync_outlined : Icons.sync_disabled_outlined,
       ),
+      title: Text(
+        state.isLoggedIn ? 'Sync enabled' : 'Setup sync',
+      ), // TODO: localize
+      onTap: state.isLoggedIn
+          ? null
+          : () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => SetupSyncScreen(),
+              ));
+            },
     );
   }
 }
