@@ -102,13 +102,13 @@ class CloudSyncImpl implements CloudSyncService {
 
       if (nonce == storedNonce) {
         Loggers.syncLogger.info(
-            'Remote nonce nonce same as local nonce, cancelling merge and push...');
+            'Remote nonce nonce same as local nonce, cancelling merge, allowing push...');
 
         return Tuple4(
           localEntries,
           true,
           true,
-          false,
+          true,
         );
       }
     }
