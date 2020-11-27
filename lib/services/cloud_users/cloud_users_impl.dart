@@ -34,14 +34,13 @@ class CloudUsersImpl implements CloudUsersService {
     Uri endpoint,
   ) async {
     final apiEndpoint =
-        '${endpoint.scheme}://${endpoint.authority}/$supportedApiVersion';
+        '${endpoint.scheme}://${endpoint.authority}/$supportedApiVersion/ping';
 
     try {
       await dio.get(
         apiEndpoint,
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
             'X-Secret-Key': secretKey,
           },
         ),
