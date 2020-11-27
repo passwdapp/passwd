@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tuple/tuple.dart';
@@ -117,7 +119,7 @@ class CloudSyncImpl implements CloudSyncService {
         options: Options(headers: {
           'X-Secret-Key': secretKey,
           'Authorization': 'Bearer $accessToken',
-        }),
+        }, responseType: ResponseType.bytes),
       );
 
       final decryptedData = await cloudEncryptionService.decrypt(response.data);

@@ -231,7 +231,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
           : RefreshIndicator(
               onRefresh: () async {
                 await Provider.of<DispatchFuture>(context, listen: false)(
-                    FetchEntriesAction());
+                    PushEntriesAction());
               },
               child: ListView.builder(
                 padding: EdgeInsets.only(
