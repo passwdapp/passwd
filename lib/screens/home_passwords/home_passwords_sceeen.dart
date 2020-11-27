@@ -11,6 +11,7 @@ import 'package:touch_bar/touch_bar.dart';
 import '../../constants/colors.dart';
 import '../../models/entry.dart';
 import '../../redux/actions/entries.dart';
+import '../../redux/actions/sync.dart';
 import '../../redux/appstate.dart';
 import '../../utils/navigation_utils.dart';
 import '../../widgets/home_list_item.dart';
@@ -227,26 +228,32 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
             ),
       body: filteredEntries.isEmpty
           ? noEntriesLayout
-          : ListView.builder(
-              padding: EdgeInsets.only(
-                bottom: 16,
-                top: MediaQuery.of(context).padding.top +
-                    kToolbarHeight +
-                    ((state.entries.tags != null &&
-                            state.entries.tags.isNotEmpty)
-                        ? 40
-                        : 0),
-              ),
-              itemBuilder: (context, i) => HomeListItem(
-                entry: filteredEntries[i],
-                autofillLaunch: state.autofillLaunch,
-                onReturnFromDetails: () {
-                  initTouchBar(filteredEntries);
-                },
-              ),
-              itemCount: filteredEntries.length,
-              physics: const AlwaysScrollableScrollPhysics(
-                parent: BouncingScrollPhysics(),
+          : RefreshIndicator(
+              onRefresh: () async {
+                await Provider.of<DispatchFuture>(context, listen: false)(
+                    FetchEntriesAction());
+              },
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                  bottom: 16,
+                  top: MediaQuery.of(context).padding.top +
+                      kToolbarHeight +
+                      ((state.entries.tags != null &&
+                              state.entries.tags.isNotEmpty)
+                          ? 40
+                          : 0),
+                ),
+                itemBuilder: (context, i) => HomeListItem(
+                  entry: filteredEntries[i],
+                  autofillLaunch: state.autofillLaunch,
+                  onReturnFromDetails: () {
+                    initTouchBar(filteredEntries);
+                  },
+                ),
+                itemCount: filteredEntries.length,
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
               ),
             ),
     );
