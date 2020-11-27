@@ -69,7 +69,7 @@ class CloudSyncImpl implements CloudSyncService {
 
     // Refresh token is the current token is older than 55 mins
     // Access tokens expire every 1hr
-    if (tokenIssueTime + 55 * 60 * 1000 >= currentTimestamp) {
+    if (tokenIssueTime + (55 * 60 * 1000) <= currentTimestamp) {
       final refreshToken = await secureKVService.getValue(REFRESH_TOKEN_KEY);
       await cloudUsersService.refresh(refreshToken, secretKey, endpoint);
     }
