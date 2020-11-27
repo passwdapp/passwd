@@ -123,12 +123,12 @@ class _SyncAuthScreenState extends State<SyncAuthScreen> {
                         LoginAction(uri, secret, username, password),
                       );
 
-                      await Provider.of<DispatchFuture>(context, listen: false)(
-                        PushEntriesAction(),
-                      );
-
                       Provider.of<Dispatch>(context, listen: false)(
                         LoginStateAction(true),
+                      );
+
+                      await Provider.of<DispatchFuture>(context, listen: false)(
+                        PushEntriesAction(),
                       );
 
                       Navigator.of(context).pop();

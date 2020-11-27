@@ -6,6 +6,7 @@ import '../../services/database/database_service.dart';
 import '../../services/locator.dart';
 import '../appstate.dart';
 import 'favicon.dart';
+import 'sync.dart';
 
 /// [SyncIndicatorAction] updates the state of the sync indicator
 /// It accepts a boolean as its input
@@ -66,6 +67,7 @@ class AddEntryAction extends ReduxAction<AppState> {
   void after() {
     dispatch(ReloadAction());
     dispatchFuture(AddFaviconAction(entry));
+    dispatchFuture(PushEntriesAction());
   }
 }
 
@@ -87,7 +89,10 @@ class ModifyEntryAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() => dispatch(ReloadAction());
+  void after() {
+    dispatch(ReloadAction());
+    dispatchFuture(PushEntriesAction());
+  }
 }
 
 /// [RemoveEntryAction] removes an entry from the DB using the [DatabaseService]
@@ -107,5 +112,8 @@ class RemoveEntryAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() => dispatch(ReloadAction());
+  void after() {
+    dispatch(ReloadAction());
+    dispatchFuture(PushEntriesAction());
+  }
 }

@@ -63,21 +63,23 @@ class FetchEntriesAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final cloudSyncService = locator<CloudSyncService>();
-    final syncData = await cloudSyncService.fetchRemoteEntries();
+    if (state.isLoggedIn) {
+      final cloudSyncService = locator<CloudSyncService>();
+      final syncData = await cloudSyncService.fetchRemoteEntries();
 
-    final isNonceSame = syncData.item2;
-    final isSyncSuccessful = syncData.item3;
+      final isNonceSame = syncData.item2;
+      final isSyncSuccessful = syncData.item3;
 
-    if (!isNonceSame && isSyncSuccessful) {
-      final entries = syncData.item1;
-      final dbService = locator<DatabaseService>();
+      if (!isNonceSame && isSyncSuccessful) {
+        final entries = syncData.item1;
+        final dbService = locator<DatabaseService>();
 
-      await dbService.setEntries(entries);
+        await dbService.setEntries(entries);
 
-      return state.copyWith(
-        entries: entries,
-      );
+        return state.copyWith(
+          entries: entries,
+        );
+      }
     }
 
     return state;
@@ -97,8 +99,10 @@ class PushEntriesAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final cloudSyncService = locator<CloudSyncService>();
-    await cloudSyncService.syncLocalEntries();
+    if (state.isLoggedIn) {
+      final cloudSyncService = locator<CloudSyncService>();
+      await cloudSyncService.syncLocalEntries();
+    }
 
     return state;
   }
