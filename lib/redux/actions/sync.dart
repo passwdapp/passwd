@@ -1,10 +1,13 @@
 import 'package:async_redux/async_redux.dart';
 
 import '../../constants/api.dart';
+import '../../services/cloud_sync/cloud_sync_service.dart';
 import '../../services/cloud_users/cloud_users_service.dart';
+import '../../services/database/database_service.dart';
 import '../../services/locator.dart';
 import '../../services/secure_kv/secure_kv.dart';
 import '../appstate.dart';
+import 'entries.dart';
 
 class CheckLoginAction extends ReduxAction<AppState> {
   @override
@@ -49,5 +52,59 @@ class RegisterAction extends ReduxAction<AppState> {
     await cloudUsersService.register(username, password, secret, uri);
 
     return state;
+  }
+}
+
+class FetchEntriesAction extends ReduxAction<AppState> {
+  @override
+  void before() {
+    dispatch(SyncIndicatorAction(isSyncing: true));
+  }
+
+  @override
+  Future<AppState> reduce() async {
+    final cloudSyncService = locator<CloudSyncService>();
+    final syncData = await cloudSyncService.fetchRemoteEntries();
+
+    final isNonceSame = syncData.item2;
+    final isSyncSuccessful = syncData.item3;
+
+    if (!isNonceSame && isSyncSuccessful) {
+      final entries = syncData.item1;
+      final dbService = locator<DatabaseService>();
+
+      await dbService.setEntries(entries);
+
+      return state.copyWith(
+        entries: entries,
+      );
+    }
+
+    return state;
+  }
+
+  @override
+  void after() {
+    dispatch(SyncIndicatorAction(isSyncing: false));
+  }
+}
+
+class PushEntriesAction extends ReduxAction<AppState> {
+  @override
+  void before() {
+    dispatch(SyncIndicatorAction(isSyncing: true));
+  }
+
+  @override
+  Future<AppState> reduce() async {
+    final cloudSyncService = locator<CloudSyncService>();
+    await cloudSyncService.syncLocalEntries();
+
+    return state;
+  }
+
+  @override
+  void after() {
+    dispatch(SyncIndicatorAction(isSyncing: false));
   }
 }

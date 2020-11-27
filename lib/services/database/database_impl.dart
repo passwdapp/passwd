@@ -59,4 +59,10 @@ class DatabaseImpl implements DatabaseService {
     _entries.tags.add(tag);
     await syncAndReloadDatabase();
   }
+
+  @override
+  Future<void> setEntries(Entries entries) async {
+    _entries = entries;
+    await syncAndReloadDatabase();
+  }
 }
