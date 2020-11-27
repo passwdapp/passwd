@@ -87,7 +87,20 @@ class CloudUsersImpl implements CloudUsersService {
       await secureKVService.putValue(SECRETKEY_KEY, secretKey);
       await secureKVService.putValue(URI_KEY, endpoint.toString());
       await secureKVService.putValue(ACCESS_TOKEN_KEY, accessToken);
+      await secureKVService.putValue(
+        TOKEN_ISSUE_TIMESTAMP_KEY,
+        DateTime.now().millisecondsSinceEpoch.toString(),
+      );
       await secureKVService.putValue(REFRESH_TOKEN_KEY, refreshToken);
+      await secureKVService.putValue(NONCE_KEY, '');
+
+      final passwordHash = await cloudHashService.deriveSyncEncryptionPassword(
+        username,
+        password,
+      );
+
+      await secureKVService.putValue(USERNAME_KEY, username);
+      await secureKVService.putValue(HASH_KEY, utf8.decode(passwordHash));
 
       return Tuple3(true, accessToken, refreshToken);
     } catch (e) {
@@ -157,6 +170,10 @@ class CloudUsersImpl implements CloudUsersService {
 
       final accessToken = response.data['access_token'].toString();
       await secureKVService.putValue(ACCESS_TOKEN_KEY, accessToken);
+      await secureKVService.putValue(
+        TOKEN_ISSUE_TIMESTAMP_KEY,
+        DateTime.now().millisecondsSinceEpoch.toString(),
+      );
 
       return Tuple2(true, accessToken);
     } catch (e) {
