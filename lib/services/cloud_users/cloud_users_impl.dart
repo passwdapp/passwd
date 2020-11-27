@@ -8,6 +8,7 @@ import '../../constants/api.dart';
 import '../../utils/loggers.dart';
 import '../cloud_hash/cloud_hash_service.dart';
 import '../locator.dart';
+import '../secure_kv/secure_kv.dart';
 import 'cloud_users_service.dart';
 
 @LazySingleton(as: CloudUsersService)
@@ -15,6 +16,7 @@ class CloudUsersImpl implements CloudUsersService {
   final dio = locator<Dio>();
 
   final cloudHashService = locator<CloudHashService>();
+  final secureKVService = locator<SecureKVService>();
 
   static const usersSuffix = '/users';
 
@@ -79,11 +81,15 @@ class CloudUsersImpl implements CloudUsersService {
         }),
       );
 
-      return Tuple3<bool, String, String>(
-        true,
-        response.data['access_token'],
-        response.data['refresh_token'],
-      );
+      final accessToken = response.data['access_token'].toString();
+      final refreshToken = response.data['refresh_token'].toString();
+
+      await secureKVService.putValue(SECRETKEY_KEY, secretKey);
+      await secureKVService.putValue(URI_KEY, endpoint.toString());
+      await secureKVService.putValue(ACCESS_TOKEN_KEY, accessToken);
+      await secureKVService.putValue(REFRESH_TOKEN_KEY, refreshToken);
+
+      return Tuple3(true, accessToken, refreshToken);
     } catch (e) {
       Loggers.networkLogger.warning('Login failed with the error $e');
 
@@ -149,7 +155,10 @@ class CloudUsersImpl implements CloudUsersService {
         }),
       );
 
-      return Tuple2(true, response.data['access_token'].toString());
+      final accessToken = response.data['access_token'].toString();
+      await secureKVService.putValue(ACCESS_TOKEN_KEY, accessToken);
+
+      return Tuple2(true, accessToken);
     } catch (e) {
       Loggers.networkLogger.warning('Token refresh failed with the error $e');
 
