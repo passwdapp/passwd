@@ -4,6 +4,7 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:passwd/screens/add_account/add_account_screen.dart';
 import 'package:touch_bar/touch_bar.dart';
 
 import '../../models/entry.dart';
@@ -96,20 +97,14 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           icon: Icon(Feather.x_circle),
         ),
         actions: [
-          Builder(
-            builder: (context) => IconButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      context.getString('under_construction'),
-                    ),
-                  ),
-                );
-              },
-              tooltip: context.getString('edit_tooltip'),
-              icon: Icon(Feather.edit),
-            ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => AddAccountScreen(entry: widget.entry),
+              ));
+            },
+            tooltip: context.getString('edit_tooltip'),
+            icon: Icon(Feather.edit),
           ),
         ],
       ),

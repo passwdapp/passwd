@@ -1,13 +1,17 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:async_redux/async_redux.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
 import '../../models/entry.dart';
 import '../../models/otp.dart';
+import '../../redux/actions/entries.dart';
+import '../../redux/actions/favicon.dart';
 import '../../services/locator.dart';
 import '../../services/password/password_service.dart';
 import '../../services/qr/qr_service.dart';
@@ -21,11 +25,17 @@ import '../add_otp/add_otp_screen.dart';
 import '../generate_password/generate_password_screen.dart';
 
 class AddAccountScreen extends StatefulWidget {
+  final Entry entry;
+
+  AddAccountScreen({this.entry});
+
   @override
   _AddAccountScreenState createState() => _AddAccountScreenState();
 }
 
 class _AddAccountScreenState extends State<AddAccountScreen> {
+  bool isEditPush = false;
+
   TextEditingController nameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -86,6 +96,28 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   }
 
   void initializeTextEditingControllers() {
+    if (widget.entry != null) {
+      setUsername(widget.entry.username);
+      setPassword(widget.entry.password);
+      processAddOtp(widget.entry.otp);
+
+      setState(() {
+        isEditPush = true;
+        name = widget.entry.name;
+        username = widget.entry.username;
+        password = widget.entry.password;
+        notes = widget.entry.note;
+
+        nameController.text = name;
+        usernameController.text = username;
+        passwordController.text = password;
+        notesController.text = notes;
+
+        otp = widget.entry.otp;
+        tags = widget.entry.tags;
+      });
+    }
+
     nameController.addListener(() {
       setState(() {
         name = nameController.text;
@@ -142,7 +174,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   }
 
   void add() {
-    var data = Entry(
+    final data = Entry(
       favicon: '',
       name: name,
       note: notes,
@@ -162,13 +194,44 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     Navigator.of(context).pop(data);
   }
 
+  Future<void> edit() async {
+    final data = Entry(
+      favicon: widget.entry.favicon,
+      name: name,
+      note: notes,
+      password: password,
+      username: username,
+      colorId: widget.entry.colorId,
+      id: widget.entry.id,
+      tags: tags,
+      otp: otp,
+    );
+
+    await Provider.of<DispatchFuture>(context, listen: false)(ModifyEntryAction(
+      widget.entry,
+      data,
+    ));
+
+    if (data.name != widget.entry.name) {
+      await Provider.of<DispatchFuture>(context, listen: false)(
+          AddFaviconAction(
+        data,
+      ));
+    }
+
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          context.getString('add_account'),
+          isEditPush
+              ? context.getString('edit_tooltip')
+              : context.getString('add_account'),
           style: TextStyle(
             letterSpacing: 1.25,
             fontSize: 18,
@@ -184,8 +247,12 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
         actions: [
           IconButton(
             onPressed: isUsernameValid && isPasswordValid
-                ? () {
-                    add();
+                ? () async {
+                    if (isEditPush) {
+                      await edit();
+                    } else {
+                      add();
+                    }
                   }
                 : null,
             tooltip: context.getString('done_tooltip'),
