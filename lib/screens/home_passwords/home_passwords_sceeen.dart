@@ -233,6 +233,11 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                 await Provider.of<DispatchFuture>(context, listen: false)(
                     PushEntriesAction());
               },
+              displacement: MediaQuery.of(context).padding.top +
+                  kToolbarHeight +
+                  ((state.entries.tags != null && state.entries.tags.isNotEmpty)
+                      ? 40
+                      : 0),
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   bottom: 16,
