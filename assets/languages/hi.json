@@ -47,5 +47,17 @@
   "next": "अगला",
   "enter_pin": "कृपया अपने पिन डेलें",
   "biometrics_retry": "बॉयोमीट्रिक्स से पुनः प्रयास करें",
-  "current_otp": "अभी का ओ.टी.पी."
+  "current_otp": "अभी का ओ.टी.पी.",
+  "search": "खोज",
+  "type_to_start_searching": "खोज शुरू करने के लिए टाइप करें",
+  "documentation": "डॉक्यूमेंटेशन",
+  "sync_beta": "सिंक बीटा",
+  "login": "लॉग इन",
+  "register": "रजिस्टर",
+  "delete": "%1 हटा दें",
+  "copy_pass_for": "%1 का पासवर्ड कॉपी करें",
+  "sync_enabled": "सिंक चालू हे",
+  "setup_sync": "सिंक चालू करे",
+  "name": "नाम",
+  "add_tag": "टैग अड्ड करे"
 }
