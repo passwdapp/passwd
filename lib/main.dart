@@ -124,6 +124,14 @@ class MyApp extends StatelessWidget {
                 }),
               ),
             ),
+            textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                )),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+              ),
+            ),
             buttonTheme: ButtonThemeData(
               buttonColor: primaryColor,
               shape: RoundedRectangleBorder(
