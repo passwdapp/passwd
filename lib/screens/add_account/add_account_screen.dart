@@ -76,7 +76,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       password = val ?? '';
 
       isPasswordValid = val == null
-          ? false
+          ? isPasswordValid
           : validate<bool>(
               MinValidator(
                 min: 1,
