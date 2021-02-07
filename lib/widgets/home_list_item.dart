@@ -50,7 +50,7 @@ class _HomeListItemState extends State<HomeListItem> {
           child: Text(
             context
                 .getString('delete')
-                .replaceAll('%1%', entry.name ?? entry.username),
+                .replaceAll('%1', entry.name ?? entry.username),
           ),
           value: 0,
         ),
@@ -58,7 +58,7 @@ class _HomeListItemState extends State<HomeListItem> {
           child: Text(
             context
                 .getString('copy_pass_for')
-                .replaceAll('%1%', entry.name ?? entry.username),
+                .replaceAll('%1', entry.name ?? entry.username),
           ),
           value: 1,
         ),
@@ -87,7 +87,7 @@ class _HomeListItemState extends State<HomeListItem> {
             title: Text(
               context
                   .getString('delete')
-                  .replaceAll('%1%', entry.name ?? entry.username),
+                  .replaceAll('%1', entry.name ?? entry.username),
             ),
             onTap: () {
               Navigator.of(context).pop();
@@ -98,7 +98,7 @@ class _HomeListItemState extends State<HomeListItem> {
             title: Text(
               context
                   .getString('copy_pass_for')
-                  .replaceAll('%1%', entry.name ?? entry.username),
+                  .replaceAll('%1', entry.name ?? entry.username),
             ),
             onTap: () {
               Navigator.of(context).pop();
