@@ -107,6 +107,23 @@ class MyApp extends StatelessWidget {
               selectionColor: primaryColor.withOpacity(0.4),
               selectionHandleColor: primaryColor,
             ),
+            buttonColor: primaryColor,
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                )),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.hovered) ||
+                      states.contains(MaterialState.focused) ||
+                      states.contains(MaterialState.pressed)) {
+                    return primaryColorHovered;
+                  }
+
+                  return primaryColor;
+                }),
+              ),
+            ),
             buttonTheme: ButtonThemeData(
               buttonColor: primaryColor,
               shape: RoundedRectangleBorder(

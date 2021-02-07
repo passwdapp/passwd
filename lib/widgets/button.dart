@@ -14,10 +14,13 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       onPressed: onClick,
       child: child,
-      color: Colors.white.withOpacity(0.14),
-      visualDensity: VisualDensity(
-        horizontal: 4,
-        vertical: 2,
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(Colors.white.withOpacity(0.14)),
+        visualDensity: VisualDensity(
+          horizontal: 4,
+          vertical: 2,
+        ),
       ),
     );
   }

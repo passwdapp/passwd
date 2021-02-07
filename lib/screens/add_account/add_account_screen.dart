@@ -73,16 +73,18 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   String password = '';
   void setPassword(String val) {
     setState(() {
-      password = val;
+      password = val ?? '';
 
-      isPasswordValid = validate<bool>(
-        MinValidator(
-          min: 1,
-        ),
-        val,
-        true,
-        false,
-      );
+      isPasswordValid = val == null
+          ? false
+          : validate<bool>(
+              MinValidator(
+                min: 1,
+              ),
+              val,
+              true,
+              false,
+            );
     });
   }
 
