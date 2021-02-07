@@ -142,7 +142,7 @@ class _HomeListItemState extends State<HomeListItem> {
           ),
         ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () async {
               Navigator.of(context).pop();
 
@@ -155,7 +155,7 @@ class _HomeListItemState extends State<HomeListItem> {
               context.getString('yes'),
             ),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },

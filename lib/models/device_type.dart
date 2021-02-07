@@ -1,4 +1,4 @@
-/// [DeviceType] enum was used in the (now deprecated) version of responsive UI
+/// This enum was used in the (now deprecated) version of responsive UI
 @deprecated
 enum DeviceType {
   MOBILE,

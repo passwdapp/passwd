@@ -1,4 +1,7 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/title.dart';
 import '../sync_auth/sync_auth_screen.dart';
@@ -18,8 +21,27 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          tooltip: context.getString('back_tooltip'),
+          icon: Icon(Feather.x_circle),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Feather.info),
+            onPressed: () async {
+              await launch('https://github.com/passwdapp/box');
+            },
+            tooltip: 'Documentation', // TODO: localize
+          ),
+        ],
+      ),
       body: Column(
         children: [
+          // TODO: localize
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,

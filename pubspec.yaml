@@ -2,6 +2,7 @@ name: passwd
 description: A beautiful and secure password manager.
 version: 1.0.0+1
 author: Akshit Garg
+publish_to: none
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -47,6 +48,7 @@ dependencies:
   touch_bar: ^0.0.1-alpha.1
   touch_bar_macos: ^0.0.1-alpha.1
   tuple: ^1.0.3
+  url_launcher: 5.7.10
 
 dev_dependencies:
   flutter_test:

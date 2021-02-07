@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   biometric_storage
   desktop_window
+  url_launcher_linux
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

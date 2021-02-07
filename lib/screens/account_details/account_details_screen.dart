@@ -135,7 +135,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           Row(
             children: [
               Expanded(
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     setState(() {
                       isPasswordVisible = !isPasswordVisible;
@@ -150,7 +150,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
               ),
               Expanded(
                 child: Builder(
-                  builder: (context) => FlatButton(
+                  builder: (context) => TextButton(
                     onPressed: () {
                       copyPassword();
                     },

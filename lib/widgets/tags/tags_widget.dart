@@ -255,7 +255,7 @@ class _TagsWidgetState extends State<TagsWidget> {
             },
           ),
           ListTile(
-            title: FlatButton(
+            title: TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -357,7 +357,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         newTagController.clear();
@@ -366,7 +366,7 @@ class _TagsWidgetState extends State<TagsWidget> {
                         'Cancel'.toUpperCase(),
                       ),
                     ),
-                    FlatButton(
+                    TextButton(
                       onPressed: () async {
                         Navigator.of(context).pop();
 
