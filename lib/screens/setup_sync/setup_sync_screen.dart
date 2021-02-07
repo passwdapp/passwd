@@ -67,7 +67,7 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
                 children: [
                   Container(
                     width: double.infinity,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       child: Text(
                         'Login',
                         style: TextStyle(

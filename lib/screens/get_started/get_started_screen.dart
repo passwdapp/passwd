@@ -17,7 +17,7 @@ class GetStartedScreen extends StatelessWidget {
           SizedBox(
             height: 32,
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

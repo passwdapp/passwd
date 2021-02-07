@@ -11,7 +11,7 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: onClick,
       child: child,
       color: Colors.white.withOpacity(0.14),
