@@ -15,6 +15,11 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
 - Support for autofill on android (Beta)
 - Cloud Sync (Highly Experimental)
   - See [Passwd Box](https://github.com/passwdapp/box) for the server
+- Support for multiple languages (feel free to make an issue if you want to contribute)
+  - English
+  - Hindi
+  - Dutch
+  - Polish (not fully up to date)
 
 ## Screenshots
 
