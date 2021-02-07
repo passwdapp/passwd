@@ -4,9 +4,9 @@ import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/screens/add_account/add_account_screen.dart';
 import 'package:touch_bar/touch_bar.dart';
 
+import '../add_account/add_account_screen.dart';
 import '../../models/entry.dart';
 import '../../widgets/otp/otp_widget.dart';
 import '../../widgets/tags/tags_widget.dart';

@@ -2,8 +2,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:passwd/redux/actions/sync.dart';
 import 'package:provider/provider.dart';
+
+import '../../redux/actions/sync.dart';
 
 class SyncAuthScreen extends StatefulWidget {
   final bool register;
