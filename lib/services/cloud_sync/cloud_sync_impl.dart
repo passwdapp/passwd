@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tuple/tuple.dart';

@@ -48,14 +48,18 @@ class _HomeListItemState extends State<HomeListItem> {
       items: [
         PopupMenuItem(
           child: Text(
-            'Delete ${entry.name ?? entry.username}',
-          ), // TODO: localize
+            context
+                .getString('delete')
+                .replaceAll('%1%', entry.name ?? entry.username),
+          ),
           value: 0,
         ),
         PopupMenuItem(
           child: Text(
-            'Copy Password for ${entry.name ?? entry.username}',
-          ), // TODO: localize
+            context
+                .getString('copy_pass_for')
+                .replaceAll('%1%', entry.name ?? entry.username),
+          ),
           value: 1,
         ),
       ],
@@ -81,8 +85,10 @@ class _HomeListItemState extends State<HomeListItem> {
         children: [
           ListTile(
             title: Text(
-              'Delete ${entry.name ?? entry.username}',
-            ), // TODO: localize
+              context
+                  .getString('delete')
+                  .replaceAll('%1%', entry.name ?? entry.username),
+            ),
             onTap: () {
               Navigator.of(context).pop();
               showDeleteDialog();
@@ -90,8 +96,10 @@ class _HomeListItemState extends State<HomeListItem> {
           ),
           ListTile(
             title: Text(
-              'Copy Password for ${entry.name ?? entry.username}',
-            ), // TODO: localize
+              context
+                  .getString('copy_pass_for')
+                  .replaceAll('%1%', entry.name ?? entry.username),
+            ),
             onTap: () {
               Navigator.of(context).pop();
               copy(entry.password);

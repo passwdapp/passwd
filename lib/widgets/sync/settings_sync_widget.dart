@@ -1,3 +1,4 @@
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +18,10 @@ class SettingsSyncWidget extends StatelessWidget {
         state.isLoggedIn ? Icons.sync_outlined : Icons.sync_disabled_outlined,
       ),
       title: Text(
-        state.isLoggedIn ? 'Sync enabled' : 'Setup sync',
-      ), // TODO: localize
+        state.isLoggedIn
+            ? context.getString('sync_enabled')
+            : context.getString('setup_sync'),
+      ),
       onTap: state.isLoggedIn
           ? null
           : () {

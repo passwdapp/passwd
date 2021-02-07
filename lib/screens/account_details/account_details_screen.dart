@@ -56,7 +56,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             ),
             TouchBarSpace.small(),
             TouchBarButton(
-              label: 'Copy Password', // TODO: localize this
+              label: context.getString('copy_password'),
               onClick: () {
                 copyPassword();
               },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: Move navigation to this util
 Future<dynamic> navigate(
   BuildContext context,
   Widget to, {

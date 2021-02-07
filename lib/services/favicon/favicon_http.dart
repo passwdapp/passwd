@@ -83,12 +83,12 @@ class FaviconHttp implements FaviconService {
 
         if (match != null) {
           final height = 100 -
-              int.parse(
-                icon.sizes
-                    .substring(match.start, match.end)
-                    .split(RegExp('x', caseSensitive: false))[0],
-                onError: (str) => 10,
-              );
+              (int.parse(
+                    icon.sizes
+                        .substring(match.start, match.end)
+                        .split(RegExp('x', caseSensitive: false))[0],
+                  ) ??
+                  10);
 
           rank = height.abs();
         }

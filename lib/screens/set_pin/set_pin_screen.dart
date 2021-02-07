@@ -21,9 +21,8 @@ class _SetPinScreenState extends State<SetPinScreen> {
 
   Future<void> setBiometrics(bool value) async {
     if (value) {
-      // TODO: Localize the reason
       final result = await locator<BiometricsService>()
-          .authenticate('Initialize biometrics');
+          .authenticate(context.getString('enable_biometrics'));
 
       if (result == BiometricsResult.AUTHENTICATED) {
         biometrics = true;

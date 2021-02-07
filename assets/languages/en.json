@@ -47,5 +47,17 @@
   "next": "Next",
   "enter_pin": "Please enter your PIN",
   "biometrics_retry": "Retry with biometrics",
-  "current_otp": "Current OTP"
+  "current_otp": "Current OTP",
+  "search": "Search",
+  "type_to_start_searching": "Type to start searching",
+  "documentation": "Documentation",
+  "sync_beta": "Sync Beta",
+  "login": "Login",
+  "register": "Register",
+  "delete": "Delete %1%",
+  "copy_pass_for": "Copy password for %1%",
+  "sync_enabled": "Sync Enabled",
+  "setup_sync": "Setup Sync",
+  "name": "Name",
+  "add_tag": "Add a tag"
 }

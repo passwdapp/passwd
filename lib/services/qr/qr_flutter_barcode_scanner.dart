@@ -9,7 +9,7 @@ import 'qr_service.dart';
 @LazySingleton(as: QRService)
 class QRFlutterBarcodeScanner implements QRService {
   // TODO: Lozalize the error
-  final errorText = 'The QR code does not correspond to a OTP';
+  final errorText = 'The QR code does not correspond to a valid OTP';
 
   @override
   Future<Otp> scanQRForOtp() async {

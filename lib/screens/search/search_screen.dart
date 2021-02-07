@@ -62,14 +62,14 @@ class _SearchScreenState extends State<SearchScreen> {
           controller: searchController,
           autofocus: true,
           decoration: InputDecoration(
-            hintText: 'Search', //TODO: localize
+            hintText: context.getString('search'),
           ),
         ),
       ),
       body: searchTerm.isEmpty
           ? Center(
               child: Text(
-              'Type to start searching', // TODO: localize
+              context.getString('type_to_start_searching'),
             ))
           : filteredEntries.isEmpty
               ? Center(

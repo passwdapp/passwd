@@ -48,7 +48,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
         TouchBar(
           children: [
             TouchBarButton(
-              label: 'Add an account', // TODO: localize this
+              label: context.getString('add_account'),
               onClick: () {
                 addAccount();
               },
@@ -144,7 +144,7 @@ class _HomePasswordsScreenState extends State<HomePasswordsScreen> {
                 SearchScreen(autofillLaunch: state.autofillLaunch),
               );
             },
-            tooltip: 'Search', // TODO: localize search
+            tooltip: context.getString('search'),
           ),
         ],
         bottom: (state.entries.tags != null && state.entries.tags.isNotEmpty)

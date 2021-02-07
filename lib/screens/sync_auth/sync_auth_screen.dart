@@ -70,7 +70,9 @@ class _SyncAuthScreenState extends State<SyncAuthScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          !widget.register ? 'Login' : 'Register', // TODO: localize
+          !widget.register
+              ? context.getString('login')
+              : context.getString('register'),
           style: TextStyle(
             letterSpacing: 1.25,
             fontSize: 18,
@@ -138,7 +140,7 @@ class _SyncAuthScreenState extends State<SyncAuthScreen> {
                     } catch (e) {
                       Navigator.of(context).pop();
 
-                      showDialog(
+                      await showDialog(
                         context: context,
                         barrierDismissible: true,
                         builder: (_) => AlertDialog(

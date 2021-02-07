@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -86,7 +87,7 @@ class _TagsWidgetState extends State<TagsWidget> {
   @override
   Widget build(BuildContext context) {
     loadTags();
-    // TODO: Localize tags before release
+
     return Container(
       width: double.infinity,
       child: Column(
@@ -237,7 +238,7 @@ class _TagsWidgetState extends State<TagsWidget> {
           ).toList(),
           ListTile(
             leading: Icon(Icons.add),
-            title: Text('Add a tag'),
+            title: Text(context.getString('add_tag')),
             onTap: () {
               Navigator.of(context).pop();
 
@@ -311,7 +312,7 @@ class _TagsWidgetState extends State<TagsWidget> {
               ListTile(
                 title: TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Name'.toUpperCase(),
+                    labelText: context.getString('name').toUpperCase(),
                   ),
                   controller: newTagController,
                 ),

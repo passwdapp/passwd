@@ -35,13 +35,12 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
             onPressed: () async {
               await launch('https://github.com/passwdapp/box');
             },
-            tooltip: 'Documentation', // TODO: localize
+            tooltip: context.getString('documentation'),
           ),
         ],
       ),
       body: Column(
         children: [
-          // TODO: localize
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -51,7 +50,7 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
                   height: 4,
                 ),
                 Text(
-                  'Sync Beta',
+                  context.getString('sync_beta'),
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ],
@@ -69,7 +68,7 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       child: Text(
-                        'Login',
+                        context.getString('login'),
                         style: TextStyle(
                           color: Theme.of(context).canvasColor,
                         ),
@@ -83,7 +82,7 @@ class _SetupSyncScreenState extends State<SetupSyncScreen> {
                     width: double.infinity,
                     child: OutlineButton(
                       child: Text(
-                        'Register',
+                        context.getString('register'),
                       ),
                       borderSide: BorderSide(
                         color: Theme.of(context).primaryColor,
