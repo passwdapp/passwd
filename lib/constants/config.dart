@@ -1,3 +1,3 @@
 String passwordLetters =
     r"""abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*(),./;'[]\-=<>?:"{}|_+""";
-int dbVersion = 0;
+int dbVersion = 1;

@@ -57,6 +57,10 @@ Nothing is complete without screenshots :P
 - Enable flutter desktop support (https://flutter.dev/desktop)
 - `flutter run`
 
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md)
+
 ## Contributors
 
 See [CONTRIBUTORS.md](./CONTRIBUTORS.md).
