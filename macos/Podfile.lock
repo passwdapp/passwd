@@ -7,30 +7,27 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - path_provider (0.0.1)
   - path_provider_macos (0.0.1):
     - FlutterMacOS
-  - shared_preferences (0.0.1)
   - shared_preferences_macos (0.0.1):
     - FlutterMacOS
   - sqflite (0.0.1):
     - FlutterMacOS
     - FMDB (~> 2.7.2)
-  - touch_bar (0.0.1)
   - touch_bar_macos (0.0.1):
+    - FlutterMacOS
+  - url_launcher_macos (0.0.1):
     - FlutterMacOS
 
 DEPENDENCIES:
   - biometric_storage (from `Flutter/ephemeral/.symlinks/plugins/biometric_storage/macos`)
   - desktop_window (from `Flutter/ephemeral/.symlinks/plugins/desktop_window/macos`)
-  - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64-release`)
-  - path_provider (from `Flutter/ephemeral/.symlinks/plugins/path_provider/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
-  - shared_preferences (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences/macos`)
   - shared_preferences_macos (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos`)
   - sqflite (from `Flutter/ephemeral/.symlinks/plugins/sqflite/macos`)
-  - touch_bar (from `Flutter/ephemeral/.symlinks/plugins/touch_bar/macos`)
   - touch_bar_macos (from `Flutter/ephemeral/.symlinks/plugins/touch_bar_macos/macos`)
+  - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
 
 SPEC REPOS:
   trunk:
@@ -42,35 +39,29 @@ EXTERNAL SOURCES:
   desktop_window:
     :path: Flutter/ephemeral/.symlinks/plugins/desktop_window/macos
   FlutterMacOS:
-    :path: Flutter/ephemeral/.symlinks/flutter/darwin-x64-release
-  path_provider:
-    :path: Flutter/ephemeral/.symlinks/plugins/path_provider/macos
+    :path: Flutter/ephemeral
   path_provider_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos
-  shared_preferences:
-    :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences/macos
   shared_preferences_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos
   sqflite:
     :path: Flutter/ephemeral/.symlinks/plugins/sqflite/macos
-  touch_bar:
-    :path: Flutter/ephemeral/.symlinks/plugins/touch_bar/macos
   touch_bar_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/touch_bar_macos/macos
+  url_launcher_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
   biometric_storage: 43caa6e7ef00e8e19c074216e7e1786dacda9e76
   desktop_window: fb7c4f12c1129f947ac482296b6f14059d57a3c3
-  FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
+  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  path_provider: e0848572d1d38b9a7dd099e79cf83f5b7e2cde9f
   path_provider_macos: a0a3fd666cb7cd0448e936fb4abad4052961002b
-  shared_preferences: 9fec34d1bd906196a4da48fcf6c3ad521cc00b8d
   shared_preferences_macos: 480ce071d0666e37cef23fe6c702293a3d21799e
   sqflite: 6c1f07e1d4399d619ea619fea9171251dd24d058
-  touch_bar: 6ad0fc4c513832497fffddddae99256a0114754c
   touch_bar_macos: 7d9a3e80e1fac4a668b5433b967871b53a53901e
+  url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
 
-PODFILE CHECKSUM: 62df9985b7843d2f0d0cabaa17fef13ae2652359
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
 
 COCOAPODS: 1.10.0
