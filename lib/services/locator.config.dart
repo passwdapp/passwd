@@ -70,7 +70,7 @@ GetIt $initGetIt(
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<Dio>(() => dioModule.dio);
-  gh.factory<ExportService>(() => ExportImpl());
+  gh.lazySingleton<ExportService>(() => ExportImpl());
   gh.lazySingleton<FaviconService>(() => FaviconNew());
   gh.lazySingleton<MigrationService>(() => MigrationImpl());
   gh.lazySingleton<PasswordService>(() => PasswordImpl());

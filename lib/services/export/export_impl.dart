@@ -11,7 +11,7 @@ import '../locator.dart';
 import '../path/path_service.dart';
 import 'export_service.dart';
 
-@Injectable(as: ExportService)
+@LazySingleton(as: ExportService)
 class ExportImpl implements ExportService {
   final pathService = locator<PathService>();
   final databaseService = locator<DatabaseService>();
