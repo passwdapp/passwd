@@ -43,6 +43,7 @@ dependencies:
   provider: ^4.3.2+2
   provider_for_redux: ^1.1.3
   responsive_builder: ^0.3.0
+  share: ^0.6.5+4
   shared_preferences: ^0.5.12+4
   supercharged: ^1.11.1
   touch_bar: ^0.0.1-alpha.1
@@ -55,7 +56,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^1.10.2
   flutter_launcher_icons: ^0.8.1
-  functional_data_generator: ^0.3.4
+  functional_data_generator: ^0.3.7
   injectable_generator: ^1.0.5
   pedantic: ^1.9.2
 

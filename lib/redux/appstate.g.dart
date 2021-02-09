@@ -30,7 +30,8 @@ abstract class $AppState {
   String toString() =>
       "AppState(entries: $entries, isSyncing: $isSyncing, autofillLaunch: $autofillLaunch, isLoggedIn: $isLoggedIn)";
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
+      other is AppState &&
       other.runtimeType == runtimeType &&
       entries == other.entries &&
       isSyncing == other.isSyncing &&

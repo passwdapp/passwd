@@ -27,6 +27,8 @@ import 'crypto/crypto_service.dart';
 import 'database/database_impl.dart';
 import 'database/database_service.dart';
 import 'dio.dart';
+import 'export/export_impl.dart';
+import 'export/export_service.dart';
 import 'favicon/favicon_new.dart';
 import 'favicon/favicon_service.dart';
 import 'migration/migration_impl.dart';
@@ -68,6 +70,7 @@ GetIt $initGetIt(
   gh.lazySingleton<CryptoService>(() => CryptoCrypt());
   gh.lazySingleton<DatabaseService>(() => DatabaseImpl());
   gh.lazySingleton<Dio>(() => dioModule.dio);
+  gh.factory<ExportService>(() => ExportImpl());
   gh.lazySingleton<FaviconService>(() => FaviconNew());
   gh.lazySingleton<MigrationService>(() => MigrationImpl());
   gh.lazySingleton<PasswordService>(() => PasswordImpl());

@@ -15,6 +15,11 @@ class PathPathProvider implements PathService {
   }
 
   @override
+  Future<Directory> getTempDir() async {
+    return (await getTemporaryDirectory());
+  }
+
+  @override
   Future checkCacheDir() async {
     if (!Platform.isAndroid || !Platform.isIOS) {
       final directory = await getTemporaryDirectory();

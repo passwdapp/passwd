@@ -1,0 +1,4 @@
+enum ExportType {
+  SHARE_UNENCRYPTED,
+  SAVE_TO_STORAGE_UNENCRYPTED,
+}

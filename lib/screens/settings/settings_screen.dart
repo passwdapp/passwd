@@ -4,6 +4,7 @@ import 'package:autofill_service/autofill_service.dart';
 import 'package:ez_localization/ez_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:passwd/widgets/export.dart';
 
 import '../../utils/loggers.dart';
 import '../../widgets/sync/settings_sync_widget.dart';
@@ -17,8 +18,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final settingsItems = <Widget>[
     if (Platform.isAndroid)
       ListTile(
-        title: Text('Activate autofill service'),
+        title: Text('Activate autofill service'), // TODO: localize
         onTap: () async {
+          // TODO: abstract autofill
           final response = await AutofillService().requestSetAutofillService();
           Loggers.mainLogger.info(
             'Autofill requestSetAutofillService: ${response}',
@@ -26,6 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         },
       ),
     SettingsSyncWidget(),
+    ExportSettingsWidget(),
   ];
 
   @override
