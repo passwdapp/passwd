@@ -140,9 +140,6 @@ class MyApp extends StatelessWidget {
                 overlayColor: MaterialStateProperty.all(
                   primaryColor.withOpacity(0.24),
                 ),
-                side: MaterialStateProperty.all(
-                  BorderSide(color: primaryColor),
-                ),
               ),
             ),
             buttonTheme: ButtonThemeData(

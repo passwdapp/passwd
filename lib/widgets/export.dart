@@ -42,17 +42,40 @@ class ExportSettingsWidget extends StatelessWidget {
   }
 
   Future<void> exportShareEncrypted(BuildContext context) async {
-    Loggers.mainLogger.info(
-      'Export Type SHARE_ENCRYPTED',
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.getString('warning')), // TODO: localize
+        content: Text(
+          'To import the encrypted DB back, you will need to enter your pin',
+        ), // TODO: localize
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(context.getString('no')),
+          ),
+          TextButton(
+            onPressed: () async {
+              Loggers.mainLogger.info(
+                'Export Type SHARE_ENCRYPTED',
+              );
+              Navigator.of(context).pop();
+              await locator<ExportService>().export(ExportType.SHARE_ENCRYPTED);
+            },
+            child: Text(context.getString('yes')),
+          ),
+        ],
+      ),
     );
-    await locator<ExportService>().export(ExportType.SHARE_ENCRYPTED);
   }
 
   Future<void> exportShareUnencrypted(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Are you sure?'), // TODO: localize
+        title: Text('Are you sure?'.toUpperCase()), // TODO: localize
         content:
             Text('The database export will be unencrypted'), // TODO: localize
         actions: [
