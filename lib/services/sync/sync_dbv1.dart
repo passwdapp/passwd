@@ -17,7 +17,6 @@ import 'sync_service.dart';
 ///
 /// DBv1 is the 3rd implementation of the local database.
 /// This uses XSalsa20-Poly1305 (NaCl secretbox) for encryption.
-/// Cloud sync is not yet implemented
 @LazySingleton(as: SyncService)
 class SyncDBv1 implements SyncService {
   static const fileName = 'db1.passwd1';

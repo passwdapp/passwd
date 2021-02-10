@@ -13,6 +13,9 @@ import 'export_service.dart';
 
 @LazySingleton(as: ExportService)
 class ExportImpl implements ExportService {
+  static const encryptedFileName = 'db1.passwd1';
+  static const unencryptedFileName = 'passwd_db.json';
+
   final pathService = locator<PathService>();
   final databaseService = locator<DatabaseService>();
 
@@ -25,6 +28,14 @@ class ExportImpl implements ExportService {
 
       case ExportType.SAVE_TO_STORAGE_UNENCRYPTED:
         throw UnimplementedError();
+
+      case ExportType.SHARE_ENCRYPTED:
+        await share_unencrypted();
+        break;
+
+      case ExportType.SAVE_TO_STORAGE_ENCRYPTED:
+        throw UnimplementedError();
+        break;
     }
   }
 
@@ -34,7 +45,7 @@ class ExportImpl implements ExportService {
     }
 
     final tempDir = await pathService.getTempDir();
-    final tempDbPath = join(tempDir.path, 'passwd_db.json');
+    final tempDbPath = join(tempDir.path, encryptedFileName);
     final file = File(tempDbPath);
 
     await file.writeAsString(json.encode(databaseService.entries));
@@ -44,5 +55,15 @@ class ExportImpl implements ExportService {
     );
 
     await file.delete();
+  }
+
+  Future share_encrypted() async {
+    final directory = await pathService.getDocDir();
+    final path = join(directory.path, unencryptedFileName);
+
+    await Share.shareFiles(
+      [path],
+      mimeTypes: ['application/octet-stream'],
+    );
   }
 }

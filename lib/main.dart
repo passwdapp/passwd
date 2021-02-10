@@ -125,14 +125,24 @@ class MyApp extends StatelessWidget {
 
                   return primaryColor;
                 }),
+                overlayColor: MaterialStateProperty.all(
+                  primaryColor.withOpacity(0.24),
+                ),
               ),
             ),
+            splashColor: primaryColor.withOpacity(0.24),
             textButtonTheme: TextButtonThemeData(
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 )),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
+                overlayColor: MaterialStateProperty.all(
+                  primaryColor.withOpacity(0.24),
+                ),
+                side: MaterialStateProperty.all(
+                  BorderSide(color: primaryColor),
+                ),
               ),
             ),
             buttonTheme: ButtonThemeData(
@@ -140,8 +150,7 @@ class MyApp extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              hoverColor: primaryColorHovered,
-              highlightColor: primaryColorHovered,
+              highlightColor: primaryColor.withOpacity(0.24),
             ),
             backgroundColor: canvasColor,
             inputDecorationTheme: InputDecorationTheme(

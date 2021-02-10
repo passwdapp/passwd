@@ -9,7 +9,46 @@ import '../services/locator.dart';
 import '../utils/loggers.dart';
 
 class ExportSettingsWidget extends StatelessWidget {
-  Future<void> export(BuildContext context) async {
+  Future<void> showExportSheet(BuildContext context) async {
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        child: Wrap(
+          children: [
+            ListTile(
+              title: Text('Share Unencrypted'), // TODO: localize
+              onTap: () async {
+                Navigator.of(context).pop();
+                await exportShareUnencrypted(context);
+              },
+            ),
+            ListTile(
+              title: Text('Share Encrypted'), // TODO: localize
+              onTap: () async {
+                Navigator.of(context).pop();
+                await exportShareEncrypted(context);
+              },
+            ),
+            ListTile(
+              title: Text(context.getString('cancel')),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> exportShareEncrypted(BuildContext context) async {
+    Loggers.mainLogger.info(
+      'Export Type SHARE_ENCRYPTED',
+    );
+    await locator<ExportService>().export(ExportType.SHARE_ENCRYPTED);
+  }
+
+  Future<void> exportShareUnencrypted(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -48,7 +87,7 @@ class ExportSettingsWidget extends StatelessWidget {
           Loggers.mainLogger.info(
             'Export exportService requested',
           );
-          await export(context);
+          await showExportSheet(context);
         },
       );
     }
