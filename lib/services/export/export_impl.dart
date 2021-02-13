@@ -26,16 +26,16 @@ class ExportImpl implements ExportService {
         await share_unencrypted();
         break;
 
-      case ExportType.SAVE_TO_STORAGE_UNENCRYPTED:
-        await save_unencrypted();
-        break;
-
       case ExportType.SHARE_ENCRYPTED:
         await share_unencrypted();
         break;
 
+      case ExportType.SAVE_TO_STORAGE_UNENCRYPTED:
+        await save_unencrypted();
+        break;
+
       case ExportType.SAVE_TO_STORAGE_ENCRYPTED:
-        throw UnimplementedError();
+        await save_encrypted();
         break;
     }
   }
@@ -60,7 +60,7 @@ class ExportImpl implements ExportService {
 
   Future share_encrypted() async {
     final directory = await pathService.getDocDir();
-    final path = join(directory.path, unencryptedFileName);
+    final path = join(directory.path, encryptedFileName);
 
     await Share.shareFiles(
       [path],
@@ -81,5 +81,23 @@ class ExportImpl implements ExportService {
     await file.writeAsString(
       JsonEncoder.withIndent('  ').convert(databaseService.entries),
     ); // pretty print the json
+  }
+
+  Future save_encrypted() async {
+    if (Platform.isIOS) {
+      throw UnsupportedError('Save is unavailable on iOS and windows');
+    }
+
+    final externalDir = Platform.isWindows
+        ? await pathService.getDocDir()
+        : await pathService.getExternalDirectory();
+    final file = File(join(externalDir.path, './passwd_export.db1'));
+
+    final directory = await pathService.getDocDir();
+    final encryptedDBFile = File(join(directory.path, encryptedFileName));
+
+    await file.writeAsBytes(
+      await encryptedDBFile.readAsBytes(),
+    );
   }
 }

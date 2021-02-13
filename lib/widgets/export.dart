@@ -39,6 +39,14 @@ class ExportSettingsWidget extends StatelessWidget {
                   await exportSaveUnencrypted(context);
                 },
               ),
+            if (!Platform.isIOS)
+              ListTile(
+                title: Text('Save Encrypted'), // TODO: localize
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  await exportSaveEncrypted(context);
+                },
+              ),
             ListTile(
               title: Text(context.getString('cancel')),
               onTap: () {
@@ -55,7 +63,7 @@ class ExportSettingsWidget extends StatelessWidget {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(context.getString('warning')), // TODO: localize
+        title: Text(context.getString('warning')),
         content: Text(
           'To import the encrypted DB back, you will need to enter your pin',
         ), // TODO: localize
@@ -138,6 +146,44 @@ class ExportSettingsWidget extends StatelessWidget {
                 SnackBar(
                   content: Text(
                     'Saved passwd.json to the documents directory',
+                  ), // TODO: localize
+                ),
+              );
+            },
+            child: Text(context.getString('yes')),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> exportSaveEncrypted(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.getString('warning')),
+        content: Text(
+            'To import the encrypted DB back, you will need to enter your pin'), // TODO: localize
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(context.getString('no')),
+          ),
+          TextButton(
+            onPressed: () async {
+              Loggers.mainLogger.info(
+                'Export Type SAVE_TO_STORAGE_ENCRYPTED',
+              );
+              Navigator.of(context).pop();
+              await locator<ExportService>()
+                  .export(ExportType.SAVE_TO_STORAGE_ENCRYPTED);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Saved passwd_export.db1 to the documents directory',
                   ), // TODO: localize
                 ),
               );
