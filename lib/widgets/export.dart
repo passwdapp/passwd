@@ -15,20 +15,30 @@ class ExportSettingsWidget extends StatelessWidget {
       builder: (context) => Container(
         child: Wrap(
           children: [
-            ListTile(
-              title: Text('Share Unencrypted'), // TODO: localize
-              onTap: () async {
-                Navigator.of(context).pop();
-                await exportShareUnencrypted(context);
-              },
-            ),
-            ListTile(
-              title: Text('Share Encrypted'), // TODO: localize
-              onTap: () async {
-                Navigator.of(context).pop();
-                await exportShareEncrypted(context);
-              },
-            ),
+            if (Platform.isAndroid || Platform.isIOS)
+              ListTile(
+                title: Text('Share Unencrypted'), // TODO: localize
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  await exportShareUnencrypted(context);
+                },
+              ),
+            if (Platform.isAndroid || Platform.isIOS)
+              ListTile(
+                title: Text('Share Encrypted'), // TODO: localize
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  await exportShareEncrypted(context);
+                },
+              ),
+            if (!Platform.isIOS)
+              ListTile(
+                title: Text('Save Unencrypted'), // TODO: localize
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  await exportSaveUnencrypted(context);
+                },
+              ),
             ListTile(
               title: Text(context.getString('cancel')),
               onTap: () {
@@ -101,20 +111,54 @@ class ExportSettingsWidget extends StatelessWidget {
     );
   }
 
+  Future<void> exportSaveUnencrypted(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Are you sure?'.toUpperCase()), // TODO: localize
+        content:
+            Text('The database export will be unencrypted'), // TODO: localize
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(context.getString('no')),
+          ),
+          TextButton(
+            onPressed: () async {
+              Loggers.mainLogger.info(
+                'Export Type SAVE_TO_STORAGE_UNENCRYPTED',
+              );
+              Navigator.of(context).pop();
+              await locator<ExportService>()
+                  .export(ExportType.SAVE_TO_STORAGE_UNENCRYPTED);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Saved passwd.json to the documents directory',
+                  ), // TODO: localize
+                ),
+              );
+            },
+            child: Text(context.getString('yes')),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid || Platform.isIOS) {
-      return ListTile(
-        title: Text('Export'), // TODO: localize
-        onTap: () async {
-          Loggers.mainLogger.info(
-            'Export exportService requested',
-          );
-          await showExportSheet(context);
-        },
-      );
-    }
-
-    return Container();
+    return ListTile(
+      title: Text('Export'), // TODO: localize
+      onTap: () async {
+        Loggers.mainLogger.info(
+          'Export exportService requested',
+        );
+        await showExportSheet(context);
+      },
+    );
   }
 }

@@ -27,7 +27,8 @@ class ExportImpl implements ExportService {
         break;
 
       case ExportType.SAVE_TO_STORAGE_UNENCRYPTED:
-        throw UnimplementedError();
+        await save_unencrypted();
+        break;
 
       case ExportType.SHARE_ENCRYPTED:
         await share_unencrypted();
@@ -65,5 +66,20 @@ class ExportImpl implements ExportService {
       [path],
       mimeTypes: ['application/octet-stream'],
     );
+  }
+
+  Future save_unencrypted() async {
+    if (Platform.isIOS) {
+      throw UnsupportedError('Save is unavailable on iOS and windows');
+    }
+
+    final externalDir = Platform.isWindows
+        ? await pathService.getDocDir()
+        : await pathService.getExternalDirectory();
+    final file = File(join(externalDir.path, './passwd.json'));
+
+    await file.writeAsString(
+      JsonEncoder.withIndent('  ').convert(databaseService.entries),
+    ); // pretty print the json
   }
 }

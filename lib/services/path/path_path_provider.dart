@@ -20,6 +20,20 @@ class PathPathProvider implements PathService {
   }
 
   @override
+  Future<Directory> getExternalDirectory() async {
+    final dirs =
+        await getExternalStorageDirectories(type: StorageDirectory.documents);
+
+    if (dirs.isEmpty) {
+      throw UnsupportedError(
+        'Exporting to the external storage is not avaiable on your platform',
+      ); // TODO: localize
+    }
+
+    return dirs[0];
+  }
+
+  @override
   Future checkCacheDir() async {
     if (!Platform.isAndroid || !Platform.isIOS) {
       final directory = await getTemporaryDirectory();
