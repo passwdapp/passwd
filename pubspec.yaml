@@ -52,11 +52,11 @@ dependencies:
   url_launcher: 5.7.10
 
 dev_dependencies:
-  integration_test: ^1.0.2+2
+  # integration_test: ^1.0.2+2
   flutter_test:
     sdk: flutter
-  flutter_driver:
-    sdk: flutter
+  # flutter_driver:
+  # sdk: flutter
   build_runner: ^1.10.2
   flutter_launcher_icons: ^0.8.1
   functional_data_generator: ^0.3.7
