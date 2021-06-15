@@ -63,11 +63,13 @@ class MyApp extends StatelessWidget {
       child: EzLocalizationBuilder(
         delegate: EzLocalizationDelegate(
           supportedLocales: [
-            Locale('en'),
-            Locale('hi'),
-            Locale('fr'),
-            Locale('nl'),
-            Locale('pl'),
+            Locale('en'), // English
+            Locale('hi'), // Hindi
+            Locale('fr'), // French
+            Locale('nl'), // Dutch
+            Locale('pl'), // Polish
+            Locale('de'), // German
+            Locale('zh'), // Chinese
           ],
         ),
         builder: (context, localizationDelegate) => MaterialApp(
