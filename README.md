@@ -2,6 +2,8 @@
 
 A beautiful, encrypted password manager, built using Flutter and Dart.
 
+**Note:** This project is unmaintained for now
+
 ## Features
 
 - Fully encrypted using XSalsa20-Poly1305 (including the database stored on-device)
