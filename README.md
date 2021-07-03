@@ -22,6 +22,7 @@ A beautiful, encrypted password manager, built using Flutter and Dart.
   - Hindi
   - Dutch
   - Polish (not fully up to date)
+  - Portuguese
 
 ## Screenshots
 
