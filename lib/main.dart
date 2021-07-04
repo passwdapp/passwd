@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
             Locale('pl'), // Polish
             Locale('de'), // German
             Locale('zh'), // Chinese
+            Locale('pt_BR'), // Brazilian Portugese
           ],
         ),
         builder: (context, localizationDelegate) => MaterialApp(
